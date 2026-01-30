@@ -8,6 +8,7 @@ BACKUP_FILE="$TRICKY_DIR/keybox.xml.bak"
 DEPENDENCY_MODULE="/data/adb/modules/tricky_store"
 DEPENDENCY_MODULE_UPDATE="/data/adb/modules_update/tricky_store"
 BBIN="/data/adb/Yurikey/bin"
+BUSYBOX_WGET="/data/adb/modules/busybox-ndk/system/bin/wget"
 
 # Detailed log
 log_message() {
@@ -19,7 +20,7 @@ log_message "Writing"
 
 if ! command -v curl >/dev/null 2>&1 \
    && ! command -v wget >/dev/null 2>&1 \
-   && ! command -v toybox >/dev/null 2>&1
+   && ! command -v $BUSYBOX_WGET >/dev/null 2>&1
 then
   log_message "- Cannot work without missing command."
   log_message "- Tip: You can install a working BusyBox with network tools from:"
@@ -52,8 +53,8 @@ fetch_remote_keybox() {
       log_message "ERROR: Remote script failed or no vaild keybox found. Aborting."
       return 1
     fi
-  elif command -v toybox >/dev/null 2>&1; then
-    toybox wget -qO- "$REMOTE_URL" | base64 -d > "$TARGET_FILE"
+  elif command -v $BUSYBOX_WGET >/dev/null 2>&1; then
+    $BUSYBOX_WGET -qO- "$REMOTE_URL" | base64 -d > "$TARGET_FILE"
     if [ ! -f "$TARGET_FILE" ]; then
       log_message "ERROR: Remote script failed or no vaild keybox found. Aborting."
       return 1
