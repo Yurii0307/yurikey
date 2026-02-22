@@ -18,12 +18,14 @@
   "menu_title": "MAIN MENU",
   "menu_force_clear": "Force Stop & Clear Data Play Store",
   "menu_keybox": "Set Up Yuri Keybox",
+  "menu_import_keybox": "Set Up Custom Keybox",
   "menu_target": "Set Up Target.txt",
   "menu_necessary": "Only Set Necessary App",
   "menu_patch": "Set Up Security Patch",
 
   "advance_menu_title": "Advanced Menu",
-  "advance_fix_detect_hma": "Fix Detect HMA",
+  "advance_clear_all_detection_traces": "Clear all detection traces",
+  "advance_set_hma-oss_configs": "Set HMA-oss configs",
   "advance_fix_detect_lsposed": "Fix Detect lsposed (2)",
   "advance_fix_detect_pif": "Fix Detect PIF (1)",
   "advance_fix_detect_recovery_file": "Fix Detect Recovery File",
@@ -56,4 +58,5 @@
   "home_no_internet": "No internet connection.",
   "home_connected": "Connected",
   "home_disconnected": "Disconnected"
+
 }

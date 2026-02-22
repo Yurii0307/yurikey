@@ -18,12 +18,14 @@
   "menu_title": "MENU CHÍNH",
   "menu_force_clear": "Buộc Dừng & Xóa Dữ Liệu Cửa Hàng Play",
   "menu_keybox": "Thiết Lập Yuri Keybox",
+  "menu_import_keybox": "Thiết lập Keybox tùy chỉnh",
   "menu_target": "Thiết Lập Target.txt",
   "menu_necessary": "Chỉ Thiết lập ứng dụng cần thiết",
   "menu_patch": "Thiết lập Security Patch",
 
   "advance_menu_title": "Menu Nâng Cao",
-  "advance_fix_detect_hma": "Sửa Phát Hiện HMA",
+  "advance_clear_all_detection_traces": "Xóa tất cả các dấu vết phát hiện",
+  "advance_set_hma-oss_configs": "Thiết lập HMA-oss cấu hình",
   "advance_fix_detect_lsposed": "Sửa Phát Hiện lsposed (2)",
   "advance_fix_detect_pif": "Sửa Phát Hiện PIF (1)",
   "advance_fix_detect_recovery_file": "Sửa Phát Hiện File Recovery (TWRP)",
@@ -56,4 +58,5 @@
   "home_no_internet": "Không có kết nối internet.",
   "home_connected": "Đã kết nối",
   "home_disconnected": "Mất kết nối"
+
 }

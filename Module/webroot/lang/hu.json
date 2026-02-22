@@ -18,12 +18,14 @@
   "menu_title": "FŐMENÜ",
   "menu_force_clear": "Kényszerített leállítás és Adat törlés Play Store",
   "menu_keybox": "Yuri Keybox beállítása",
+  "menu_import_keybox": "",
   "menu_target": "Target.txt beállítása",
   "menu_necessary": "Állítsa be a szükséges alkalmazást",
   "menu_patch": "Security Patch beállítása",
 
   "advance_menu_title": "Haladó menü",
-  "advance_fix_detect_hma": "Észlelt HMA javítása",
+  "advance_clear_all_detection_traces": "",
+  "advance_set_hma-oss_configs": "",
   "advance_fix_detect_lsposed": "Észlelt Lsposed javítása",
   "advance_fix_detect_pif": "Észlelt PIF javítása",
   "advance_fix_detect_recovery_file": "Észlelt Recovery fájl javítása",
@@ -56,4 +58,5 @@
   "home_no_internet": "Nincs internet kapcsolat.",
   "home_connected": "Csatlakozva",
   "home_disconnected": "Szétkapcsolt"
+
 }

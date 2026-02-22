@@ -42,7 +42,7 @@ io.liankong.riskdetector!
 me.garfieldhan.holmes!
 luna.safe.luna!
 com.zhenxi.hunter!
-com.studio.duckdetector!"
+com.studio.duckdetector"
 for entry in $fixed_targets; do
     if ! echo "$entry" >> "$t"; then
         log_message "ERROR: Failed to write $entry to $t"

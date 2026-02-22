@@ -18,12 +18,14 @@
   "menu_title": "เมนูหลัก",
   "menu_force_clear": "บังคับหยุด & ล้างข้อมูล Play Store",
   "menu_keybox": "ตั้งค่า Yuri Keybox",
+  "menu_import_keybox": "",
   "menu_target": "ตั้งค่า target.txt",
   "menu_necessary": "ตั้งค่าแอปที่จำเป็น",
   "menu_patch": "ใช้แพตช์ความปลอดภัย",
 
   "advance_menu_title": "เมนูล่วงหน้า",
-  "advance_fix_detect_hma": "แก้ไขการตรวจจับ HMA",
+  "advance_clear_all_detection_traces": "",
+  "advance_set_hma-oss_configs": "",
   "advance_fix_detect_lsposed": "แก้ไขการตรวจจับ lsposed (2)",
   "advance_fix_detect_pif": "แก้ไขการตรวจจับ PIF (1)",
   "advance_fix_detect_recovery_file": "แก้ไขการตรวจจับไฟล์กู้คืน",
@@ -56,4 +58,5 @@
   "home_no_internet": "ไม่มีการเชื่อมต่ออินเทอร์เน็ต",
   "home_connected": "เชื่อมต่อแล้ว",
   "home_disconnected": "ตัดการเชื่อมต่อ"
+
 }

@@ -18,11 +18,13 @@
   "menu_title": "Menú Principal",
   "menu_force_clear": "Forzar Detención y Limpiar Datos de Play Store",
   "menu_keybox": "Actualizar Yuri Keybox",
+  "menu_import_keybox": "",
   "menu_target": "Actualizar Target.txt",
   "menu_necessary": "Establecer la aplicación necesaria",
   "menu_patch": "Actualizar Parche de Seguridad",
   "advance_menu_title": "Menú Avanzado",
-  "advance_fix_detect_hma": "Arreglar detección HMA",
+  "advance_clear_all_detection_traces": "",
+  "advance_set_hma-oss_configs": "",
   "advance_fix_detect_lsposed": "Arreglar detección lsposed (2)",
   "advance_fix_detect_pif": "Arreglar detección PIF (1)",
   "advance_fix_detect_recovery_file": "Arreglar detección del archivo de Recovery",
@@ -55,4 +57,5 @@
   "home_no_internet": "Sin conexión a internet.",
   "home_connected": "Conectado",
   "home_disconnected": "Desconectado"
+
 }

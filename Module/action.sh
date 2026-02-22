@@ -4,16 +4,6 @@ MODPATH="${0%/*}"
 set +o standalone
 unset ASH_STANDALONE
 
-if ! command -v curl >/dev/null 2>&1 \
-   && ! command -v wget >/dev/null 2>&1 \
-   && ! command -v toybox >/dev/null 2>&1
-then
-  echo "- Cannot work without missing command."
-  echo "- Tip: You can install a working BusyBox with network tools from:"
-  echo "- https://mmrl.dev/repository/grdoglgmr/busybox-ndk"
-  exit 1
-fi
-
 for SCRIPT in \
   "kill_google_process.sh" \
   "target_txt.sh" \
