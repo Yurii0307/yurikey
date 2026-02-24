@@ -19,7 +19,10 @@ on:
         description: "Zip password (if needed)"
         required: false
         type: string
-
+        
+permissions:
+  contents: write
+  
 jobs:
   update:
     runs-on: ubuntu-latest
