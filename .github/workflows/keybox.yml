@@ -64,6 +64,7 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Commit & Push keybox
         run: |
+          VERSION="${VERSION%.}"
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add key
