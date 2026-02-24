@@ -47,7 +47,7 @@ jobs:
       - name: Fetch Yurikey version
         run: |
           if [ "${{ github.event.inputs.options }}" = "xml" ]; then
-            VERSION=$(grep -o 'Yurikey v[0-9.]*' "input_file" | head -n 1)           
+            VERSION=$(grep -o 'Yurikey[0-9.]*' "input_file" | head -n 1)           
             base64 "input_file" | tr -d '\n' > "key"
           else
             XML_FILE=$(find . -name "*.xml" | head -n 1)
@@ -55,7 +55,7 @@ jobs:
               echo "No XML found!"
               exit 1
             fi
-            VERSION=$(grep -o 'Yurikey v[0-9.]*' "$XML_FILE" | head -n 1)           
+            VERSION=$(grep -o 'Yurikey[0-9.]*' "$XML_FILE" | head -n 1)           
             base64 "$XML_FILE" | tr -d '\n' > "key"
           fi
           echo "VERSION=$VERSION" >> $GITHUB_ENV
