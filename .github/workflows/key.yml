@@ -1,0 +1,68 @@
+name: Update Keybox
+
+on:
+  workflow_dispatch:
+    inputs:
+      keybox_link:
+        description: "Direct link to keybox file"
+        required: true
+        type: string
+      options:
+        description: "File type"
+        required: true
+        type: choice
+        options:
+          - zip
+          - xml
+        default: xml
+      password:
+        description: "Zip password (if needed)"
+        required: false
+        type: string
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install unzip
+        run: sudo apt-get install -y unzip
+
+      - name: Download file
+        run: |
+          curl -L "${{ github.event.inputs.keybox_link }}" -o input_file
+
+      - name: Extract file
+        if: ${{ github.event.inputs.options == 'zip' }}
+        run: |
+          if [ -n "${{ github.event.inputs.password }}" ]; then
+            unzip -P "${{ github.event.inputs.password }}" input_file
+          else
+            unzip input_file
+          fi
+
+      - name: Fetch Yurikey version
+        run: |
+          if [ "${{ github.event.inputs.options }}" = "xml" ]; then
+            VERSION=$(grep -o 'Yurikey v[0-9.]*' "input_file" | head -n 1)           
+            base64 "input_file" | tr -d '\n' > "key"
+          else
+            XML_FILE=$(find . -name "*.xml" | head -n 1)
+            if [ -z "$XML_FILE" ]; then
+              echo "No XML found!"
+              exit 1
+            fi
+            VERSION=$(grep -o 'Yurikey v[0-9.]*' "$XML_FILE" | head -n 1)           
+            base64 "$XML_FILE" | tr -d '\n' > "key"
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      - name: Commit & Push keybox
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add key
+          git commit -m "Update ${{ env.VERSION }}"
+          git push
