@@ -23,10 +23,6 @@ https://t.me/yurichattt
 
 https://t.me/yuriiarchives
 
-https://t.me/yuriifeedback
-
-https://t.me/yuriiservice 
-
 https://t.me/yurikernel
 
 ## How to get Strong Integrity ?
@@ -57,6 +53,7 @@ For the error on the side "ERROR: Keybox updated failed!"
 [Munch](https://github.com/SudoNothing404)  
 [Wes](https://github.com/ihatenodejs)  
 [Khx](https://github.com/dpejoh)  
+
 
 
 
