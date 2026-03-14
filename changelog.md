@@ -6,6 +6,8 @@
 
 → Improve target.txt, set mode ? instead of ! to get better results for devices tee broken.
 
+→ Add functionally to add HMA_Config
+
 ***📌 Other Changes:***
 
 → Fix some function which are not properly translated
