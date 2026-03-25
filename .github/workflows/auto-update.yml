@@ -25,25 +25,52 @@ jobs:
           fi
 
           VERSION_CODE=$(echo $VERSION | sed 's/v//' | sed 's/\.//g')
-
+          RAW_VERSION=$(echo $VERSION | sed 's/v//')
+          
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "raw_version=$RAW_VERSION" >> $GITHUB_OUTPUT
 
       - name: Update module.prop
         run: |
           sed -i "s/^version=.*/version=${{ steps.version.outputs.version }}/" Module/module.prop
           sed -i "s/^versionCode=.*/versionCode=${{ steps.version.outputs.version_code }}/" Module/module.prop
 
+      - name: Update update.json
+        run: |
+          ZIP_URL="https://github.com/Yurii0307/yurikey/releases/download/${{ steps.version.outputs.version }}/Yurikey-${{ steps.version.outputs.version }}.signed.zip"
+          
+          jq --arg v "${{ steps.version.outputs.raw_version }}" \
+             --argjson vc "${{ steps.version.outputs.version_code }}" \
+             --arg url "$ZIP_URL" \
+             '.version = $v | .versionCode = $vc | .zipUrl = $url' \
+             update.json > update_tmp.json && mv update_tmp.json update.json
+
+      - name: Zip Module folder (Upload module)
+        run: |
+          cd Module
+          zip -r ../Yurikey-${{ steps.version.outputs.version }}.signed.zip .
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-          git add Module/module.prop
+          git add Module/module.prop update.json
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: sync module.prop with ${{ steps.version.outputs.version }}"
+            git commit -m "chore: sync Yurikey Mangaer version ${{ steps.version.outputs.raw_version }}"
             git push
           fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          name: Yurikey Manager ${{ steps.version.outputs.version }}
+          body_path: changelog.md
+          files: Yurikey-${{ steps.version.outputs.version }}.signed.zip
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
