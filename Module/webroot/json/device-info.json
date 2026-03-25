@@ -1,5 +1,5 @@
 {
-  "android": "16",
-  "kernel": "6.6.89-android15-8-g29d86c5fc9dd-abogki428889875-4k",
-  "root": "KernelSU-Next"
+  "android": "none",
+  "kernel": "none",
+  "root": "none"
 }
