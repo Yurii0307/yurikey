@@ -10,12 +10,19 @@ unset ASH_STANDALONE
 /data/adb/modules/zygisksu/bin/zygiskd memory-type anonymous
 /data/adb/modules/zygisksu/bin/zygiskd linker builtin
 
+# Fetch new fingerprint (Play Integrity Fix [INJECT])
+PIF="/data/adb/modules/playintegrityfix"
+sh $PIF/autopif_ota.sh || true
+sh $PIF/autopif.sh
+
+
 for SCRIPT in \
   "kill_google_process.sh" \
   "target_txt.sh" \
   "security_patch.sh" \
   "boot_hash.sh" \
-  "yuri_keybox.sh"
+  "yuri_keybox.sh" \
+  "yurirka.sh"
 do
   if ! sh "$MODPATH/Yuri/$SCRIPT"; then
     echo "- Error: $SCRIPT failed. Aborting..."

@@ -9,7 +9,7 @@ log_message "Start"
 
 # Writing
 log_message "Writing"
-PKGS="com.android.vending"
+PKGS="com.android.vending com.google.android.gsf com.google.android.gms"
 
 for pkg in $PKGS; do
     if ! am force-stop "$pkg" >/dev/null 2>&1; then

@@ -3,7 +3,7 @@
 # Contributed by mhmrdd <https://github.com/mhmrdd>
 
 SCRDIR=$(cd "$(dirname "$0")" && pwd)
-. "$SCRDIR/jsonarray.sh"
+. "$SCRDIR/rka/jsonarray.sh"
 
 MOD="io.github.mhmrdd.libxposed.ps.passit"
 
