@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Register click events for buttons in Actions Page
-  document.querySelectorAll("#actions-page .action-buttons .menu-btn").forEach(button => {
+  document.querySelectorAll("#actions-page .menu-btn[data-script]").forEach(button => {
     const scriptName = button.dataset.script;
     if (scriptName) {
       button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
@@ -122,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Register click events for buttons in Advanced Menu Page
-  document.querySelectorAll("#advance-menu .action-buttons .menu-btn").forEach(button => {
+  document.querySelectorAll("#advance-menu .menu-btn[data-script]").forEach(button => {
       const scriptName = button.dataset.script;
       if (scriptName) {
           button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
