@@ -16,14 +16,6 @@
   --ui-select-border: #6f90b2;
   --ui-select-panel: #273a4e;
   --ui-select-panel-border: #587493;
-  --ui-snackbar-bg: #223247;
-  --ui-snackbar-border: #5b7a9a;
-  --ui-snackbar-linear: #7fb4f5;
-  --ui-snackbar-text: #f3edf7;
-  --ui-snackbar-info: color-mix(in srgb, var(--ui-pill-bg) 52%, #7aa3ff 48%);
-  --ui-snackbar-success: color-mix(in srgb, var(--ui-pill-bg) 35%, #5fcf8f 65%);
-  --ui-snackbar-warning: color-mix(in srgb, var(--ui-pill-bg) 55%, #f3b661 45%);
-  --ui-snackbar-error: color-mix(in srgb, var(--ui-pill-bg) 45%, #df6f78 55%);
 }
 
 :root[data-theme-mode="light"] {
@@ -44,14 +36,6 @@
   --ui-select-border: #b2cbe9;
   --ui-select-panel: #e2eeff;
   --ui-select-panel-border: #c3d8f3;
-  --ui-snackbar-bg: #eef4ff;
-  --ui-snackbar-border: #c2d6ef;
-  --ui-snackbar-linear: #2a76c4;
-  --ui-snackbar-text: #2f2433;
-  --ui-snackbar-info: color-mix(in srgb, var(--ui-pill-bg) 58%, #5776c5 42%);
-  --ui-snackbar-success: color-mix(in srgb, var(--ui-pill-bg) 36%, #3d9a66 64%);
-  --ui-snackbar-warning: color-mix(in srgb, var(--ui-pill-bg) 52%, #b9791e 48%);
-  --ui-snackbar-error: color-mix(in srgb, var(--ui-pill-bg) 40%, #ba4c55 60%);
 }
 
 body {
@@ -486,89 +470,4 @@ body {
 #settings-page p[data-i18n="update_note"] {
   font-size: 1rem;
   line-height: 1.6;
-}
-
-#toast-container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: min(92vw, 380px);
-}
-
-.snackbar {
-  border-radius: 0.95rem;
-  background: var(--ui-snackbar-bg);
-  border: 1px solid var(--ui-snackbar-border);
-  box-shadow: 0 12px 28px color-mix(in srgb, var(--ui-nav-active) 34%, #000000 66%);
-  overflow: hidden;
-  animation: snackbar-in 0.22s ease-out;
-  cursor: pointer;
-}
-
-.snackbar-body {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.78rem 0.9rem;
-}
-
-.snackbar-text {
-  color: var(--ui-snackbar-text);
-  font-weight: 600;
-  font-size: 0.92rem;
-}
-
-.snackbar-progress {
-  height: 3px;
-  width: 100%;
-  background: var(--ui-snackbar-linear);
-  transform-origin: left center;
-  animation-name: snackbar-progress;
-  animation-timing-function: linear;
-  animation-fill-mode: forwards;
-}
-
-.snackbar.success { border-color: var(--ui-snackbar-success); }
-
-.snackbar.error { border-color: var(--ui-snackbar-error); }
-
-.snackbar.warning { border-color: var(--ui-snackbar-warning); }
-
-.snackbar.info { border-color: var(--ui-snackbar-info); }
-
-.snackbar-spinner {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--ui-snackbar-text);
-  border-right-color: transparent;
-  animation: snackbar-spin 0.75s linear infinite;
-}
-
-.snackbar.hide {
-  animation: snackbar-out 0.24s ease-in forwards;
-}
-
-@keyframes snackbar-in {
-  from { transform: translateY(-8px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes snackbar-out {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-8px); opacity: 0; }
-}
-
-@keyframes snackbar-progress {
-  from { transform: scaleX(1); }
-  to { transform: scaleX(0); }
-}
-
-@keyframes snackbar-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }

@@ -2,57 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("main.js active");
 
   const BASE_SCRIPT = "/data/adb/modules/Yurikey/Yuri/";
-  let nextToastTime = 0;
-
   // Make sure language.js is already loaded so that t and tFormat are available
 
-  function showToast(message, type = "info", duration = 3000) {
-    const container = document.getElementById("toast-container");
-    if (!container) return;
-
-    const now = Date.now();
-    const delay = Math.max(nextToastTime - now, 0);
-    nextToastTime = now + delay + duration;
-
-    setTimeout(() => {
-      const toast = document.createElement("div");
-      toast.className = `snackbar ${type}`;
-      toast.setAttribute("role", "status");
-
-      const body = document.createElement("div");
-      body.className = "snackbar-body";
-
-      if (type === "info") {
-        const spinner = document.createElement("span");
-        spinner.className = "snackbar-spinner";
-        spinner.setAttribute("aria-hidden", "true");
-        body.appendChild(spinner);
-      }
-
-      const text = document.createElement("span");
-      text.className = "snackbar-text";
-      text.textContent = message;
-      body.appendChild(text);
-
-      const progress = document.createElement("div");
-      progress.className = "snackbar-progress";
-      progress.style.animationDuration = `${duration}ms`;
-
-      toast.appendChild(body);
-      toast.appendChild(progress);
-
-      toast.addEventListener("click", () => {
-        toast.classList.add("hide");
-        setTimeout(() => toast.remove(), 300);
-      });
-      container.appendChild(toast);
-      setTimeout(() => {
-        if (toast.parentNode) {
-          toast.classList.add("hide");
-          setTimeout(() => toast.remove(), 300);
-        }
-      }, duration);
-    }, delay);
+  function showToast(_message, _type = "info", _duration = 3000) {
+    // Snackbar feature removed by request.
   }
 
   function runScript(scriptName, basePath, button) {
