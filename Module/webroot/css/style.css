@@ -42,6 +42,7 @@ body {
   justify-content: center;
 }
 
+#home-page #refresh-info-btn,
 #actions-page .menu-btn,
 #advance-menu .menu-btn,
 #update-page .menu-btn {
@@ -56,12 +57,19 @@ body {
   box-shadow: none;
 }
 
+#home-page #refresh-info-btn {
+  width: auto;
+  min-width: 180px;
+}
+
+#home-page #refresh-info-btn:hover,
 #actions-page .menu-btn:hover,
 #advance-menu .menu-btn:hover,
 #update-page .menu-btn:hover {
   background: #f0b4cd;
 }
 
+#home-page #refresh-info-btn:active,
 #actions-page .menu-btn:active,
 #advance-menu .menu-btn:active,
 #update-page .menu-btn:active {
