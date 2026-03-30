@@ -42,14 +42,27 @@ body {
   justify-content: center;
 }
 
-.info-card {
-  padding: 1rem;
-  border-radius: 0.9rem;
+.beer-card {
+  padding: 1rem 1.1rem;
+  border-radius: 1.75rem;
+  background: color-mix(in srgb, var(--surface-container-high) 85%, var(--primary) 15%);
+  border: 1px solid color-mix(in srgb, var(--outline-variant) 65%, transparent);
+  min-height: 112px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.value {
-  margin-top: 0.5rem;
+.card-title {
+  color: var(--on-surface-variant);
+  font-size: 1rem;
+}
+
+.card-value {
+  margin: 0.65rem 0 0;
   font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--on-surface);
 }
 
 #status-row.online {
@@ -90,11 +103,9 @@ body {
 }
 
 .nav-icon {
-  width: 17px;
-  height: 17px;
-  object-fit: contain;
+  font-size: 18px !important;
+  line-height: 1;
   opacity: 0.72;
-  filter: grayscale(0.1);
 }
 
 .nav-btn.active {

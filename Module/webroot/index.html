@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#121212" />
   <title>Yurikey Manager</title>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@1" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@3.9.8/dist/cdn/beer.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -24,34 +25,34 @@
         </div>
 
         <div class="grid cols-3 m l gap">
-          <article class="surface-variant info-card">
-            <h6 class="no-margin" data-i18n="home_clock_date">Clock Date</h6>
-            <div id="clock-date" class="value">--/--/--</div>
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_clock_date">Clock Date</h6>
+            <p id="clock-date" class="card-value">--/--/--</p>
           </article>
 
-          <article class="surface-variant info-card">
-            <h6 class="no-margin" data-i18n="home_clock_time">Clock Time</h6>
-            <div id="clock-time" class="value">--:--:--</div>
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_clock_time">Clock Time</h6>
+            <p id="clock-time" class="card-value">--:--:--</p>
           </article>
 
-          <article id="status-row" class="surface-variant info-card offline">
-            <h6 class="no-margin" data-i18n="home_status">Status</h6>
-            <div id="status-bar-text" class="value" data-i18n="home_status_offline">Offline</div>
+          <article id="status-row" class="beer-card offline">
+            <h6 class="card-title no-margin" data-i18n="home_status">Status</h6>
+            <p id="status-bar-text" class="card-value" data-i18n="home_status_offline">Offline</p>
           </article>
 
-          <article class="surface-variant info-card">
-            <h6 class="no-margin">Android</h6>
-            <div id="android-version" class="value">Error</div>
+          <article class="beer-card">
+            <h6 class="card-title no-margin">Android</h6>
+            <p id="android-version" class="card-value">Error</p>
           </article>
 
-          <article class="surface-variant info-card">
-            <h6 class="no-margin">Kernel</h6>
-            <div id="kernel-version" class="value">Error</div>
+          <article class="beer-card">
+            <h6 class="card-title no-margin">Kernel</h6>
+            <p id="kernel-version" class="card-value">Error</p>
           </article>
 
-          <article class="surface-variant info-card">
-            <h6 class="no-margin" data-i18n="home_root">Root Implementation</h6>
-            <div id="root-type" class="value">Error</div>
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_root">Root Implementation</h6>
+            <p id="root-type" class="card-value">Error</p>
           </article>
         </div>
       </article>
@@ -164,23 +165,23 @@
 
   <nav class="bottom-nav surface-container-high">
     <button class="nav-btn active" type="button">
-      <img src="/common/assets/navbar/home.svg" alt="Home" class="nav-icon" />
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">home</i>
       <span data-i18n="nav_home">Home</span>
     </button>
     <button class="nav-btn" type="button">
-      <img src="/common/assets/navbar/menu.svg" alt="Menu" class="nav-icon" />
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">grid_view</i>
       <span data-i18n="nav_menu">Menu</span>
     </button>
     <button class="nav-btn" type="button">
-      <img src="/common/assets/navbar/android.png" alt="Advance Menu" class="nav-icon" />
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">tune</i>
       <span data-i18n="nav_advancemenu">Menu +</span>
     </button>
     <button class="nav-btn" type="button">
-      <img src="/common/assets/navbar/community.png" alt="Update" class="nav-icon" />
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">forum</i>
       <span data-i18n="nav_update">Update</span>
     </button>
     <button class="nav-btn" type="button">
-      <img src="/common/assets/navbar/settings.svg" alt="Settings" class="nav-icon" />
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">settings</i>
       <span data-i18n="nav_settings">Settings</span>
     </button>
   </nav>
