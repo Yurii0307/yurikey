@@ -366,6 +366,21 @@ body {
   border-color: var(--ui-pill-border);
 }
 
+#settings-page .surface-variant.block,
+#actions-page .surface-variant.block.menu-card,
+#advance-menu .surface-variant.block.menu-card {
+  background: var(--ui-card-bg);
+  border: 1px solid var(--ui-card-border);
+  color: var(--ui-text);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 24%);
+}
+
+#actions-page .surface-variant.block.menu-card h6,
+#advance-menu .surface-variant.block.menu-card h6,
+#settings-page .surface-variant.block h6 {
+  color: var(--ui-text);
+}
+
 .appearance-header {
   display: flex;
   align-items: center;
