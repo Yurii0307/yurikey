@@ -63,5 +63,10 @@
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
   "theme_preset_violet": "Violet",
-  "theme_default_switch": "Default switch"
+  "theme_default_switch": "Default switch",
+  "settings_title": "Pengaturan",
+  "settings_language": "Bahasa",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Perbarui konfigurasi RKA",
+  "advance_widevinel1": "Perbaiki Widevine L1"
 }

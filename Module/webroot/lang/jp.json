@@ -27,7 +27,7 @@
   "advance_fix_detect_pif": "PIF の検出を修正 (1)",
   "advance_fix_detect_recovery_file": "リカバリーファイルの検出を修正",
   "advance_kill_all": "すべてのプロセスを停止",
-  "advance_wdevinel1": "Widevine L1 の修正",
+  "advance_wdevinel1": "Widevine L1を修正",
   "advance_set_verified_boot": "確認付きブートハッシュを設定",
   "update_title": "更新とサポート",
   "update_desc": "YuriKey の最新バージョン、バグ修正、新機能についての最新情報を入手しましょう。",
@@ -63,5 +63,10 @@
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
   "theme_preset_violet": "Violet",
-  "theme_default_switch": "Default switch"
+  "theme_default_switch": "Default switch",
+  "settings_title": "設定",
+  "settings_language": "言語",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "RKA設定を更新",
+  "advance_widevinel1": "Widevine L1を修正"
 }

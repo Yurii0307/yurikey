@@ -27,7 +27,7 @@
   "advance_fix_detect_pif": "Sửa Phát Hiện PIF (1)",
   "advance_fix_detect_recovery_file": "Sửa Phát Hiện File Recovery (TWRP)",
   "advance_kill_all": "Giết tất cả",
-  "advance_wdevinel1": "Sửa Widevine L1",
+  "advance_wdevinel1": "Sửa lỗi Widevine L1",
   "advance_set_verified_boot": "Đặt Verified Boothash",
   "update_title": "CẬP NHẬT & HỖ TRỢ",
   "update_desc": "Luôn cập nhật với phiên bản Yurikey mới nhất, sửa lỗi và tính năng mới.",
@@ -63,5 +63,10 @@
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
   "theme_preset_violet": "Violet",
-  "theme_default_switch": "Default switch"
+  "theme_default_switch": "Default switch",
+  "settings_title": "Cài đặt",
+  "settings_language": "Ngôn ngữ",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Cập nhật cấu hình RKA",
+  "advance_widevinel1": "Sửa lỗi Widevine L1"
 }

@@ -66,5 +66,8 @@
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
   "theme_preset_violet": "Violet",
-  "theme_default_switch": "Default switch"
+  "theme_default_switch": "Default switch",
+  "settings_language": "语言",
+  "advance_upd_yurirka": "更新 RKA 配置",
+  "advance_widevinel1": "修复 Widevine L1"
 }

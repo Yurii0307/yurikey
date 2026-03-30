@@ -27,7 +27,7 @@
   "advance_fix_detect_pif": "Arreglar detección PIF (1)",
   "advance_fix_detect_recovery_file": "Arreglar detección del archivo de Recovery",
   "advance_kill_all": "Matar todo el proceso",
-  "advance_wdevinel1": "Arreglar Widevine L1",
+  "advance_wdevinel1": "Corregir Widevine L1",
   "advance_set_verified_boot": "Establecer Boothash verificado",
   "update_title": "Actualización y Soporte",
   "update_desc": "Mantente actualizado con la ultima versión de Yurikey, corrección de bugs y nuevas funciones!",
@@ -63,5 +63,10 @@
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
   "theme_preset_violet": "Violet",
-  "theme_default_switch": "Default switch"
+  "theme_default_switch": "Default switch",
+  "settings_title": "Ajustes",
+  "settings_language": "Idioma",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Actualizar configuración RKA",
+  "advance_widevinel1": "Corregir Widevine L1"
 }
