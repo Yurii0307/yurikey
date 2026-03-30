@@ -11,7 +11,15 @@ function openUrlViaIntent(url) {
     window[cbId] = () => delete window[cbId];
     ksu.exec(intentCmd, "{}", cbId);
   } else {
-    console.warn("ksu.exec not available or unsupported.");
+    // Fallback for non-KernelSU environments (desktop browser, webview without exec bridge)
+    try {
+      const opened = window.open(url, "_blank", "noopener,noreferrer");
+      if (!opened) {
+        window.location.href = url;
+      }
+    } catch {
+      window.location.href = url;
+    }
   }
 }
 
