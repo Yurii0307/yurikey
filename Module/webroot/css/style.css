@@ -373,15 +373,62 @@ body {
   gap: 0.75rem;
 }
 
-.switch-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.88rem;
+.appearance-title {
+  font-size: 1.24rem;
+  line-height: 1.2;
 }
 
-.switch-label input {
-  accent-color: var(--ui-pill-bg);
+.default-switch-wrap {
+  position: relative;
+  display: inline-flex;
+  width: 64px;
+  height: 34px;
+}
+
+.default-switch-wrap input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.default-switch-ui {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  border: 2px solid rgb(255 255 255 / 20%);
+  background: color-mix(in srgb, var(--ui-card-bg) 70%, #000 30%);
+  display: inline-flex;
+  align-items: center;
+  padding: 0 5px;
+  transition: all 0.2s ease;
+}
+
+.default-switch-ui::before {
+  content: \"\";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 45%);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.default-switch-wrap input:checked + .default-switch-ui {
+  background: #6f1d1d;
+  border-color: #913535;
+}
+
+.default-switch-wrap input:checked + .default-switch-ui::before {
+  transform: translateX(30px);
+  background: #ffffff;
+}
+
+.default-switch-wrap input:checked + .default-switch-ui::after {
+  content: \"✓\";
+  position: absolute;
+  right: 12px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .beer-color-panel {
