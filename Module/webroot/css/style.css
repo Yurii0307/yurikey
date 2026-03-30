@@ -45,7 +45,7 @@ body {
 #home-page #refresh-info-btn,
 #actions-page .menu-btn,
 #advance-menu .menu-btn,
-#update-page .menu-btn {
+#settings-page .update-support .menu-btn {
   border-radius: 999px;
   min-height: 46px;
   padding: 0.65rem 1rem;
@@ -65,14 +65,14 @@ body {
 #home-page #refresh-info-btn:hover,
 #actions-page .menu-btn:hover,
 #advance-menu .menu-btn:hover,
-#update-page .menu-btn:hover {
+#settings-page .update-support .menu-btn:hover {
   background: #f0b4cd;
 }
 
 #home-page #refresh-info-btn:active,
 #actions-page .menu-btn:active,
 #advance-menu .menu-btn:active,
-#update-page .menu-btn:active {
+#settings-page .update-support .menu-btn:active {
   transform: translateY(1px);
 }
 
@@ -121,7 +121,7 @@ body {
   right: 0.5rem;
   bottom: 0.5rem;
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.35rem;
   padding: 0.35rem;
   border-radius: 999px;
@@ -142,6 +142,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.45rem;
+  opacity: 0.72;
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
 }
 
 .nav-icon {
@@ -151,13 +153,15 @@ body {
 }
 
 .nav-btn.active {
-  background: color-mix(in srgb, var(--primary) 42%, transparent);
+  background: #7f2750;
   color: var(--on-primary);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 16%), 0 8px 24px rgb(127 39 80 / 35%);
+  opacity: 1;
 }
 
 .nav-btn.active .nav-icon {
   opacity: 1;
-  filter: none;
+  transform: scale(1.03);
 }
 
 .nav-btn span {
