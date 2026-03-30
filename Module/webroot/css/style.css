@@ -1,15 +1,17 @@
 :root {
   color-scheme: dark;
-  --ui-bg: #151625;
+  --ui-bg: #11142a;
   --ui-text: #f3edf7;
-  --ui-card-bg: #362f3b;
-  --ui-card-border: #52455a;
+  --ui-card-bg: #292d45;
+  --ui-card-border: #414867;
   --ui-muted: #d0c3da;
   --ui-pill-bg: #eba3c2;
   --ui-pill-bg-hover: #f0b4cd;
   --ui-pill-border: #f4bfd5;
   --ui-pill-text: #4f1835;
   --ui-nav-active: #7f2750;
+  --ui-nav-text: #d8d5e9;
+  --ui-nav-text-active: #ffffff;
   --ui-select-bg: #5a4e57;
   --ui-select-border: #9b8c98;
   --ui-select-panel: #3b3139;
@@ -20,16 +22,18 @@
 
 :root[data-theme-mode="light"] {
   color-scheme: light;
-  --ui-bg: #f5f2f9;
+  --ui-bg: #d8d7df;
   --ui-text: #2f2433;
-  --ui-card-bg: #ece5f0;
-  --ui-card-border: #cfc2d5;
+  --ui-card-bg: #f2eef6;
+  --ui-card-border: #cbc3d4;
   --ui-muted: #5f4d66;
   --ui-pill-bg: #d685a9;
   --ui-pill-bg-hover: #de96b6;
   --ui-pill-border: #dca8c1;
   --ui-pill-text: #ffffff;
   --ui-nav-active: #a24574;
+  --ui-nav-text: #534661;
+  --ui-nav-text-active: #ffffff;
   --ui-select-bg: #e4d5e8;
   --ui-select-border: #c3afc9;
   --ui-select-panel: #efe4f2;
@@ -219,7 +223,7 @@ body {
   min-height: 44px;
   padding: 0.55rem 0.35rem;
   border-radius: 999px;
-  color: var(--on-surface-variant);
+  color: var(--ui-nav-text);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -237,7 +241,7 @@ body {
 
 .nav-btn.active {
   background: var(--ui-nav-active);
-  color: var(--on-primary);
+  color: var(--ui-nav-text-active);
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 16%), 0 8px 24px rgb(127 39 80 / 35%);
   opacity: 1;
 }
