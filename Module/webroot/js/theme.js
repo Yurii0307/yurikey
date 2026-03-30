@@ -53,6 +53,7 @@ function modeLabel(mode) {
 
 function withDerived(colors, mode) {
   const base = colors["--ui-pill-bg"];
+  const card = colors["--ui-card-bg"] || (mode === "light" ? "#f2f4f8" : "#23293a");
   const pillText = colors["--ui-pill-text"] || (mode === "light" ? "#ffffff" : "#231531");
   return {
     ...colors,
@@ -60,6 +61,8 @@ function withDerived(colors, mode) {
     "--ui-pill-border": mix(base, mode === "light" ? "#ffffff" : "#f9e7f2", 0.35),
     "--ui-nav-text-active": "#ffffff",
     "--ui-snackbar-text": mode === "light" ? "#2f2433" : "#f3edf7",
+    "--ui-snackbar-bg": mode === "light" ? mix(card, "#ffffff", 0.36) : mix(card, "#171b26", 0.45),
+    "--ui-snackbar-border": mix(base, mode === "light" ? "#6a6f7b" : "#f1f5ff", mode === "light" ? 0.22 : 0.24),
     "--ui-snackbar-info": mix(base, "#4f8af9", mode === "light" ? 0.42 : 0.5),
     "--ui-snackbar-success": mix(base, "#43b77f", mode === "light" ? 0.52 : 0.6),
     "--ui-snackbar-warning": mix(base, "#d88f2b", mode === "light" ? 0.48 : 0.52),
