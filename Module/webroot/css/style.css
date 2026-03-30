@@ -288,16 +288,82 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  width: min(92vw, 380px);
 }
 
-.toast {
-  padding: 0.7rem 0.9rem;
-  border-radius: 0.7rem;
-  background: var(--surface-container-high);
-  border: 1px solid var(--outline-variant);
+.snackbar {
+  border-radius: 0.95rem;
+  background: #2f2631;
+  border: 1px solid #78667b;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 42%);
+  overflow: hidden;
+  animation: snackbar-in 0.22s ease-out;
+  cursor: pointer;
 }
 
-.toast.success { border-color: var(--tertiary); }
-.toast.error { border-color: var(--error); }
-.toast.warning { border-color: var(--secondary); }
-.toast.info { border-color: var(--primary); }
+.snackbar-body {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.78rem 0.9rem;
+}
+
+.snackbar-text {
+  color: #f5ebf7;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.snackbar-progress {
+  height: 3px;
+  width: 100%;
+  transform-origin: left center;
+  animation-name: snackbar-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.snackbar.success { border-color: #5fb17a; }
+.snackbar.success .snackbar-progress { background: #5fb17a; }
+
+.snackbar.error { border-color: #de6c75; }
+.snackbar.error .snackbar-progress { background: #de6c75; }
+
+.snackbar.warning { border-color: #dfa761; }
+.snackbar.warning .snackbar-progress { background: #dfa761; }
+
+.snackbar.info { border-color: #8c78c9; }
+.snackbar.info .snackbar-progress { background: #8c78c9; }
+
+.snackbar-spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #d7cce1;
+  border-right-color: transparent;
+  animation: snackbar-spin 0.75s linear infinite;
+}
+
+.snackbar.hide {
+  animation: snackbar-out 0.24s ease-in forwards;
+}
+
+@keyframes snackbar-in {
+  from { transform: translateY(-8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes snackbar-out {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-8px); opacity: 0; }
+}
+
+@keyframes snackbar-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@keyframes snackbar-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

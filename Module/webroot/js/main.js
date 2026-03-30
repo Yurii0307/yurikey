@@ -16,16 +16,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
       const toast = document.createElement("div");
-      toast.className = `toast ${type}`;
-      toast.textContent = message;
+      toast.className = `snackbar ${type}`;
+      toast.setAttribute("role", "status");
+
+      const body = document.createElement("div");
+      body.className = "snackbar-body";
+
+      if (type === "info") {
+        const spinner = document.createElement("span");
+        spinner.className = "snackbar-spinner";
+        spinner.setAttribute("aria-hidden", "true");
+        body.appendChild(spinner);
+      }
+
+      const text = document.createElement("span");
+      text.className = "snackbar-text";
+      text.textContent = message;
+      body.appendChild(text);
+
+      const progress = document.createElement("div");
+      progress.className = "snackbar-progress";
+      progress.style.animationDuration = `${duration}ms`;
+
+      toast.appendChild(body);
+      toast.appendChild(progress);
+
       toast.addEventListener("click", () => {
-        toast.style.animation = "toast-slideout 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
+        toast.classList.add("hide");
         setTimeout(() => toast.remove(), 300);
       });
       container.appendChild(toast);
       setTimeout(() => {
         if (toast.parentNode) {
-          toast.style.animation = "toast-slideout 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
+          toast.classList.add("hide");
           setTimeout(() => toast.remove(), 300);
         }
       }, duration);
