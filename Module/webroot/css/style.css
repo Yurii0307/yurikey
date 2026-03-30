@@ -366,6 +366,46 @@ body {
   border-color: var(--ui-pill-border);
 }
 
+.appearance-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.switch-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+}
+
+.switch-label input {
+  accent-color: var(--ui-pill-bg);
+}
+
+.beer-color-panel {
+  display: none;
+  margin-top: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+  gap: 0.55rem;
+}
+
+.beer-color-panel.active {
+  display: grid;
+}
+
+.beer-color-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 2px solid rgb(255 255 255 / 35%);
+}
+
+.beer-color-btn.active {
+  box-shadow: 0 0 0 2px var(--ui-pill-border);
+}
+
 .contrib-grid {
   margin-top: 0.75rem;
   display: grid;

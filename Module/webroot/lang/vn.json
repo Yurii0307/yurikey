@@ -62,5 +62,6 @@
   "theme_preset_rose": "Rose",
   "theme_preset_forest": "Forest",
   "theme_preset_sunset": "Sunset",
-  "theme_preset_violet": "Violet"
+  "theme_preset_violet": "Violet",
+  "theme_default_switch": "Default switch"
 }

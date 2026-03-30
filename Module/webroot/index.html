@@ -142,7 +142,13 @@
         </article>
 
         <article class="surface-variant block">
-          <h6 data-i18n="settings_appearance">Appearance</h6>
+          <div class="appearance-header">
+            <h6 data-i18n="settings_appearance">Appearance</h6>
+            <label class="switch-label">
+              <span data-i18n="theme_default_switch">Default switch</span>
+              <input id="theme-default-switch" type="checkbox" />
+            </label>
+          </div>
           <div class="custom-dropdown lang-select-wrap">
             <button id="theme-mode-btn" class="menu-btn lang-select-btn" data-i18n="theme_mode_dark">Dark</button>
             <ul id="theme-mode-options" class="dropdown-list lang-options-list">
@@ -157,6 +163,21 @@
             <button class="theme-preset-btn" data-theme-preset="forest" data-i18n="theme_preset_forest">Forest</button>
             <button class="theme-preset-btn" data-theme-preset="sunset" data-i18n="theme_preset_sunset">Sunset</button>
             <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
+          </div>
+          <div id="beer-color-panel" class="beer-color-panel">
+            <button class="beer-color-btn" data-beer-color="#f44336" style="background:#f44336"></button>
+            <button class="beer-color-btn" data-beer-color="#e91e63" style="background:#e91e63"></button>
+            <button class="beer-color-btn" data-beer-color="#9c27b0" style="background:#9c27b0"></button>
+            <button class="beer-color-btn" data-beer-color="#3f51b5" style="background:#3f51b5"></button>
+            <button class="beer-color-btn" data-beer-color="#2196f3" style="background:#2196f3"></button>
+            <button class="beer-color-btn" data-beer-color="#00bcd4" style="background:#00bcd4"></button>
+            <button class="beer-color-btn" data-beer-color="#4caf50" style="background:#4caf50"></button>
+            <button class="beer-color-btn" data-beer-color="#8bc34a" style="background:#8bc34a"></button>
+            <button class="beer-color-btn" data-beer-color="#ffeb3b" style="background:#ffeb3b"></button>
+            <button class="beer-color-btn" data-beer-color="#ffc107" style="background:#ffc107"></button>
+            <button class="beer-color-btn" data-beer-color="#ff9800" style="background:#ff9800"></button>
+            <button class="beer-color-btn" data-beer-color="#795548" style="background:#795548"></button>
+            <button class="beer-color-btn" data-beer-color="#9e9e9e" style="background:#9e9e9e"></button>
           </div>
         </article>
 
