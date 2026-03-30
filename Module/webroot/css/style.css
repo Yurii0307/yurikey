@@ -496,7 +496,7 @@ body {
   border-radius: 0.95rem;
   background: var(--ui-snackbar-bg);
   border: 1px solid var(--ui-snackbar-border);
-  box-shadow: 0 12px 28px rgb(0 0 0 / 42%);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--ui-nav-active) 34%, #000000 66%);
   overflow: hidden;
   animation: snackbar-in 0.22s ease-out;
   cursor: pointer;
