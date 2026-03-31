@@ -78,5 +78,15 @@
   "snackbar_output_title": "Betik çıktısı",
   "dialog_close": "Kapat",
   "snackbar_tap_for_output": "Betik çıktısını görmek için bir kez dokun",
-  "snackbar_no_output": "Betik çıktısı bulunamadı."
+  "snackbar_no_output": "Betik çıktısı bulunamadı.",
+  "execution_unavailable": "Bu ortamda betik çalıştırma kullanılamıyor. KernelSU veya bir host köprüsü gerekli.",
+  "execution_backend_ksu": "KernelSU",
+  "execution_backend_host": "Host Köprüsü",
+  "execution_backend_none": "Backend yok",
+  "snackbar_output_meta_default": "Çalıştırma backend durumu burada görünecek.",
+  "snackbar_output_meta_ready": "Backend: {backend}. Betik çıktısı hazır.",
+  "snackbar_output_meta_empty": "Backend: {backend}. Betik metin çıktısı üretmeden tamamlandı.",
+  "snackbar_output_meta_failed": "Backend: {backend}. Betik hata bildirdi.",
+  "snackbar_output_meta_timeout": "Backend: {backend}. Betik zaman aşımına uğradı.",
+  "snackbar_output_meta_unavailable": "Backend: {backend}. Bu ortamda betik çalıştırılamıyor."
 }

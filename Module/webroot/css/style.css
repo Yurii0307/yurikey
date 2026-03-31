@@ -569,3 +569,8 @@ body {
   border-radius: 0.7rem;
   padding: 0.85rem;
 }
+
+.snackbar-output-meta {
+  margin: 0.6rem 0 0;
+  opacity: 0.85;
+}

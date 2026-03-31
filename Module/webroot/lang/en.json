@@ -78,5 +78,15 @@
   "snackbar_output_title": "Script output",
   "dialog_close": "Close",
   "snackbar_tap_for_output": "Tap once to view script output",
-  "snackbar_no_output": "No script output available."
+  "snackbar_no_output": "No script output available.",
+  "execution_unavailable": "Script execution is unavailable in this environment. KernelSU or host bridge is required.",
+  "execution_backend_ksu": "KernelSU",
+  "execution_backend_host": "Host Bridge",
+  "execution_backend_none": "No backend",
+  "snackbar_output_meta_default": "Execution backend status will appear here.",
+  "snackbar_output_meta_ready": "Backend: {backend}. Script output is available.",
+  "snackbar_output_meta_empty": "Backend: {backend}. Script finished without text output.",
+  "snackbar_output_meta_failed": "Backend: {backend}. Script reported an error.",
+  "snackbar_output_meta_timeout": "Backend: {backend}. Script timed out.",
+  "snackbar_output_meta_unavailable": "Backend: {backend}. This environment cannot run scripts."
 }

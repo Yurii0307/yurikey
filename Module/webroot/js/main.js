@@ -7,14 +7,35 @@ document.addEventListener("DOMContentLoaded", () => {
   let toastTimer;
   let activeToastOutput = "";
 
-  function showOutputDialog(output, scriptName = "") {
+  function getScriptExecutor() {
+    if (typeof ksu === "object" && typeof ksu.exec === "function") {
+      return { type: "ksu", label: t("execution_backend_ksu") };
+    }
+
+    const hostExec = window.YuriKeyHost?.execScript || window.execYurikeyScript;
+    if (typeof hostExec === "function") {
+      return { type: "host", label: t("execution_backend_host"), exec: hostExec };
+    }
+
+    return { type: "none", label: t("execution_backend_none") };
+  }
+
+  function setOutputMeta(statusKey, backendLabel) {
+    const metaEl = document.getElementById("snackbar-output-meta");
+    if (!metaEl) return;
+
+    metaEl.textContent = tFormat(statusKey, { backend: backendLabel });
+  }
+
+  function showOutputDialog(output, backendLabel = "") {
     const dialog = document.getElementById("snackbar-output-dialog");
     const overlay = document.getElementById("snackbar-output-overlay");
     const outputEl = document.getElementById("snackbar-output-text");
     if (!dialog || !overlay || !outputEl) return;
 
     outputEl.textContent = output || t("snackbar_no_output");
-    dialog.dataset.scriptName = scriptName;
+    setOutputMeta("snackbar_output_meta_ready", backendLabel || t("execution_backend_none"));
+
     overlay.classList.add("active");
     if (!dialog.open) dialog.showModal();
   }
@@ -28,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     overlay.classList.remove("active");
   }
 
-  function showToast(message, type = "info", duration = 3000, output = "", scriptName = "") {
+  function showToast(message, type = "info", duration = 3000, output = "", backendLabel = "") {
     const snackbar = document.getElementById("snackbar");
     if (!snackbar) return;
 
@@ -38,11 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (output && output.trim()) {
       activeToastOutput = output.trim();
-      snackbar.dataset.scriptName = scriptName;
+      snackbar.dataset.backendLabel = backendLabel;
       snackbar.classList.add("has-output");
     } else {
       activeToastOutput = "";
-      delete snackbar.dataset.scriptName;
+      delete snackbar.dataset.backendLabel;
       snackbar.classList.remove("has-output");
     }
 
@@ -52,11 +73,41 @@ document.addEventListener("DOMContentLoaded", () => {
     }, duration);
   }
 
+  function handleScriptResult(rawOutput, scriptName, backendLabel) {
+    const raw = typeof rawOutput === "string" ? rawOutput.trim() : "";
+
+    if (!raw) {
+      showToast(tFormat("success", { script: scriptName }), "success", 3000, "", backendLabel);
+      setOutputMeta("snackbar_output_meta_empty", backendLabel);
+      return;
+    }
+
+    try {
+      const json = JSON.parse(raw);
+      if (json.success) {
+        const commandOutput = typeof json.output === "string" ? json.output.trim() : "";
+        showToast(tFormat("success", { script: scriptName }), "success", 3000, commandOutput, backendLabel);
+        setOutputMeta("snackbar_output_meta_ready", backendLabel);
+      } else if (json.error) {
+        showToast(tFormat("failed", { script: scriptName }) + ` (${json.error})`, "error", 4000, raw, backendLabel);
+        setOutputMeta("snackbar_output_meta_failed", backendLabel);
+      } else {
+        showToast(tFormat("failed", { script: scriptName }) + " (Unknown response)", "error", 4000, raw, backendLabel);
+        setOutputMeta("snackbar_output_meta_failed", backendLabel);
+      }
+    } catch {
+      showToast(tFormat("success", { script: scriptName }), "success", 3500, raw, backendLabel);
+      setOutputMeta("snackbar_output_meta_ready", backendLabel);
+    }
+  }
+
   function runScript(scriptName, basePath, button) {
     const scriptPath = `${basePath}${scriptName}`;
+    const executor = getScriptExecutor();
 
-    if (typeof ksu !== "object" || typeof ksu.exec !== "function") {
-      showToast(t("ksu_not_available"), "error");
+    if (executor.type === "none") {
+      showToast(t("execution_unavailable"), "warning", 4500);
+      setOutputMeta("snackbar_output_meta_unavailable", executor.label);
       return;
     }
 
@@ -70,43 +121,39 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(timeoutId);
       delete window[cb];
       button.className = originalClass;
-
-      const raw = typeof output === "string" ? output.trim() : "";
-
-      if (!raw) {
-        showToast(tFormat("success", { script: scriptName }), "success", 3000, "", scriptName);
-        return;
-      }
-
-      try {
-        const json = JSON.parse(raw);
-        if (json.success) {
-          const commandOutput = typeof json.output === "string" ? json.output.trim() : "";
-          showToast(tFormat("success", { script: scriptName }), "success", 3000, commandOutput, scriptName);
-        } else if (json.error) {
-          showToast(tFormat("failed", { script: scriptName }) + ` (${json.error})`, "error", 4000, raw, scriptName);
-        } else {
-          showToast(tFormat("failed", { script: scriptName }) + " (Unknown response)", "error", 4000, raw, scriptName);
-        }
-      } catch {
-        showToast(tFormat("success", { script: scriptName }) + " (Output available)", "warning", 3500, raw, scriptName);
-      }
+      handleScriptResult(output, scriptName, executor.label);
     };
 
     try {
-      showToast(tFormat("executing", { script: scriptName }), "info");
-      ksu.exec(`sh "${scriptPath}"`, "{}", cb);
-    } catch (e) {
+      showToast(tFormat("executing", { script: scriptName }), "info", 3000, "", executor.label);
+
+      if (executor.type === "ksu") {
+        ksu.exec(`sh "${scriptPath}"`, "{}", cb);
+      } else {
+        Promise.resolve(executor.exec(scriptPath, scriptName))
+          .then(result => window[cb](typeof result === "string" ? result : JSON.stringify(result)))
+          .catch((error) => {
+            clearTimeout(timeoutId);
+            delete window[cb];
+            button.className = originalClass;
+            showToast(tFormat("failed", { script: scriptName }) + ` (${error?.message || "host"})`, "error", 4500);
+            setOutputMeta("snackbar_output_meta_failed", executor.label);
+          });
+      }
+    } catch (_e) {
       clearTimeout(timeoutId);
       delete window[cb];
       button.className = originalClass;
-      showToast(tFormat("failed", { script: scriptName }), "error");
+      showToast(tFormat("failed", { script: scriptName }), "error", 4500);
+      setOutputMeta("snackbar_output_meta_failed", executor.label);
+      return;
     }
 
     timeoutId = setTimeout(() => {
       delete window[cb];
       button.className = originalClass;
-      showToast(tFormat("timeout", { script: scriptName }), "error");
+      showToast(tFormat("timeout", { script: scriptName }), "error", 4500);
+      setOutputMeta("snackbar_output_meta_timeout", executor.label);
     }, 7000);
   }
 
@@ -312,8 +359,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   snackbar?.addEventListener("click", () => {
     if (!activeToastOutput) return;
-    const scriptName = snackbar.dataset.scriptName || "";
-    showOutputDialog(activeToastOutput, scriptName);
+    const backendLabel = snackbar.dataset.backendLabel || t("execution_backend_none");
+    showOutputDialog(activeToastOutput, backendLabel);
   });
 
   closeOutputBtn?.addEventListener("click", closeOutputDialog);
