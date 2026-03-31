@@ -581,5 +581,14 @@ body {
 
 .history-dialog-actions .fill {
   border-radius: 999px;
-  min-width: 120px;
+  min-width: 92px;
+  padding: 0.45rem 1rem;
+  border: none;
+  background: var(--primary);
+  color: var(--on-primary);
+  box-shadow: none;
+}
+
+.history-dialog-actions .fill:hover {
+  filter: brightness(1.05);
 }
