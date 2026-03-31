@@ -89,5 +89,8 @@
   "snackbar_output_meta_failed": "Script could not be executed.",
   "snackbar_output_meta_timeout": "Script execution timed out.",
   "snackbar_output_meta_unavailable": "Script execution is not available in this environment.",
-  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment."
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear"
 }

@@ -17,7 +17,7 @@
         <h4 class="center-align page-title">Yurikey Manager</h4>
 
         <div class="home-top-controls">
-          <div class="mini-card">
+          <div id="module-version-card" class="mini-card">
             <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
             <p id="version-text" class="mini-card-value module-version-value">Error</p>
           </div>
@@ -243,13 +243,13 @@
 
   <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
 
-  <div id="snackbar-output-overlay" class="overlay blur"></div>
-  <dialog id="snackbar-output-dialog" class="snackbar-dialog">
-    <h5 data-i18n="snackbar_output_title">Script output</h5>
-    <pre id="snackbar-output-text" class="snackbar-output-pre"></pre>
-    <p id="snackbar-output-meta" class="small-text snackbar-output-meta" data-i18n="snackbar_output_meta_default">Script status details will appear here.</p>
+  <div id="script-history-overlay" class="overlay blur"></div>
+  <dialog id="script-history-dialog" class="snackbar-dialog">
+    <h5 data-i18n="script_history_title">Script Outputs</h5>
+    <div id="script-history-content" class="snackbar-output-pre"></div>
     <nav class="right-align no-space">
-      <button id="snackbar-output-close" class="transparent link" data-i18n="dialog_close">Close</button>
+      <button id="script-history-clear" class="transparent link" data-i18n="dialog_clear">Clear</button>
+      <button id="script-history-close" class="transparent link" data-i18n="dialog_close">Close</button>
     </nav>
   </dialog>
 

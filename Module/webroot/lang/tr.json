@@ -89,5 +89,8 @@
   "snackbar_output_meta_failed": "Betik çalıştırılamadı.",
   "snackbar_output_meta_timeout": "Betik çalıştırması zaman aşımına uğradı.",
   "snackbar_output_meta_unavailable": "Bu ortamda betik çalıştırma kullanılamıyor.",
-  "script_execution_failed_generic": "Betik çalıştırılamadı. Betik yolunu veya çalışma ortamını kontrol edin."
+  "script_execution_failed_generic": "Betik çalıştırılamadı. Betik yolunu veya çalışma ortamını kontrol edin.",
+  "script_history_title": "Betik Çıktıları",
+  "script_history_empty": "Henüz kaydedilmiş betik çıktısı yok.",
+  "dialog_clear": "Temizle"
 }

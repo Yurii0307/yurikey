@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Make sure language.js is already loaded so that t and tFormat are available
 
   let toastTimer;
-  let activeToastOutput = "";
+  const SCRIPT_HISTORY_KEY = "scriptHistoryLogs";
 
   function getScriptExecutor() {
     if (typeof window.YuriKeyHost?.execScript === "function") {
@@ -31,50 +31,79 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   }
 
-  function setOutputMeta(statusKey) {
-    const metaEl = document.getElementById("snackbar-output-meta");
-    if (!metaEl) return;
-
-    metaEl.textContent = t(statusKey);
+  function readHistory() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(SCRIPT_HISTORY_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
   }
 
-  function showOutputDialog(output) {
-    const dialog = document.getElementById("snackbar-output-dialog");
-    const overlay = document.getElementById("snackbar-output-overlay");
-    const outputEl = document.getElementById("snackbar-output-text");
-    if (!dialog || !overlay || !outputEl) return;
+  function writeHistory(items) {
+    localStorage.setItem(SCRIPT_HISTORY_KEY, JSON.stringify(items.slice(0, 80)));
+  }
 
-    outputEl.textContent = output || t("snackbar_no_output");
-    setOutputMeta("snackbar_output_meta_ready");
+  function addScriptHistory(scriptName, outputText) {
+    const cleanOutput = (outputText || "").trim();
+    if (!cleanOutput) return;
 
+    const history = readHistory();
+    history.unshift({
+      script: scriptName,
+      output: cleanOutput,
+      time: new Date().toLocaleString(),
+    });
+    writeHistory(history);
+  }
+
+  function renderHistoryDialog() {
+    const contentEl = document.getElementById("script-history-content");
+    if (!contentEl) return;
+
+    const history = readHistory();
+    if (!history.length) {
+      contentEl.textContent = t("script_history_empty");
+      return;
+    }
+
+    contentEl.innerHTML = history.map(item => {
+      const script = item.script || "script";
+      const time = item.time || "";
+      const output = (item.output || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+                .replace(/\n/g, "<br>");
+      return `<div><strong>[${time}] ${script}</strong><br>${output}</div><hr>`;
+    }).join("");
+  }
+
+  function openHistoryDialog() {
+    const dialog = document.getElementById("script-history-dialog");
+    const overlay = document.getElementById("script-history-overlay");
+    if (!dialog || !overlay) return;
+
+    renderHistoryDialog();
     overlay.classList.add("active");
     if (!dialog.open) dialog.showModal();
   }
 
-  function closeOutputDialog() {
-    const dialog = document.getElementById("snackbar-output-dialog");
-    const overlay = document.getElementById("snackbar-output-overlay");
+  function closeHistoryDialog() {
+    const dialog = document.getElementById("script-history-dialog");
+    const overlay = document.getElementById("script-history-overlay");
     if (!dialog || !overlay) return;
 
     if (dialog.open) dialog.close();
     overlay.classList.remove("active");
   }
 
-  function showToast(message, type = "info", duration = 3000, output = "") {
+  function showToast(message, type = "info", duration = 3000) {
     const snackbar = document.getElementById("snackbar");
     if (!snackbar) return;
 
     snackbar.textContent = message;
     snackbar.className = `snackbar show ${type}`;
-    snackbar.title = output ? t("snackbar_tap_for_output") : "";
-
-    if (output && output.trim()) {
-      activeToastOutput = output.trim();
-      snackbar.classList.add("has-output");
-    } else {
-      activeToastOutput = "";
-      snackbar.classList.remove("has-output");
-    }
 
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
@@ -86,8 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const raw = typeof rawOutput === "string" ? rawOutput.trim() : "";
 
     if (!raw) {
-      showToast(tFormat("success", { script: scriptName }), "success", 3000, "");
-      setOutputMeta("snackbar_output_meta_empty");
+      showToast(tFormat("success", { script: scriptName }), "success", 3000);
       return;
     }
 
@@ -95,15 +123,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const json = JSON.parse(raw);
       if (json.success) {
         const commandOutput = typeof json.output === "string" ? json.output.trim() : "";
-        showToast(tFormat("success", { script: scriptName }), "success", 3000, commandOutput);
-        setOutputMeta("snackbar_output_meta_ready");
+        addScriptHistory(scriptName, commandOutput || tFormat("success", { script: scriptName }));
+        showToast(tFormat("success", { script: scriptName }), "success", 3000);
       } else {
-        showToast(t("script_execution_failed_generic"), "error", 4000, raw);
-        setOutputMeta("snackbar_output_meta_failed");
+        addScriptHistory(scriptName, raw);
+        showToast(t("script_execution_failed_generic"), "error", 4000);
       }
     } catch {
-      showToast(tFormat("success", { script: scriptName }), "success", 3500, raw);
-      setOutputMeta("snackbar_output_meta_ready");
+      addScriptHistory(scriptName, raw);
+      showToast(tFormat("success", { script: scriptName }), "success", 3500);
     }
   }
 
@@ -135,16 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(timeoutId);
       delete window[cb];
       button.className = originalClass;
+      addScriptHistory(scriptName, t("script_execution_failed_generic"));
       showToast(t("script_execution_failed_generic"), "error", 4500);
-      setOutputMeta("snackbar_output_meta_unavailable");
       return;
     }
 
     timeoutId = setTimeout(() => {
       delete window[cb];
       button.className = originalClass;
+      addScriptHistory(scriptName, tFormat("timeout", { script: scriptName }));
       showToast(t("script_execution_failed_generic"), "error", 4500);
-      setOutputMeta("snackbar_output_meta_timeout");
     }, 7000);
   }
 
@@ -343,19 +371,20 @@ document.addEventListener("DOMContentLoaded", () => {
   window.showWarningToast = (message, duration = 3500) => showToast(message, "warning", duration);
   window.showInfoToast = (message, duration = 3000) => showToast(message, "info", duration);
 
-  const snackbar = document.getElementById("snackbar");
-  const dialog = document.getElementById("snackbar-output-dialog");
-  const overlay = document.getElementById("snackbar-output-overlay");
-  const closeOutputBtn = document.getElementById("snackbar-output-close");
+  const historyCard = document.getElementById("module-version-card");
+  const historyDialog = document.getElementById("script-history-dialog");
+  const historyOverlay = document.getElementById("script-history-overlay");
+  const historyCloseBtn = document.getElementById("script-history-close");
+  const historyClearBtn = document.getElementById("script-history-clear");
 
-  snackbar?.addEventListener("click", () => {
-    if (!activeToastOutput) return;
-    showOutputDialog(activeToastOutput);
+  historyCard?.addEventListener("click", openHistoryDialog);
+  historyCloseBtn?.addEventListener("click", closeHistoryDialog);
+  historyOverlay?.addEventListener("click", closeHistoryDialog);
+  historyDialog?.addEventListener("close", () => historyOverlay?.classList.remove("active"));
+  historyClearBtn?.addEventListener("click", () => {
+    writeHistory([]);
+    renderHistoryDialog();
   });
-
-  closeOutputBtn?.addEventListener("click", closeOutputDialog);
-  overlay?.addEventListener("click", closeOutputDialog);
-  dialog?.addEventListener("close", () => overlay?.classList.remove("active"));
 
   // Refresh info button event
   const refreshBtn = document.getElementById("refresh-info-btn");
