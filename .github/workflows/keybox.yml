@@ -47,29 +47,6 @@ jobs:
             7z x -y input_file
           fi
 
-      - name: Fetch Yurikey version
-        run: |
-          if [ "${{ github.event.inputs.options }}" = "xml" ]; then
-            XML_FILE="input_file"
-          else
-            XML_FILE=$(find . -name "*.xml" | head -n 1)
-            if [ -z "$XML_FILE" ]; then
-              echo "No XML found!"
-              exit 1
-            fi
-          fi
-
-          VERSION=$(grep -oE 'Yurikey[0-9]+' "$XML_FILE" | head -n1)
-
-          if [ -z "$VERSION" ]; then
-            echo "No Yurikey version found!"
-            exit 1
-          fi
-
-          base64 "$XML_FILE" | tr -d '\n' > key
-
-          echo "VERSION=$VERSION"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Commit & Push keybox
         run: |
@@ -83,5 +60,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Update ${{ env.VERSION }}"
+          git commit -m "Update Yurikey"
           git push
