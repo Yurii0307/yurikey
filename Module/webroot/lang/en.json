@@ -96,7 +96,5 @@
   "settings_script_history_desc": "Open and manage recent script outputs collected from actions.",
   "settings_open_script_history": "Open Script Outputs",
   "snackbar_color_tool_title": "WebUI Color Tool",
-  "snackbar_color_apply": "Apply Color",
-  "appearance_advanced": "Advanced",
-  "appearance_colors_title": "Colors"
+  "snackbar_color_apply": "Apply Color"
 }

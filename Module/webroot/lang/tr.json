@@ -96,7 +96,5 @@
   "settings_script_history_desc": "Eylemlerden toplanan son betik çıktılarını açın ve yönetin.",
   "settings_open_script_history": "Betik Çıktılarını Aç",
   "snackbar_color_tool_title": "WebUI Renk Aracı",
-  "snackbar_color_apply": "Rengi Uygula",
-  "appearance_advanced": "Gelişmiş",
-  "appearance_colors_title": "Renkler"
+  "snackbar_color_apply": "Rengi Uygula"
 }

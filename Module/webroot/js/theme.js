@@ -1,7 +1,5 @@
 const THEME_MODE_KEY = "themeMode";
 const THEME_PRESET_KEY = "themePreset";
-const APPEARANCE_ADVANCED_KEY = "appearanceAdvancedEnabled";
-const APPEARANCE_ADVANCED_COLOR_KEY = "appearanceAdvancedColor";
 
 const SNACKBAR_COLOR_KEYS = {
   info: "snackbarInfoColor",
@@ -92,54 +90,10 @@ function applyThemeMode(mode) {
   return resolved;
 }
 
-
-function getAdvancedEnabled() {
-  return localStorage.getItem(APPEARANCE_ADVANCED_KEY) === "1";
-}
-
-function getAdvancedColor() {
-  return localStorage.getItem(APPEARANCE_ADVANCED_COLOR_KEY) || "#2196f3";
-}
-
-function applyAdvancedAccent() {
-  if (!getAdvancedEnabled()) return;
-  const mode = document.documentElement.getAttribute("data-theme-mode") || "dark";
-  const accent = getAdvancedColor();
-  const text = mode === "light" ? "#ffffff" : "#001a2b";
-
-  applyColors({
-    "--ui-pill-bg": accent,
-    "--ui-pill-text": text,
-    "--ui-pill-bg-hover": mix(accent, mode === "light" ? "#ffffff" : "#d9f2ff", 0.2),
-    "--ui-pill-border": mix(accent, mode === "light" ? "#ffffff" : "#e8f7ff", 0.35),
-    "--ui-nav-active": mix(accent, mode === "light" ? "#000000" : "#000000", 0.3),
-    "--ui-select-bg": mix(accent, mode === "light" ? "#ffffff" : "#111111", 0.45),
-    "--ui-select-border": mix(accent, mode === "light" ? "#ffffff" : "#eeeeee", 0.3),
-  });
-}
-
-function syncAdvancedMenuState() {
-  const toggleBtn = document.getElementById("appearance-advanced-toggle");
-  const advancedMenu = document.getElementById("advanced-color-menu");
-  const presets = document.getElementById("theme-presets");
-  if (!toggleBtn || !advancedMenu || !presets) return;
-
-  const enabled = getAdvancedEnabled();
-  toggleBtn.classList.toggle("active", enabled);
-  toggleBtn.setAttribute("aria-pressed", enabled ? "true" : "false");
-  advancedMenu.classList.toggle("hidden", !enabled);
-  presets.classList.toggle("hidden", enabled);
-
-  document.querySelectorAll(".advanced-color-chip").forEach(chip => {
-    chip.classList.toggle("active", chip.dataset.advancedColor === getAdvancedColor());
-  });
-}
-
 function applyThemePreset(presetName) {
   const mode = document.documentElement.getAttribute("data-theme-mode") || "dark";
   const preset = THEME_PRESETS[presetName] || THEME_PRESETS.ocean;
   applyColors(withDerived(preset[mode] || preset.dark, mode));
-  applyAdvancedAccent();
   document.querySelectorAll(".theme-preset-btn").forEach(btn => btn.classList.toggle("active", btn.dataset.themePreset === presetName));
 }
 
@@ -258,27 +212,7 @@ window.addEventListener("DOMContentLoaded", () => {
       modeBtn.innerText = modeLabel(m);
       modeOptions.classList.remove("show");
       applyThemeMode(m);
-    
-  const appearanceToggleBtn = document.getElementById("appearance-advanced-toggle");
-  appearanceToggleBtn?.addEventListener("click", () => {
-    const next = getAdvancedEnabled() ? "0" : "1";
-    localStorage.setItem(APPEARANCE_ADVANCED_KEY, next);
-    applyThemePreset(getStoredPreset());
-    syncAdvancedMenuState();
-  });
-
-  document.querySelectorAll(".advanced-color-chip").forEach(chip => {
-    chip.addEventListener("click", () => {
-      const color = chip.dataset.advancedColor;
-      if (!color) return;
-      localStorage.setItem(APPEARANCE_ADVANCED_COLOR_KEY, color);
       applyThemePreset(getStoredPreset());
-      syncAdvancedMenuState();
-    });
-  });
-
-  applyThemePreset(getStoredPreset());
-  syncAdvancedMenuState();
     });
   });
   document.addEventListener("click", (e) => { if (!modeOptions.contains(e.target) && e.target !== modeBtn) modeOptions.classList.remove("show"); });
@@ -292,27 +226,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-
-  const appearanceToggleBtn = document.getElementById("appearance-advanced-toggle");
-  appearanceToggleBtn?.addEventListener("click", () => {
-    const next = getAdvancedEnabled() ? "0" : "1";
-    localStorage.setItem(APPEARANCE_ADVANCED_KEY, next);
-    applyThemePreset(getStoredPreset());
-    syncAdvancedMenuState();
-  });
-
-  document.querySelectorAll(".advanced-color-chip").forEach(chip => {
-    chip.addEventListener("click", () => {
-      const color = chip.dataset.advancedColor;
-      if (!color) return;
-      localStorage.setItem(APPEARANCE_ADVANCED_COLOR_KEY, color);
-      applyThemePreset(getStoredPreset());
-      syncAdvancedMenuState();
-    });
-  });
-
   applyThemePreset(getStoredPreset());
-  syncAdvancedMenuState();
   applySnackbarColors();
   bindSnackbarColorInputs();
   bindSnackbarColorTool();
@@ -320,27 +234,7 @@ window.addEventListener("DOMContentLoaded", () => {
   window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => {
     if (getStoredMode() === "auto") {
       applyThemeMode("auto");
-    
-  const appearanceToggleBtn = document.getElementById("appearance-advanced-toggle");
-  appearanceToggleBtn?.addEventListener("click", () => {
-    const next = getAdvancedEnabled() ? "0" : "1";
-    localStorage.setItem(APPEARANCE_ADVANCED_KEY, next);
-    applyThemePreset(getStoredPreset());
-    syncAdvancedMenuState();
-  });
-
-  document.querySelectorAll(".advanced-color-chip").forEach(chip => {
-    chip.addEventListener("click", () => {
-      const color = chip.dataset.advancedColor;
-      if (!color) return;
-      localStorage.setItem(APPEARANCE_ADVANCED_COLOR_KEY, color);
       applyThemePreset(getStoredPreset());
-      syncAdvancedMenuState();
-    });
-  });
-
-  applyThemePreset(getStoredPreset());
-  syncAdvancedMenuState();
     }
   });
 

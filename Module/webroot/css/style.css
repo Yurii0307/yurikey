@@ -411,71 +411,7 @@ body {
   line-height: 1.2;
 }
 
-.appearance-toggle-btn {
-  border: 1px solid var(--ui-pill-border);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--ui-card-bg) 70%, #ffffff 30%);
-  color: var(--ui-text);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.85rem;
-}
 
-.appearance-toggle-btn .toggle-dot {
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--ui-pill-bg) 35%, #000 65%);
-}
-
-.appearance-toggle-btn.active {
-  background: var(--ui-pill-bg);
-  color: var(--ui-pill-text);
-}
-
-.appearance-toggle-btn.active .toggle-dot {
-  background: var(--ui-pill-text);
-}
-
-.advanced-color-menu.hidden {
-  display: none;
-}
-
-#theme-presets.hidden {
-  display: none;
-}
-
-.advanced-color-menu {
-  margin-top: 0.8rem;
-  padding: 0.7rem;
-  border: 1px solid var(--ui-card-border);
-  border-radius: 0.9rem;
-}
-
-.advanced-menu-title {
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-}
-
-.advanced-color-chips {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.advanced-color-chip {
-  width: 30px;
-  height: 30px;
-  border-radius: 999px;
-  border: 2px solid color-mix(in srgb, var(--chip) 70%, #000 30%);
-  background: var(--chip);
-}
-
-.advanced-color-chip.active {
-  box-shadow: 0 0 0 2px var(--ui-pill-border);
-}
 
 .contrib-grid {
   margin-top: 0.75rem;
