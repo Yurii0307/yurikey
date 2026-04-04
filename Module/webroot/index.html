@@ -17,11 +17,14 @@
         <h4 class="center-align page-title">Yurikey Manager</h4>
 
         <div class="home-top-controls">
-          <div id="module-version-card" class="mini-card">
+          <div class="mini-card">
             <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
             <p id="version-text" class="mini-card-value module-version-value">Error</p>
           </div>
-          <button id="refresh-info-btn" class="menu-btn" data-script="device-info.sh" data-i18n="home_refresh">Refresh Info</button>
+          <div class="home-action-buttons">
+            <button id="refresh-info-btn" class="menu-btn" data-script="device-info.sh" data-i18n="home_refresh">Refresh Info</button>
+            <button id="open-script-history-home" class="menu-btn" data-i18n="settings_open_script_history">Script Outputs</button>
+          </div>
         </div>
 
         <div class="home-grid">
@@ -160,56 +163,6 @@
             <button class="theme-preset-btn" data-theme-preset="sunset" data-i18n="theme_preset_sunset">Sunset</button>
             <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
           </div>
-
-          <div class="snackbar-appearance">
-            <h6 data-i18n="settings_snackbar_colors">Snackbar Colors</h6>
-            <p class="small-text" data-i18n="settings_snackbar_colors_desc">These colors are applied directly, independent from optimized theme palette calculations.</p>
-            <div class="snackbar-color-grid">
-              <label class="snackbar-color-item">
-                <span data-i18n="snackbar_info_color">Info</span>
-                <div id="snackbar-info-preview" class="snackbar-color-preview"></div>
-                <input type="text" id="snackbar-info-color" class="snackbar-color-hex" value="#2196f3" maxlength="7" />
-              </label>
-              <label class="snackbar-color-item">
-                <span data-i18n="snackbar_success_color">Success</span>
-                <div id="snackbar-success-preview" class="snackbar-color-preview"></div>
-                <input type="text" id="snackbar-success-color" class="snackbar-color-hex" value="#43a047" maxlength="7" />
-              </label>
-              <label class="snackbar-color-item">
-                <span data-i18n="snackbar_warning_color">Warning</span>
-                <div id="snackbar-warning-preview" class="snackbar-color-preview"></div>
-                <input type="text" id="snackbar-warning-color" class="snackbar-color-hex" value="#f9a825" maxlength="7" />
-              </label>
-              <label class="snackbar-color-item">
-                <span data-i18n="snackbar_error_color">Error</span>
-                <div id="snackbar-error-preview" class="snackbar-color-preview"></div>
-                <input type="text" id="snackbar-error-color" class="snackbar-color-hex" value="#e53935" maxlength="7" />
-              </label>
-              <label class="snackbar-color-item">
-                <span data-i18n="snackbar_text_color">Text</span>
-                <div id="snackbar-text-preview" class="snackbar-color-preview"></div>
-                <input type="text" id="snackbar-text-color" class="snackbar-color-hex" value="#ffffff" maxlength="7" />
-              </label>
-            </div>
-            <div class="snackbar-color-tool">
-              <h6 data-i18n="snackbar_color_tool_title">WebUI Color Tool</h6>
-              <div class="snackbar-tool-grid">
-                <select id="snackbar-color-target" class="snackbar-tool-select">
-                  <option value="info" data-i18n="snackbar_info_color">Info</option>
-                  <option value="success" data-i18n="snackbar_success_color">Success</option>
-                  <option value="warning" data-i18n="snackbar_warning_color">Warning</option>
-                  <option value="error" data-i18n="snackbar_error_color">Error</option>
-                  <option value="text" data-i18n="snackbar_text_color">Text</option>
-                </select>
-                <div id="snackbar-color-tool-preview" class="snackbar-color-preview"></div>
-                <label class="snackbar-range-label">R <input type="range" id="snackbar-color-r" min="0" max="255" value="33" /></label>
-                <label class="snackbar-range-label">G <input type="range" id="snackbar-color-g" min="0" max="255" value="150" /></label>
-                <label class="snackbar-range-label">B <input type="range" id="snackbar-color-b" min="0" max="255" value="243" /></label>
-                <input type="text" id="snackbar-color-tool-hex" value="#2196f3" maxlength="7" />
-                <button id="snackbar-color-tool-apply" class="menu-btn" data-i18n="snackbar_color_apply">Apply Color</button>
-              </div>
-            </div>
-          </div>
         </article>
 
         <article class="surface-variant block">
@@ -223,13 +176,6 @@
             </ul>
           </div>
         </article>
-
-        <article class="surface-variant block settings-history-card">
-          <h6 data-i18n="script_history_title">Script Outputs</h6>
-          <p class="small-text" data-i18n="settings_script_history_desc">Open and manage recent script outputs collected from actions.</p>
-          <button id="open-script-history-settings" class="menu-btn" data-i18n="settings_open_script_history">Open Script Outputs</button>
-        </article>
-
         <article class="surface-variant block update-support">
           <h6 data-i18n="update_title">Update & Support</h6>
           <p data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
