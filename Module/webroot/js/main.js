@@ -2,43 +2,142 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("main.js active");
 
   const BASE_SCRIPT = "/data/adb/modules/Yurikey/Yuri/";
-  let nextToastTime = 0;
-
   // Make sure language.js is already loaded so that t and tFormat are available
 
+  let toastTimer;
+  const SCRIPT_HISTORY_KEY = "scriptHistoryLogs";
+
+  function getScriptExecutor() {
+    if (typeof window.YuriKeyHost?.execScript === "function") {
+      return (scriptPath, scriptName, cb) => {
+        Promise.resolve(window.YuriKeyHost.execScript(scriptPath, scriptName))
+          .then(result => cb(typeof result === "string" ? result : JSON.stringify(result)))
+          .catch(() => cb(""));
+      };
+    }
+
+    if (typeof window.execYurikeyScript === "function") {
+      return (scriptPath, scriptName, cb) => {
+        Promise.resolve(window.execYurikeyScript(scriptPath, scriptName))
+          .then(result => cb(typeof result === "string" ? result : JSON.stringify(result)))
+          .catch(() => cb(""));
+      };
+    }
+
+    if (typeof ksu === "object" && typeof ksu.exec === "function") {
+      return (scriptPath, _scriptName, cbName) => ksu.exec(`sh "${scriptPath}"`, "{}", cbName);
+    }
+
+    return null;
+  }
+
+  function readHistory() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(SCRIPT_HISTORY_KEY) || "[]");
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function writeHistory(items) {
+    localStorage.setItem(SCRIPT_HISTORY_KEY, JSON.stringify(items.slice(0, 80)));
+  }
+
+  function addScriptHistory(scriptName, outputText) {
+    const cleanOutput = (outputText || "").trim();
+    if (!cleanOutput) return;
+
+    const history = readHistory();
+    history.unshift({
+      script: scriptName,
+      output: cleanOutput,
+      time: new Date().toLocaleString(),
+    });
+    writeHistory(history);
+  }
+
+  function renderHistoryDialog() {
+    const contentEl = document.getElementById("script-history-content");
+    if (!contentEl) return;
+
+    const history = readHistory();
+    if (!history.length) {
+      contentEl.textContent = t("script_history_empty");
+      return;
+    }
+
+    contentEl.innerHTML = history.map(item => {
+      const script = item.script || "script";
+      const time = item.time || "";
+      const output = (item.output || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+                .replace(/\n/g, "<br>");
+      return `<div><strong>[${time}] ${script}</strong><br>${output}</div><hr>`;
+    }).join("");
+  }
+
+  function openHistoryDialog() {
+    const dialog = document.getElementById("script-history-dialog");
+    const overlay = document.getElementById("script-history-overlay");
+    if (!dialog || !overlay) return;
+
+    renderHistoryDialog();
+    overlay.classList.add("active");
+    if (!dialog.open) dialog.showModal();
+  }
+
+  function closeHistoryDialog() {
+    const dialog = document.getElementById("script-history-dialog");
+    const overlay = document.getElementById("script-history-overlay");
+    if (!dialog || !overlay) return;
+
+    if (dialog.open) dialog.close();
+    overlay.classList.remove("active");
+  }
+
   function showToast(message, type = "info", duration = 3000) {
-    const container = document.getElementById("toast-container");
-    if (!container) return;
+    const snackbar = document.getElementById("snackbar");
+    if (!snackbar) return;
 
-    const now = Date.now();
-    const delay = Math.max(nextToastTime - now, 0);
-    nextToastTime = now + delay + duration;
+    snackbar.textContent = message;
+    snackbar.className = `snackbar show ${type}`;
 
-    setTimeout(() => {
-      const toast = document.createElement("div");
-      toast.className = `toast ${type}`;
-      toast.textContent = message;
-      toast.addEventListener("click", () => {
-        toast.style.animation = "toast-slideout 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
-        setTimeout(() => toast.remove(), 300);
-      });
-      container.appendChild(toast);
-      setTimeout(() => {
-        if (toast.parentNode) {
-          toast.style.animation = "toast-slideout 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards";
-          setTimeout(() => toast.remove(), 300);
-        }
-      }, duration);
-    }, delay);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      snackbar.classList.remove("show");
+    }, duration);
+  }
+
+  function handleScriptResult(rawOutput, scriptName) {
+    const raw = typeof rawOutput === "string" ? rawOutput.trim() : "";
+
+    if (!raw) {
+      showToast(tFormat("success", { script: scriptName }), "success", 3000);
+      return;
+    }
+
+    try {
+      const json = JSON.parse(raw);
+      if (json.success) {
+        const commandOutput = typeof json.output === "string" ? json.output.trim() : "";
+        addScriptHistory(scriptName, commandOutput || tFormat("success", { script: scriptName }));
+        showToast(tFormat("success", { script: scriptName }), "success", 3000);
+      } else {
+        addScriptHistory(scriptName, raw);
+        showToast(t("script_execution_failed_generic"), "error", 4000);
+      }
+    } catch {
+      addScriptHistory(scriptName, raw);
+      showToast(tFormat("success", { script: scriptName }), "success", 3500);
+    }
   }
 
   function runScript(scriptName, basePath, button) {
     const scriptPath = `${basePath}${scriptName}`;
-
-    if (typeof ksu !== "object" || typeof ksu.exec !== "function") {
-      showToast(t("ksu_not_available"), "error");
-      return;
-    }
+    const executeScript = getScriptExecutor();
 
     const originalClass = button.className;
     button.classList.add("executing");
@@ -50,48 +149,35 @@ document.addEventListener("DOMContentLoaded", () => {
       clearTimeout(timeoutId);
       delete window[cb];
       button.className = originalClass;
-
-      const raw = typeof output === "string" ? output.trim() : "";
-
-      if (!raw) {
-        showToast(tFormat("success", { script: scriptName }), "success");
-        return;
-      }
-
-      try {
-        const json = JSON.parse(raw);
-        if (json.success) {
-          showToast(tFormat("success", { script: scriptName }), "success");
-        } else if (json.error) {
-          showToast(tFormat("failed", { script: scriptName }) + ` (${json.error})`, "error", 4000);
-        } else {
-          showToast(tFormat("failed", { script: scriptName }) + " (Unknown response)", "error", 4000);
-        }
-      } catch {
-        // If output is not JSON, treat as success but inform user
-        showToast(tFormat("success", { script: scriptName }) + " (Non-JSON output)", "warning");
-      }
+      handleScriptResult(output, scriptName);
     };
 
     try {
+      if (!executeScript) {
+        throw new Error("executor-unavailable");
+      }
+
       showToast(tFormat("executing", { script: scriptName }), "info");
-      ksu.exec(`sh "${scriptPath}"`, "{}", cb);
-    } catch (e) {
+      executeScript(scriptPath, scriptName, cb);
+    } catch (_e) {
       clearTimeout(timeoutId);
       delete window[cb];
       button.className = originalClass;
-      showToast(tFormat("failed", { script: scriptName }), "error");
+      addScriptHistory(scriptName, t("script_execution_failed_generic"));
+      showToast(t("script_execution_failed_generic"), "error", 4500);
+      return;
     }
 
     timeoutId = setTimeout(() => {
       delete window[cb];
       button.className = originalClass;
-      showToast(tFormat("timeout", { script: scriptName }), "error");
+      addScriptHistory(scriptName, tFormat("timeout", { script: scriptName }));
+      showToast(t("script_execution_failed_generic"), "error", 4500);
     }, 7000);
   }
 
   // Register click events for buttons in Actions Page
-  document.querySelectorAll("#actions-page .action-buttons .menu-btn").forEach(button => {
+  document.querySelectorAll("#actions-page .menu-btn[data-script]").forEach(button => {
     const scriptName = button.dataset.script;
     if (scriptName) {
       button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
@@ -99,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Register click events for buttons in Advanced Menu Page
-  document.querySelectorAll("#advance-menu .action-buttons .menu-btn").forEach(button => {
+  document.querySelectorAll("#advance-menu .menu-btn[data-script]").forEach(button => {
       const scriptName = button.dataset.script;
       if (scriptName) {
           button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
@@ -120,25 +206,87 @@ document.addEventListener("DOMContentLoaded", () => {
   // Clock elements
   const clockDateEl = document.getElementById("clock-date");
   const clockTimeEl = document.getElementById("clock-time");
+  const clockFormatBtn = document.getElementById("clock-format-btn");
+  const clockFormatOptions = document.getElementById("clock-format-options");
+  const CLOCK_FORMAT_KEY = "clockFormat";
+
+  function getClockFormat() {
+    return localStorage.getItem(CLOCK_FORMAT_KEY) || "auto";
+  }
+
+  function getClockFormatLabel(format) {
+    if (format === "24h") return "24-hour (00:00)";
+    if (format === "12h") return "12-hour (AM/PM)";
+    return "Auto (Device)";
+  }
+
+  function setupClockFormatDropdown() {
+    if (!clockFormatBtn || !clockFormatOptions) return;
+
+    const currentFormat = getClockFormat();
+    clockFormatBtn.innerText = getClockFormatLabel(currentFormat);
+
+    clockFormatBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      clockFormatOptions.classList.toggle("show");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!clockFormatOptions.contains(e.target) && e.target !== clockFormatBtn) {
+        clockFormatOptions.classList.remove("show");
+      }
+    });
+
+    clockFormatOptions.querySelectorAll("li[data-format]").forEach(item => {
+      item.addEventListener("click", () => {
+        const format = item.dataset.format || "auto";
+        localStorage.setItem(CLOCK_FORMAT_KEY, format);
+        clockFormatBtn.innerText = getClockFormatLabel(format);
+        clockFormatOptions.classList.remove("show");
+        updateClock();
+        showToast(`Clock format: ${getClockFormatLabel(format)}`, "success");
+      });
+    });
+  }
 
   function updateClock() {
     const now = new Date();
-    const day = now.getDate();
-    const month = now.getMonth() + 1;
-    const year = now.getFullYear();
-    const formattedDate = `${day}/${String(month).padStart(2, "0")}/${year}`;
+    const format = getClockFormat();
 
-    let hours = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
-    const ampm = hours >= 12 ? "PM" : "AM";
-    hours = hours % 12 || 12;
-    const formattedTime = `${String(hours).padStart(2, "0")}:${minutes}:${seconds} ${ampm}`;
+    const formattedDate = new Intl.DateTimeFormat(undefined, {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }).format(now);
+
+    let formattedTime;
+    if (format === "24h") {
+      formattedTime = new Intl.DateTimeFormat(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+      }).format(now);
+    } else if (format === "12h") {
+      formattedTime = new Intl.DateTimeFormat(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      }).format(now);
+    } else {
+      formattedTime = now.toLocaleTimeString(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+    }
 
     if (clockDateEl) clockDateEl.textContent = formattedDate;
     if (clockTimeEl) clockTimeEl.textContent = formattedTime;
   }
 
+  setupClockFormatDropdown();
   updateClock();
   setInterval(updateClock, 1000);
 
@@ -222,6 +370,21 @@ document.addEventListener("DOMContentLoaded", () => {
   window.showErrorToast = (message, duration = 4000) => showToast(message, "error", duration);
   window.showWarningToast = (message, duration = 3500) => showToast(message, "warning", duration);
   window.showInfoToast = (message, duration = 3000) => showToast(message, "info", duration);
+
+  const historyCard = document.getElementById("module-version-card");
+  const historyDialog = document.getElementById("script-history-dialog");
+  const historyOverlay = document.getElementById("script-history-overlay");
+  const historyCloseBtn = document.getElementById("script-history-close");
+  const historyClearBtn = document.getElementById("script-history-clear");
+
+  historyCard?.addEventListener("click", openHistoryDialog);
+  historyCloseBtn?.addEventListener("click", closeHistoryDialog);
+  historyOverlay?.addEventListener("click", closeHistoryDialog);
+  historyDialog?.addEventListener("close", () => historyOverlay?.classList.remove("active"));
+  historyClearBtn?.addEventListener("click", () => {
+    writeHistory([]);
+    renderHistoryDialog();
+  });
 
   // Refresh info button event
   const refreshBtn = document.getElementById("refresh-info-btn");

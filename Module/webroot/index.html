@@ -1,314 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta Tags and Page Setup -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#121212" />
   <title>Yurikey Manager</title>
 
-  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@3.9.8/dist/cdn/beer.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
-  <div id="app">
-    <main id="page-content">
-      <!-- Home Page Section -->
-      <section id="home-page" class="page active">
-        <div class="content">
-          <h1 class="big-title" style="margin-bottom: 4rem;">Yurikey Manager</h1>
+<body class="dark">
+  <main id="app" class="page-shell">
+    <section id="home-page" class="page active">
+      <article class="surface page-card">
+        <h4 class="center-align page-title">Yurikey Manager</h4>
 
-          <div class="refresh-section split-items">
-            <h3 id="version-text" class="version-text">Error</h3>
-            <button
-              id="refresh-info-btn"
-              class="refresh-btn-main"
-              data-script="device-info.sh"
-            >
-              <img src="/common/assets/icon/refresh.svg" alt="Refresh" />
-              <span data-i18n="home_refresh">Refresh Info</span>
-            </button>
+        <div class="home-top-controls">
+          <div id="module-version-card" class="mini-card">
+            <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
+            <p id="version-text" class="mini-card-value module-version-value">Error</p>
           </div>
-
-          <div class="info-cards-grid">
-            <div class="info-card">
-              <div class="card-header" style="display: flex; flex-direction: row; gap: 0.25rem;">
-                <h3 data-i18n="home_clock_date">Clock Date</h3><h3>&</h3><h3 data-i18n="home_clock_time">Clock Time</h3>
-              </div>
-              <div class="card-content gap-2">
-                <span id="clock-date" class="card-value">--/--/--</span>
-                <span id="clock-time" class="card-value">--:--:--</span>
-              </div>
-            </div>
-
-            <div class="info-card status-card offline" id="status-row">
-              <div class="card-header">
-                <h3 data-i18n="home_status">Status</h3>
-              </div>
-              <div class="card-content">
-                <span id="status-bar-text" class="card-value status-text" data-i18n="home_status_offline">Offline</span>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="card-header">
-                <h3>Android</h3>
-              </div>
-              <div class="card-content">
-                <span id="android-version" class="card-value">Error</span>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="card-header">
-                <h3>Kernel</h3>
-              </div>
-              <div class="card-content">
-                <span id="kernel-version" class="card-value">Error</span>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="card-header">
-                <h3 data-i18n="home_root">Root Implementation</h3>
-              </div>
-              <div class="card-content">
-                <span id="root-type" class="card-value">Error</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="actions-page" class="page">
-        <div class="content">
-          <h1 class="main-title" data-i18n="menu_title">Main Menu</h1>
-          <div class="info-box info-content" style="margin-top: 3.5rem;">
-            <h3 class="sec-title" data-i18n="menu_keybox_title">Keybox</h3>
-            <div class="action-buttons">
-              <button class="menu-btn split-items" data-script="yuri_keybox.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="menu_keybox">Set up Yuri Keybox</span>
-              </button>
-            </div>
-          </div>
-          <div class="info-box info-content">
-            <h3 class="sec-title">GMS</h3>
-            <div class="action-buttons">
-              <button class="menu-btn split-items" data-script="kill_google_process.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</span>
-              </button>
-
-              <button class="menu-btn split-items" data-script="target_txt.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="menu_target">Set up target.txt</span>
-              </button>
-
-              <button class="menu-btn split-items" data-script="select_app_neccesary.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="menu_necessary">Set Necessary App</span>
-              </button>
-
-              <button class="menu-btn split-items" data-script="security_patch.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="menu_patch">Set up Security Patch</span>
-              </button>
-
-              <button class="menu-btn split-items" data-script="boot_hash.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_set_verified_boot">Set Verified Boothash</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="advance-menu" class="page">
-        <div class="content">
-          <h1 class="main-title" data-i18n="advance_menu_title">Advanced Menu</h1>
-          <div class="info-box info-content" style="margin-top: 3.5rem;">
-            <h3 class="sec-title" data-i18n="nav_advancemenu">Menu +</h3>
-            <div class="action-buttons">
-              <!-- 6. Clear all detection traces-->
-              <button id="btn-clear-all-detection traces" class="menu-btn split-items" data-script="clear_all_detection_traces.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_clear_all_detection_traces">Clear all detection traces</span>
-              </button>
-
-              <!-- 7. Set HMA-oss configs -->
-              <button id="btn-set-hma-oss-configs" class="menu-btn split-items" data-script="hma.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</span>
-              </button>
-              
-              <!-- 8. Fix LSPosed Detection (2) -->
-              <button id="btn-fix-detect-lsposed" class="menu-btn split-items" data-script="lsposed2.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</span>
-              </button>
-
-              <!-- 9. Fix PIF Detection (2) -->
-              <button id="btn-fix-detect-pif" class="menu-btn split-items" data-script="pif2.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_fix_detect_pif">Fix PIF Detection</span>
-              </button>
-
-              <!-- 10. Fix Recovery File Detection -->
-              <button id="btn-fix-detect-recovery-file" class="menu-btn split-items" data-script="twrp.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</span>
-              </button>
-
-              <!-- 11. Kill All Process -->
-              <button id="btn-kill-all" class="menu-btn split-items" data-script="kill_all.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_kill_all">Kill All Process</span>
-              </button>
-
-              <!-- 12. Update RKA config (beta) -->
-              <button id="btn-upd-yurirka" class="menu-btn split-items" data-script="yurirka.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_upd_yurirka">Update RKA config</span>
-              </button>              
-            </div>
-          </div>
-          <div class="info-box info-content">
-            <h3 class="sec-title">Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</h3>
-            <div class="action-buttons">
-              <button id="btn-fix-tee-broken-" class="menu-btn split-items" data-script="widevinel1.sh">
-                <img src="/common/assets/icon/play.svg" alt="Run" />
-                <span data-i18n="advance_widevinel1">Fix Widevine L1</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Update Page Section -->
-      <section id="update-page" class="page">
-        <h1 class="main-title" data-i18n="update_title">Update & Support</h1>
-        <div class="update-box">
-          <p data-i18n="update_desc">
-            Stay up-to-date with the latest version of <strong>YuriKey</strong>,
-            bug fixes, and new features.
-          </p>
-
-          <div class="update-links">
-            <button class="update-link" data-url="https://github.com/YurikeyDev/yurikey">
-              <img src="/common/assets/icon/github.gif" class="update-icon" alt="GitHub" />
-              <span data-i18n="update_github">View on GitHub</span>
-            </button>
-            <button class="update-link" data-url="https://t.me/yuriiroot">
-              <img src="/common/assets/icon/telegram.gif" class="update-icon" alt="Telegram" />
-              <span data-i18n="update_telegram">Join Telegram Channel</span>
-            </button>
-          </div>
-
-          <p class="note" data-i18n="update_note">
-            Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.
-          </p>
-        </div>
-      </section>
-
-      <!-- Settings Page Section -->
-      <section id="settings-page" class="page">
-        <h1 class="main-title" data-i18n="settings_title">Settings</h1>
-        <div class="info-box info-content" style="margin-top: 0.5rem;">
-          <h3 class="sec-title" data-i18n="settings_language">Language</h3>
-          <div class="action-buttons">
-            <div class="custom-dropdown">
-              <button id="lang-btn" class="setting-btn">🇬🇧 English</button>
-              <ul id="lang-options" class="dropdown-list">
-                <li data-lang="en">🇬🇧 English</li>
-                <li data-lang="zh-han">🇨🇳 China</li>
-                <li data-lang="hi">🇮🇳 India</li>
-                <li data-lang="ru">🇷🇺 Russia</li>
-                <li data-lang="jp">🇯🇵 Japan</li>
-                <li data-lang="bn">🇧🇩 Bangladesh</li>
-                <li data-lang="id">🇮🇩 Indonesia</li>
-                <li data-lang="vn">🇻🇳 Vietnam</li>
-                <li data-lang="tr">🇹🇷 Turkish</li>
-                <li data-lang="es">🇪🇸 Spanish</li>
-                <li data-lang="ar">🇸🇦 Arabic</li>
-                <li data-lang="ms">🇲🇾 Malaysia</li>
-                <li data-lang="ph">🇵🇭 Philippines</li>
-                <li data-lang="th">🇹🇭 Thailand</li>
-                <li data-lang="uka">🇺🇦 Ukraine</li>
-                <li data-lang="pt-br">🇧🇷 Brazil</li>
-                <li data-lang="ro-md">🇲🇩 Moldova</li>
-                <li data-lang="ro-md">🇷🇴 Romania</li>
-                <li data-lang="pl">🇵🇱 Polish</li>
-                <li data-lang="hu">🇭🇺 Hungary</li>
-                
-              
-              </ul>
-            </div>
-          </div>
+          <button id="refresh-info-btn" type="button" class="menu-btn" data-script="device-info.sh" data-i18n="home_refresh">Refresh Info</button>
         </div>
 
-        <div class="info-box info-content">
-          <h3 class="sec-title" data-i18n="settings_theme">Theme</h3>
-          <div class="action-buttons">
-            <div class="custom-dropdown">
-              <button id="theme-btn" class="setting-btn">🌙 Dark Blue</button>
-              <ul id="theme-options" class="dropdown-list">
-                <li data-theme="dark-blue">🌙 <span data-i18n="theme_dark_blue">Dark Blue</span></li>
-                <li data-theme="dark-purple">🔮 <span data-i18n="theme_dark_purple">Dark Purple</span></li>
-                <li data-theme="dark-green">🌿 <span data-i18n="theme_dark_green">Dark Green</span></li>
-                <li data-theme="dark-orange">🔥 <span data-i18n="theme_dark_orange">Dark Orange</span></li>
-                <li data-theme="dark-red">❤️ <span data-i18n="theme_dark_red">Dark Red</span></li>
-                <li data-theme="cyberpunk">💫 <span data-i18n="theme_cyberpunk">Cyberpunk</span></li>
-                <li data-theme="midnight">🌃 <span data-i18n="theme_midnight">Midnight</span></li>
-                <li data-theme="forest">🌲 <span data-i18n="theme_forest">Forest</span></li>
-                <li data-theme="monet">🎨 <span data-i18n="theme_monet">Monet</span></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <div class="home-grid">
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_clock_date">Clock Date</h6>
+            <p id="clock-date" class="card-value">--/--/--</p>
+          </article>
 
-        <div class="update-box" id="dev-info">
-          <h3 class="action-title" data-i18n="settings_contributors">Project Contributors</h3>
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_clock_time">Clock Time</h6>
+            <p id="clock-time" class="card-value">--:--:--</p>
+          </article>
+
+          <article id="status-row" class="beer-card offline">
+            <h6 class="card-title no-margin" data-i18n="home_status">Status</h6>
+            <p id="status-bar-text" class="card-value" data-i18n="home_status_offline">Offline</p>
+          </article>
+
+          <article class="beer-card">
+            <h6 class="card-title no-margin">Android</h6>
+            <p id="android-version" class="card-value">Error</p>
+          </article>
+
+          <article class="beer-card">
+            <h6 class="card-title no-margin">Kernel</h6>
+            <p id="kernel-version" class="card-value">Error</p>
+          </article>
+
+          <article class="beer-card">
+            <h6 class="card-title no-margin" data-i18n="home_root">Root Implementation</h6>
+            <p id="root-type" class="card-value">Error</p>
+          </article>
+        </div>
+      </article>
+    </section>
+
+    <section id="actions-page" class="page">
+      <article class="surface page-card">
+        <h5 class="page-title" data-i18n="menu_title">Main Menu</h5>
+
+        <article class="surface-variant block menu-card">
+          <h6 class="section-heading" data-i18n="menu_keybox_title">Keybox</h6>
+          <div class="stack">
+            <button class="menu-btn" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
+          </div>
+        </article>
+
+        <article class="surface-variant block menu-card">
+          <h6 class="section-heading">GMS</h6>
+          <div class="stack">
+            <button class="menu-btn" data-script="kill_google_process.sh" data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</button>
+            <button class="menu-btn" data-script="target_txt.sh" data-i18n="menu_target">Set up target.txt</button>
+            <button class="menu-btn" data-script="select_app_neccesary.sh" data-i18n="menu_necessary">Set Necessary App</button>
+            <button class="menu-btn" data-script="security_patch.sh" data-i18n="menu_patch">Set up Security Patch</button>
+            <button class="menu-btn" data-script="boot_hash.sh" data-i18n="advance_set_verified_boot">Set Verified Boothash</button>
+          </div>
+        </article>
+      </article>
+    </section>
+
+    <section id="advance-menu" class="page">
+      <article class="surface page-card">
+        <h5 class="page-title" data-i18n="advance_menu_title">Advanced Menu</h5>
+
+        <article class="surface-variant block menu-card">
+          <h6 class="section-heading" data-i18n="nav_advancemenu">Menu +</h6>
+          <div class="stack">
+            <button class="menu-btn" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
+            <button class="menu-btn" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
+            <button class="menu-btn" data-script="lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
+            <button class="menu-btn" data-script="pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
+            <button class="menu-btn" data-script="twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
+            <button class="menu-btn" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
+            <button class="menu-btn" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
+          </div>
+        </article>
+
+        <article class="surface-variant block menu-card">
+          <h6 class="section-heading long-heading">Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</h6>
+          <div class="stack">
+            <button class="menu-btn" data-script="widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
+          </div>
+        </article>
+      </article>
+    </section>
+
+    <section id="settings-page" class="page">
+      <article class="surface page-card">
+        <h5 class="page-title" data-i18n="settings_title">Settings</h5>
+
+        <article class="surface-variant block">
+          <h6 data-i18n="settings_language">Language</h6>
+          <div class="custom-dropdown lang-select-wrap">
+            <button id="lang-btn" class="menu-btn lang-select-btn">🇬🇧 English</button>
+            <ul id="lang-options" class="dropdown-list lang-options-list">
+              <li data-lang="en">🇬🇧 English</li>
+              <li data-lang="zh-han">🇨🇳 China</li>
+              <li data-lang="hi">🇮🇳 India</li>
+              <li data-lang="ru">🇷🇺 Russia</li>
+              <li data-lang="jp">🇯🇵 Japan</li>
+              <li data-lang="bn">🇧🇩 Bangladesh</li>
+              <li data-lang="id">🇮🇩 Indonesia</li>
+              <li data-lang="vn">🇻🇳 Vietnam</li>
+              <li data-lang="tr">🇹🇷 Turkish</li>
+              <li data-lang="es">🇪🇸 Spanish</li>
+              <li data-lang="ar">🇸🇦 Arabic</li>
+              <li data-lang="ms">🇲🇾 Malaysia</li>
+              <li data-lang="ph">🇵🇭 Philippines</li>
+              <li data-lang="th">🇹🇭 Thailand</li>
+              <li data-lang="uka">🇺🇦 Ukraine</li>
+              <li data-lang="pt-br">🇧🇷 Brazil</li>
+              <li data-lang="ro-md">🇲🇩 Moldova</li>
+              <li data-lang="ro-md">🇷🇴 Romania</li>
+              <li data-lang="pl">🇵🇱 Polish</li>
+              <li data-lang="hu">🇭🇺 Hungary</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="surface-variant block">
+          <div class="appearance-header">
+            <h6 class="appearance-title" data-i18n="settings_appearance">Appearance</h6>
+          </div>
+          <div class="custom-dropdown lang-select-wrap">
+            <button id="theme-mode-btn" class="menu-btn lang-select-btn" data-i18n="theme_mode_dark">Dark</button>
+            <ul id="theme-mode-options" class="dropdown-list lang-options-list">
+              <li data-mode="dark" data-i18n="theme_mode_dark">Dark</li>
+              <li data-mode="light" data-i18n="theme_mode_light">Light</li>
+              <li data-mode="auto" data-i18n="theme_mode_auto">Auto (System)</li>
+            </ul>
+          </div>
+          <div class="theme-presets">
+            <button class="theme-preset-btn" data-theme-preset="ocean" data-i18n="theme_preset_ocean">Ocean</button>
+            <button class="theme-preset-btn" data-theme-preset="rose" data-i18n="theme_preset_rose">Rose</button>
+            <button class="theme-preset-btn" data-theme-preset="forest" data-i18n="theme_preset_forest">Forest</button>
+            <button class="theme-preset-btn" data-theme-preset="sunset" data-i18n="theme_preset_sunset">Sunset</button>
+            <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
+          </div>
+        </article>
+
+        <article class="surface-variant block">
+          <h6 data-i18n="settings_clock_format">Clock Format</h6>
+          <div class="custom-dropdown lang-select-wrap">
+            <button id="clock-format-btn" class="menu-btn lang-select-btn" data-i18n="clock_format_auto">Auto (Device)</button>
+            <ul id="clock-format-options" class="dropdown-list lang-options-list">
+              <li data-format="auto" data-i18n="clock_format_auto">Auto (Device)</li>
+              <li data-format="24h" data-i18n="clock_format_24h">24-hour (00:00)</li>
+              <li data-format="12h" data-i18n="clock_format_12h">12-hour (AM/PM)</li>
+            </ul>
+          </div>
+        </article>
+        <article class="surface-variant block update-support">
+          <h6 data-i18n="update_title">Update & Support</h6>
+          <p data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
+
+          <div class="stack">
+            <button class="menu-btn" data-url="https://github.com/YurikeyDev/yurikey" data-i18n="update_github">View on GitHub</button>
+            <button class="menu-btn" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
+          </div>
+
+          <p class="small-text" data-i18n="update_note">Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.</p>
+        </article>
+
+        <article id="dev-info" class="surface-variant block">
+          <h6 data-i18n="settings_contributors">Project Contributors</h6>
           <div id="contrib-list" class="contrib-grid"></div>
-        </div>
-      </section>
+        </article>
+      </article>
+    </section>
+  </main>
 
-    </main>
+  <nav class="bottom-nav surface-container-high">
+    <button class="nav-btn active" type="button">
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">home</i>
+      <span data-i18n="nav_home">Home</span>
+    </button>
+    <button class="nav-btn" type="button">
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">grid_view</i>
+      <span data-i18n="nav_menu">Menu</span>
+    </button>
+    <button class="nav-btn" type="button">
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">tune</i>
+      <span data-i18n="nav_advancemenu">Menu +</span>
+    </button>
+    <button class="nav-btn" type="button">
+      <i class="material-symbols-rounded nav-icon" aria-hidden="true">settings</i>
+      <span data-i18n="nav_settings">Settings</span>
+    </button>
+  </nav>
 
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-      <button class="nav-btn active" data-target="home-page">
-        <img src="/common/assets/navbar/home.svg" alt="Home" class="nav-icon" />
-        <span data-i18n="nav_home">Home</span>
-      </button>
-      <button class="nav-btn" data-target="actions-page">
-        <img src="/common/assets/navbar/menu.svg" alt="Menu" class="nav-icon" />
-        <span data-i18n="nav_menu">Menu</span>
-      </button>
-      <button class="nav-btn" data-target="advance-menu">
-        <img src="/common/assets/navbar/android.png" alt="Advance Menu" class="nav-icon" />
-        <span data-i18n="nav_advancemenu">Menu +</span>
-      </button>
-      <button class="nav-btn" data-target="update-page">
-        <img src="/common/assets/navbar/community.png" alt="Update" class="nav-icon" />
-        <span data-i18n="nav_update">Update</span>
-      </button>
-      <button class="nav-btn" data-target="settings-page">
-        <img src="/common/assets/navbar/settings.svg" alt="Settings" class="nav-icon" />
-        <span data-i18n="nav_settings">Settings</span>
-      </button>
+
+  <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
+
+  <div id="script-history-overlay" class="overlay blur"></div>
+  <dialog id="script-history-dialog" class="snackbar-dialog">
+    <h5 data-i18n="script_history_title">Script Outputs</h5>
+    <div id="script-history-content" class="snackbar-output-pre"></div>
+    <nav class="right-align history-dialog-actions">
+      <button id="script-history-clear" class="history-btn" data-i18n="dialog_clear">Clear</button>
+      <button id="script-history-close" class="history-btn" data-i18n="dialog_close">Close</button>
     </nav>
-    
-    <!-- JavaScript Files -->
-    <script src="js/language.js"></script>
-    <script src="js/redirect.js"></script>
-    <script src="js/device.js"></script>
-    <script src="js/file_selector.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/version.js"></script>
-    <script src="js/dev.js"></script>
-    <script src="js/theme.js"></script>
-  </div>
-  <div id="toast-container"></div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/beercss@3.9.8/dist/cdn/beer.min.js" type="module"></script>
+  <script src="js/language.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/redirect.js"></script>
+  <script src="js/device.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/version.js"></script>
+  <script src="js/dev.js"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@
   "nav_advancemenu": "菜单 +",
   "nav_update": "更新",
   "nav_settings": "设置",
-
   "home_version": "模块版本",
   "home_root": "Root 管理器",
   "home_refresh": "刷新数据",
@@ -14,7 +13,6 @@
   "home_status_offline": "离线",
   "home_clock_date": "日期",
   "home_clock_time": "时间",
-
   "menu_title": "主菜单",
   "menu_force_clear": "强制停止并清除 Play Store 数据",
   "menu_keybox": "设置 Yuri Keybox",
@@ -24,7 +22,6 @@
   "menu_patch": "应用安全补丁",
   "menu_keybox_title": "Keybox",
   "menu_keybox_restore": "恢复 Keybox 备份",
-
   "advance_menu_title": "高级菜单",
   "advance_clear_all_detection_traces": "清除所有检测痕迹",
   "advance_set_hma-oss_configs": "设置 HMA-oss 配置",
@@ -34,31 +31,48 @@
   "advance_kill_all": "终止所有进程",
   "advance_wdevinel1": "修复 Widevine L1",
   "advance_set_verified_boot": "设置 Verified Boothash",
-
   "update_title": "更新和支持",
   "update_desc": "关注最新的 Yurikey 版本、错误修复和新功能",
   "update_github": "在 GitHub 上查看",
   "update_telegram": "加入电报频道",
   "update_note": "加入我们的 Telegram 频道或查看我们的 GitHub 以获取更新、贡献和技术讨论",
   "settings_title": "设置",
-
   "settings_contributors": "项目联合开发者",
-
   "role_Founder & Module Developer": "创始人和模块开发人员",
   "role_Module Developer": "模块开发人员",
   "role_WebUI Developer": "WebUI 开发人员",
   "role_Ex Module Developer": "前模块开发人员",
-
   "executing": "正在执行 \"{script}\"...",
   "success": "脚本 \"{script}\" 已成功执行",
   "failed": "脚本 \"{script}\" 执行失败",
   "timeout": "脚本 \"{script}\" 超时",
   "ksu_not_available": "未找到 KernelSU 执行 API",
-
   "status_online": "状态：在线",
   "status_offline": "状态：离线",
   "home_refresh_failed": "刷新数据失败",
   "home_no_internet": "没有互联网连接",
   "home_connected": "已连接",
-  "home_disconnected": "断开"
+  "home_disconnected": "断开",
+  "settings_appearance": "外观",
+  "settings_clock_format": "时钟格式",
+  "clock_format_auto": "自动（设备）",
+  "clock_format_24h": "24小时制（00:00）",
+  "clock_format_12h": "12小时制（AM/PM）",
+  "theme_mode_dark": "深色",
+  "theme_mode_light": "浅色",
+  "theme_mode_auto": "自动（系统）",
+  "theme_preset_ocean": "海洋",
+  "theme_preset_rose": "玫瑰",
+  "theme_preset_forest": "森林",
+  "theme_preset_sunset": "日落",
+  "theme_preset_violet": "紫罗兰",
+  "settings_language": "语言",
+  "advance_upd_yurirka": "更新 RKA 配置",
+  "advance_widevinel1": "修复 Widevine L1",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }

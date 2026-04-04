@@ -4,7 +4,6 @@
   "nav_update": "Perbarui",
   "nav_advancemenu": "Menu +",
   "nav_settings": "Pengaturan",
-
   "home_version": "Versi Modul",
   "home_root": "Implementasi Root",
   "home_refresh": "Segarkan Info",
@@ -14,7 +13,6 @@
   "home_status_offline": "Offline",
   "home_clock_date": "Tanggal Jam",
   "home_clock_time": "Waktu Jam",
-
   "menu_title": "MENU UTAMA",
   "menu_force_clear": "Paksa Berhenti & Bersihkan Data Play Store",
   "menu_keybox": "Atur Yuri Keybox",
@@ -22,7 +20,6 @@
   "menu_target": "Atur target.txt",
   "menu_necessary": "Atur aplikasi yang diperlukan",
   "menu_patch": "Terapkan Patch Keamanan",
-
   "advance_menu_title": "Menu Lanjutan",
   "advance_clear_all_detection_traces": "Hapus semua jejak deteksi",
   "advance_set_hma-oss_configs": "Atur konfigurasi HMA-oss",
@@ -32,32 +29,49 @@
   "advance_kill_all": "Matikan Semua Proses",
   "advance_wdevinel1": "Perbaiki Widevine L1",
   "advance_set_verified_boot": "Setel Verified Boothash",
-
   "update_title": "PEMBARUAN & DUKUNGAN",
   "update_desc": "Tetap terbaru dengan versi Yurikey terbaru, perbaikan bug, dan fitur baru.",
   "update_github": "Lihat di GitHub",
   "update_telegram": "Bergabung dengan Channel Telegram",
   "update_note": "Bergabunglah dengan channel Telegram kami atau cek GitHub untuk pembaruan, kontribusi, dan diskusi teknis.",
-
   "settings_contributors": "Kontributor Proyek",
-
   "role_Founder & Module Developer": "Pendiri & Pengembang Modul",
   "role_Module Developer": "Pengembang Modul",
   "role_WebUI Developer": "Pengembang WebUI",
   "role_Ex Module Developer": "Mantan Pengembang Modul",
-
   "executing": "Menjalankan \"{script}\"...",
   "success": "Script \"{script}\" berhasil dijalankan.",
   "failed": "Gagal menjalankan script \"{script}\".",
   "timeout": "Script \"{script}\" gagal merespon (timeout).",
   "ksu_not_available": "API KernelSU exec tidak tersedia.",
-
   "status_online": "Status: Online",
   "status_offline": "Status: Offline",
   "home_refresh_failed": "Gagal menyegarkan info.",
   "home_no_internet": "Tidak ada koneksi internet.",
   "home_connected": "Terhubung",
-  "home_disconnected": "Terputus"
+  "home_disconnected": "Terputus",
+  "settings_appearance": "Tampilan",
+  "settings_clock_format": "Format jam",
+  "clock_format_auto": "Otomatis (Perangkat)",
+  "clock_format_24h": "24 jam (00:00)",
+  "clock_format_12h": "12 jam (AM/PM)",
+  "theme_mode_dark": "Gelap",
+  "theme_mode_light": "Terang",
+  "theme_mode_auto": "Otomatis (Sistem)",
+  "theme_preset_ocean": "Lautan",
+  "theme_preset_rose": "Mawar",
+  "theme_preset_forest": "Hutan",
+  "theme_preset_sunset": "Matahari terbenam",
+  "theme_preset_violet": "Ungu",
+  "settings_title": "Pengaturan",
+  "settings_language": "Bahasa",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Perbarui konfigurasi RKA",
+  "advance_widevinel1": "Perbaiki Widevine L1",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }
-
-

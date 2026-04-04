@@ -4,7 +4,6 @@
   "nav_update": "Frissítés",
   "nav_advancemenu": "Haladó menü",
   "nav_settings": "Beállítások",
-
   "home_version": "Modul verzió",
   "home_root": "Root megvalósítás",
   "home_refresh": "Frissítési információ",
@@ -14,7 +13,6 @@
   "home_status_offline": "Offline",
   "home_clock_date": "Dátum",
   "home_clock_time": "Idő",
-
   "menu_title": "FŐMENÜ",
   "menu_force_clear": "Kényszerített leállítás és Adat törlés Play Store",
   "menu_keybox": "Yuri Keybox beállítása",
@@ -22,7 +20,6 @@
   "menu_target": "Target.txt beállítása",
   "menu_necessary": "Állítsa be a szükséges alkalmazást",
   "menu_patch": "Security Patch beállítása",
-
   "advance_menu_title": "Haladó menü",
   "advance_clear_all_detection_traces": "Töröld az összes észlelési nyomot",
   "advance_set_hma-oss_configs": "HMA-hoz tartozó konfigurációk beállítása",
@@ -32,32 +29,49 @@
   "advance_kill_all": "Ölj meg minden folyamatot",
   "advance_wdevinel1": "Widevine L1 javítása",
   "advance_set_verified_boot": "Ellenőrzött Boothash létrehozása",
-
   "update_title": "FRISSÍTÉS és TÁMOGATÁS",
   "update_desc": "Maradj naprakész a Yurikey legújabb verziójával, hibajavításaival és új funkcióival kapcsolatban.",
   "update_github": "Megtekintés a GitHub-on",
   "update_telegram": "Csatlakozás a Telegram csatornához",
   "update_note": "Csatlakozz Telegram csatornánkhoz, vagy látogass el a GitHub oldalra frissítésekért, hozzászólásokért és technikai megbeszélésekért.",
-
   "settings_contributors": "Projekt közreműködői",
-
   "role_Founder & Module Developer": "Alapító és modulfejlesztő",
   "role_Module Developer": "Modul fejlesztő",
   "role_WebUI Developer": "WebUI fejlesztő",
   "role_Ex Module Developer": "Korábbi modulfejlesztő",
-
   "executing": "Végrehajtó \"{script}\"...",
   "success": "Szkript \"{script}\" sikeresen végrehajtva.",
   "failed": "Nem sikerült végrehajtani a szkriptet \"{script}\".",
   "timeout": "Szkript \"{script}\" időtúllépés.",
   "ksu_not_available": "A KernelSU végrehajtási API nem érhető el.",
-
   "status_online": "Status: Online",
   "status_offline": "Status: Offline",
   "home_refresh_failed": "Nem sikerült frissíteni az információkat.",
   "home_no_internet": "Nincs internet kapcsolat.",
   "home_connected": "Csatlakozva",
-  "home_disconnected": "Szétkapcsolt"
-
+  "home_disconnected": "Szétkapcsolt",
+  "settings_appearance": "Megjelenés",
+  "settings_clock_format": "Óraformátum",
+  "clock_format_auto": "Automatikus (Eszköz)",
+  "clock_format_24h": "24 órás (00:00)",
+  "clock_format_12h": "12 órás (AM/PM)",
+  "theme_mode_dark": "Sötét",
+  "theme_mode_light": "Világos",
+  "theme_mode_auto": "Automatikus (Rendszer)",
+  "theme_preset_ocean": "Óceán",
+  "theme_preset_rose": "Rózsa",
+  "theme_preset_forest": "Erdő",
+  "theme_preset_sunset": "Naplemente",
+  "theme_preset_violet": "Ibolya",
+  "settings_title": "Beállítások",
+  "settings_language": "Nyelv",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "RKA konfiguráció frissítése",
+  "advance_widevinel1": "Widevine L1 javítása",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }
-

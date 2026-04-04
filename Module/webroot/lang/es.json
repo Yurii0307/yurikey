@@ -4,7 +4,6 @@
   "nav_update": "Actualizar",
   "nav_advancemenu": "Menú +",
   "nav_settings": "Ajustes",
-
   "home_version": "Versión del Módulo",
   "home_root": "Implementación Root",
   "home_refresh": "Actualizar Info",
@@ -14,7 +13,6 @@
   "home_status_offline": "Desconectado",
   "home_clock_date": "Fecha",
   "home_clock_time": "Hora",
-
   "menu_title": "Menú Principal",
   "menu_force_clear": "Forzar Detención y Limpiar Datos de Play Store",
   "menu_keybox": "Actualizar Yuri Keybox",
@@ -29,34 +27,51 @@
   "advance_fix_detect_pif": "Arreglar detección PIF (1)",
   "advance_fix_detect_recovery_file": "Arreglar detección del archivo de Recovery",
   "advance_kill_all": "Matar todo el proceso",
-  "advance_wdevinel1": "Arreglar Widevine L1",
+  "advance_wdevinel1": "Corregir Widevine L1",
   "advance_set_verified_boot": "Establecer Boothash verificado",
-
   "update_title": "Actualización y Soporte",
   "update_desc": "Mantente actualizado con la ultima versión de Yurikey, corrección de bugs y nuevas funciones!",
   "update_github": "Ver en GitHub",
   "update_telegram": "Unirse al Canal de Telegram",
   "update_note": "Únete al canal de Telegram o revisa Github para actualizaciones, contribuciones y discusiones tecnicas.",
-
   "settings_contributors": "Contribuidores del Proyecto",
-
   "role_Founder & Module Developer": "Fundador y Desarollador del Modulo",
   "role_Module Developer": "Desarollador del Módulo",
   "role_WebUI Developer": "Desarrollador WebUI",
   "role_Ex Module Developer": "Ex desarrollador de módulo.",
-
   "executing": "Ejecutando \"{script}\"...",
   "success": "Script \"{script}\" ejectuado satisfactoriamente",
   "failed": "Falló la ejecución del script \"{script}\".",
   "timeout": "Tiempo Agotado del script \"{script}\".",
   "ksu_not_available": "API de ejecución de KernelSU no disponible",
-
   "status_online": "Estado: En línea",
   "status_offline": "Estado: Desconectado",
   "home_refresh_failed": "Falló la actualización de información",
   "home_no_internet": "Sin conexión a internet.",
   "home_connected": "Conectado",
-  "home_disconnected": "Desconectado"
-
+  "home_disconnected": "Desconectado",
+  "settings_appearance": "Apariencia",
+  "settings_clock_format": "Formato de reloj",
+  "clock_format_auto": "Automático (Dispositivo)",
+  "clock_format_24h": "24 horas (00:00)",
+  "clock_format_12h": "12 horas (AM/PM)",
+  "theme_mode_dark": "Oscuro",
+  "theme_mode_light": "Claro",
+  "theme_mode_auto": "Automático (Sistema)",
+  "theme_preset_ocean": "Océano",
+  "theme_preset_rose": "Rosa",
+  "theme_preset_forest": "Bosque",
+  "theme_preset_sunset": "Atardecer",
+  "theme_preset_violet": "Violeta",
+  "settings_title": "Ajustes",
+  "settings_language": "Idioma",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Actualizar configuración RKA",
+  "advance_widevinel1": "Corregir Widevine L1",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }
-

@@ -4,7 +4,6 @@
   "nav_update": "Atualizar",
   "nav_advancemenu": "Menu +",
   "nav_settings": "Config",
-
   "home_version": "Versão do Módulo",
   "home_root": "Tipo de Root",
   "home_refresh": "Atualizar",
@@ -14,7 +13,6 @@
   "home_status_offline": "Offline",
   "home_clock_date": "Data",
   "home_clock_time": "Hora",
-
   "menu_title": "MENU PRINCIPAL",
   "menu_force_clear": "Fechar & Limpar os Dados da PlayStore",
   "menu_keybox": "Configurar Yuri Keybox",
@@ -22,7 +20,6 @@
   "menu_target": "Configurar Target.txt",
   "menu_necessary": "Configuração necessária",
   "menu_patch": "Configurar o Patch de Segurança",
-
   "advance_menu_title": "Menu Avançado",
   "advance_clear_all_detection_traces": "",
   "advance_set_hma-oss_configs": "",
@@ -30,34 +27,51 @@
   "advance_fix_detect_pif": "Reparar Detecção PIF (1)",
   "advance_fix_detect_recovery_file": "Reparar Detecção Recovery File",
   "advance_kill_all": "Matar todos os processos",
-  "advance_wdevinel1": "Reparar Widevine L1",
+  "advance_wdevinel1": "Corrigir Widevine L1",
   "advance_set_verified_boot": "Configurar a Verificação do Boothash",
-
   "update_title": "ATUALIZAÇÃO & SUPORTE",
   "update_desc": "Mantenha-se atualizado com a versão mais recente do Yurikey, correções de bugs e novos recursos.",
   "update_github": "Ver no GitHub",
   "update_telegram": "Junte-se ao canal Telegram",
   "update_note": "Junte-se ao nosso canal no Telegram ou verifique o GitHub para atualizações, contribuições e discussões técnicas.",
-
   "settings_contributors": "Colaboradores do Projeto",
-
   "role_Founder & Module Developer": "Fundador e Desenvolvedor de Módulos",
   "role_Module Developer": "Desenvolvedor de Módulos",
   "role_WebUI Developer": "WebUI Desenvolver",
   "role_Ex Module Developer": "Ex-desenvolvedor de módulos",
-
   "executing": "Executando \"{script}\"...",
   "success": "Script \"{script}\" executado com sucesso.",
   "failed": "Falha ao executar script \"{script}\".",
   "timeout": "Script \"{script}\" expirou o tempo.",
   "ksu_not_available": "KernelSU API não disponível.",
-
   "status_online": "Status: Online",
   "status_offline": "Status: Offline",
   "home_refresh_failed": "Falha ao atualizar as informações!",
   "home_no_internet": "Sem conexão com a internet.",
   "home_connected": "Conectado",
-  "home_disconnected": "Desconectado"
-
+  "home_disconnected": "Desconectado",
+  "settings_appearance": "Aparência",
+  "settings_clock_format": "Formato do relógio",
+  "clock_format_auto": "Automático (Dispositivo)",
+  "clock_format_24h": "24 horas (00:00)",
+  "clock_format_12h": "12 horas (AM/PM)",
+  "theme_mode_dark": "Escuro",
+  "theme_mode_light": "Claro",
+  "theme_mode_auto": "Automático (Sistema)",
+  "theme_preset_ocean": "Oceano",
+  "theme_preset_rose": "Rosa",
+  "theme_preset_forest": "Floresta",
+  "theme_preset_sunset": "Pôr do sol",
+  "theme_preset_violet": "Violeta",
+  "settings_title": "Configurações",
+  "settings_language": "Idioma",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Atualizar configuração RKA",
+  "advance_widevinel1": "Corrigir Widevine L1",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }
-

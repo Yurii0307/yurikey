@@ -18,6 +18,7 @@ function runScript(scriptName, callback) {
     ksu.exec(`sh '${fullPath}'`, "{}", cbId);
   } else {
     console.warn("ksu.exec not available.");
+    if (typeof callback === "function") callback();
   }
 }
 

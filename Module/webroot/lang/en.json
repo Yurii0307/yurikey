@@ -4,7 +4,6 @@
   "nav_update": "Update",
   "nav_advancemenu": "Menu +",
   "nav_settings": "Settings",
-
   "home_version": "Module Version",
   "home_root": "Root Implementation",
   "home_refresh": "Refresh Info",
@@ -14,7 +13,6 @@
   "home_status_offline": "Offline",
   "home_clock_date": "Clock Date",
   "home_clock_time": "Clock Time",
-
   "menu_title": "MAIN MENU",
   "menu_force_clear": "Force Stop & Clear Data Play Store",
   "menu_keybox": "Set Up Yuri Keybox",
@@ -22,7 +20,6 @@
   "menu_target": "Set Up Target.txt",
   "menu_necessary": "Only Set Necessary App",
   "menu_patch": "Set Up Security Patch",
-
   "advance_menu_title": "Advanced Menu",
   "advance_clear_all_detection_traces": "Clear all detection traces",
   "advance_set_hma-oss_configs": "Set HMA-oss configs",
@@ -32,32 +29,49 @@
   "advance_kill_all": "Kill All Process",
   "advance_wdevinel1": "Fix Widevine L1",
   "advance_set_verified_boot": "Set Up Verified Boothash",
-
   "update_title": "UPDATE & SUPPORT",
   "update_desc": "Stay up to date with the latest version of Yurikey, bug fixes, and new features.",
   "update_github": "View on GitHub",
   "update_telegram": "Join Telegram Channel",
   "update_note": "Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.",
-
   "settings_contributors": "Project Contributors",
-
   "role_Founder & Module Developer": "Founder & Module Developer",
   "role_Module Developer": "Module Developer",
   "role_WebUI Developer": "WebUI Developer",
   "role_Ex Module Developer": "Former Module Developer",
-
   "executing": "Executing \"{script}\"...",
   "success": "Script \"{script}\" executed successfully.",
   "failed": "Failed to execute script \"{script}\".",
   "timeout": "Script \"{script}\" timed out.",
   "ksu_not_available": "KernelSU exec API not available.",
-
   "status_online": "Status: Online",
   "status_offline": "Status: Offline",
   "home_refresh_failed": "Failed to refresh info!",
   "home_no_internet": "No internet connection.",
   "home_connected": "Connected",
-  "home_disconnected": "Disconnected"
-
+  "home_disconnected": "Disconnected",
+  "settings_appearance": "Appearance",
+  "settings_clock_format": "Clock Format",
+  "clock_format_auto": "Auto (Device)",
+  "clock_format_24h": "24-hour (00:00)",
+  "clock_format_12h": "12-hour (AM/PM)",
+  "theme_mode_dark": "Dark",
+  "theme_mode_light": "Light",
+  "theme_mode_auto": "Auto (System)",
+  "theme_preset_ocean": "Ocean",
+  "theme_preset_rose": "Rose",
+  "theme_preset_forest": "Forest",
+  "theme_preset_sunset": "Sunset",
+  "theme_preset_violet": "Violet",
+  "settings_title": "Settings",
+  "settings_language": "Language",
+  "menu_keybox_title": "Keybox",
+  "advance_upd_yurirka": "Update RKA config",
+  "advance_widevinel1": "Fix Widevine L1",
+  "dialog_close": "Close",
+  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
+  "script_history_title": "Script Outputs",
+  "script_history_empty": "No script output has been recorded yet.",
+  "dialog_clear": "Clear",
+  "settings_open_script_history": "Open Script Outputs"
 }
-
