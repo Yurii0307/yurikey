@@ -67,11 +67,5 @@
   "settings_language": "Language",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "Update RKA config",
-  "advance_widevinel1": "Fix Widevine L1",
-  "dialog_close": "Close",
-  "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
-  "script_history_title": "Script Outputs",
-  "script_history_empty": "No script output has been recorded yet.",
-  "dialog_clear": "Clear",
-  "settings_open_script_history": "Open Script Outputs"
+  "advance_widevinel1": "Fix Widevine L1"
 }
