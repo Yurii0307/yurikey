@@ -23,7 +23,7 @@ fi
 rm -rf "$t"
 fixed_targets="\
 android
-com.android.vending?
+com.android.vending
 com.google.android.gsf
 com.google.android.gms
 com.google.android.ims
