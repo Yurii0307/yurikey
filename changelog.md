@@ -1,4 +1,4 @@
-***🚀 v3.0 – Major Version Changes:***
+***🚀 v3.00 – Major Version Changes:***
 
 -> Web UI Overhaul: A major update to the interface for a smoother, more modern experience.
 
