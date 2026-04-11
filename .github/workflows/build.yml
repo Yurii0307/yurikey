@@ -25,7 +25,7 @@ jobs:
           VERSION_CODE=$(echo $VERSION | sed 's/v//' | sed 's/\.//g')
           RAW_VERSION=$(echo $VERSION | sed 's/v//')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "version_code=$NEW_VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "version_code=$VERSION_CODE" >> $GITHUB_OUTPUT
           echo "raw_version=$RAW_VERSION" >> $GITHUB_OUTPUT
           
       - name: Update module.prop
