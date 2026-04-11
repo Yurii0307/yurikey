@@ -20,7 +20,11 @@ function tFormat(key, vars = {}) {
 // Load and apply translations to all elements
 async function applyLanguage(langCode) {
   try {
-    const res = await fetch(`${LANG_PATH}${langCode}.json?ts=${Date.now()}`);
+    let fetchUrl = `${LANG_PATH}${langCode}.json?ts=${Date.now()}`;
+    if (langCode === 'en') {
+      fetchUrl = `${LANG_PATH}source/string.json?ts=${Date.now()}`;
+    }
+    const res = await fetch(fetchUrl);
     const json = await res.json();
 
     translations = json;
