@@ -13,18 +13,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Extract and compare version
+      - name: Extract version
         id: version
         run: |
           VERSION=$(grep -m 1 -oP 'v[0-9]+(\.[0-9]+)+' changelog.md)
           if [ -z "$VERSION" ]; then
             echo "No version found in changelog"
-            echo "skip=true" >> $GITHUB_OUTPUT
             exit 0
           fi
 
           VERSION_CODE=$(echo $VERSION | sed 's/v//' | sed 's/\.//g')
           RAW_VERSION=$(echo $VERSION | sed 's/v//')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version_code=$NEW_VERSION_CODE" >> $GITHUB_OUTPUT
+          echo "raw_version=$RAW_VERSION" >> $GITHUB_OUTPUT
           
       - name: Update module.prop
         run: |
