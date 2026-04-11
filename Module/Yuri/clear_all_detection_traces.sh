@@ -30,9 +30,6 @@ complete() {
     printf "\033[1;32mt.me/yuriiroot\033[0m\n"
 }
 
-change_path() {
-    [ -n "$1" ] && mv "$1" 2>/dev/null
-}
 
 remove_path() {
     [ -n "$1" ] && rm -rf "$1" 2>/dev/null
@@ -131,6 +128,7 @@ tool_apps_data() { # Same as detector_data, but for tool apps
     remove_path "/storage/emulated/0/Android/data/moe.shizuku.privileged.api"
     remove_path "/storage/emulated/0/Android/data/com.estrongs.android.pop"
     remove_path "/storage/emulated/0/Android/data/com.coolapk.market"
+    mv "/storage/emulated/0/MT2" "/storage/emulated/0/MT"
     remove_path "/storage/emulated/0/bin.mt.termux"
     remove_path "/storage/emulated/0/com.termux"
     remove_path "/storage/emulated/0/xzr.hkf"
@@ -206,7 +204,6 @@ dev_paths() { # For /dev
 
 user_data() { # For /data/user/0
     remove_path "/data/user/0/com.juom"
-    change_path "/storage/emulated/0/MT2" "/storage/emulated/0/MT"
 }
 
 reset_prop() { # Changing on build.prop file
@@ -252,13 +249,7 @@ reset_prop() { # Changing on build.prop file
     resetprop ro.build.tags release-keys
     resetprop --delete persist.sys.developer_options
     resetprop --delete persist.sys.dev_mode
-    
-    # Boot / AVB 
-    resetprop ro.boot.avb_version 1.2
-    resetprop ro.boot.vbmeta.avb_version 1.2
-    resetprop ro.boot.vbmeta.size 19968
-    resetprop ro.boot.vbmeta.digest d74bf68ce680f1f84679d10f25f07dbe92274a3f45c28dc061a6ae49a9b18ec4
-
+   
     resetprop ro.boot.verifiedbootstate green
     resetprop vendor.boot.verifiedbootstate green
     resetprop ro.boot.flash.locked 1
@@ -268,6 +259,14 @@ reset_prop() { # Changing on build.prop file
     resetprop ro.boot.warranty_bit 0
     resetprop ro.boot.force_normal_boot 1
     resetprop ro.boot.realme.lockstate 1
+    resetprop ro.boot.flash.locked 1  
+    resetprop ro.boot.verifiedbootstate green  
+    resetprop ro.boot.vbmeta.device_state locked  
+    resetprop ro.boot.secureboot 1  
+    resetprop ro.boot.veritymode enforcing  
+    resetprop ro.boot.verifiedbootstate green  
+    resetprop ro.boot.vbmeta.device_state locked  
+    resetprop ro.boot.secureboot enabled  
 
     # OEM unlock
     resetprop ro.oem_unlock_supported 0
@@ -296,6 +295,9 @@ main() {
     detector_data
     detector_obb
     detector_media
+    tool_apps_data
+    remote_control_data_apps
+    system_properties
     tmp_data
     system_data
     dev_paths
@@ -307,3 +309,5 @@ main() {
     
     complete
 }
+
+main
