@@ -23,6 +23,7 @@ PIF="/data/adb/modules/playintegrityfix"
 if -d $PIF
 sh $PIF/autopif_ota.sh || true
 sh $PIF/autopif.sh
+fi
 
 if [ -f /data/adb/modules_update/Yurikey/webroot/common/device-info.sh ]; then
   sh /data/adb/modules_update/Yurikey/webroot/common/device-info.sh
