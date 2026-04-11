@@ -1,6 +1,6 @@
 {
-  "version": "3.0",
-  "versionCode": 30,
-  "zipUrl": "https://github.com/Yurii0307/yurikey/releases/download/v3.0/Yurikey-v3.0.signed.zip",
+  "version": "3.00",
+  "versionCode": 300,
+  "zipUrl": "https://github.com/Yurii0307/yurikey/releases/download/v3.00/Yurikey-v3.00.signed.zip",
   "changelog": "https://raw.githubusercontent.com/Yurii0307/yurikey/main/changelog.md"
 }
