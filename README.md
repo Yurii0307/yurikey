@@ -6,6 +6,7 @@
 [![latest release](https://img.shields.io/github/v/release/Yurii0307/yurikey?label=Release&logo=github)](https://github.com/Yurii0307/yurikey/releases/latest)
 [![CI](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml/badge.svg)](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Yurii0307/yurikey/total)
+[![Crowdin](https://badges.crowdin.net/yurikey/localized.svg)](https://crowdin.com/project/yurikey)
 
 **Language:** [日本語](./doc/README_ja-JP.md)
 A Systemless Module to get Strong Integrity so Easily
