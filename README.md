@@ -8,8 +8,9 @@
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Yurii0307/yurikey/total)
 
 **Language:** [日本語](./doc/README_ja-JP.md)
-[**Crowdin**](https://crwd.in/yurikey/16ffbcb2d7926491c764b48a99bc06c52742324)
 A Systemless Module to get Strong Integrity so Easily
+
+[Crowdin](https://crwd.in/yurikey/16ffbcb2d7926491c764b48a99bc06c52742324)
 
 [Download](https://github.com/Yurii0307/yurikey/releases/latest)
 
