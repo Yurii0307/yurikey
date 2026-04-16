@@ -41,8 +41,8 @@ com.kikyps.crackme?
 com.chunqiunativecheck?"
 for entry in $fixed_targets; do
     if ! echo "$entry" >> "$t"; then
-        log_message "ERROR: Failed to write $entry to $t"
-        exit 1
+        log_message "Error: Failed to write $entry to $t"
+        return 1
     fi
 done
 

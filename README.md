@@ -6,10 +6,12 @@
 [![latest release](https://img.shields.io/github/v/release/Yurii0307/yurikey?label=Release&logo=github)](https://github.com/Yurii0307/yurikey/releases/latest)
 [![CI](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml/badge.svg)](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Yurii0307/yurikey/total)
+[![Crowdin](https://badges.crowdin.net/yurikey/localized.svg)](https://crowdin.com/project/yurikey)
 
 **Language:** [日本語](./doc/README_ja-JP.md)
-
 A Systemless Module to get Strong Integrity so Easily
+
+[Crowdin](https://crwd.in/yurikey/16ffbcb2d7926491c764b48a99bc06c52742324)
 
 [Download](https://github.com/Yurii0307/yurikey/releases/latest)
 
@@ -38,8 +40,6 @@ https://t.me/yurikernel
 > For the error on the side 
 > "ERROR: Tricky Store module not found!"
 > [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest)
->
-> You can help us translating this project via [Crowdin](https://crwd.in/yurikey/e80b9adaa706626608af1cf366ca41fe2694978)
 > 
 > For the error on the side "ERROR: Keybox updated failed!"
 > [BusyBox](https://mmrl.dev/repository/grdoglgmr/busybox-ndk)

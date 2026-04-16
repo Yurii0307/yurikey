@@ -13,17 +13,6 @@ do
   fi
 done
 
-# Hide Zygisk Next
-ZN="/data/adb/modules/zygisksu/bin/zygiskd"
-$ZN enforce-denylist just_umount
-$ZN memory-type anonymous
-$ZN linker builtin
-
-# Fetch new fingerprint (Play Integrity Fix [INJECT])
-PIF="/data/adb/modules/playintegrityfix"
-sh $PIF/autopif_ota.sh || true
-sh $PIF/autopif.sh
-
 if [ -f /data/adb/modules_update/Yurikey/webroot/common/device-info.sh ]; then
   sh /data/adb/modules_update/Yurikey/webroot/common/device-info.sh
 elif [ -f /data/adb/modules/yurikey/webroot/common/device-info.sh ]; then
