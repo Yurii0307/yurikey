@@ -1,5 +1,5 @@
 # YuriKey
-![Artifacts](./doc/banner.webp)
+![Artifacts](/doc/banner.webp)
 
 
 [![Telegram](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/yuriiroot)
