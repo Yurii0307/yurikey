@@ -36,10 +36,12 @@ https://t.me/yurikernel
 > [!NOTE]
 >
 > action.sh またはモジュールのインストール時にエラーが発生した場合は、以下のモジュールをインストールする必要があるかもしれません。
-> "ERROR: Tricky Store module not found!" が表示された場合
+>
+>
+> "ERROR: Tricky Store module not found!" が表示された場合:
 > [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest)
 > 
-> "ERROR: Keybox updated failed!" が表示された場合
+> "ERROR: Keybox updated failed!" が表示された場合:
 > [BusyBox](https://mmrl.dev/repository/grdoglgmr/busybox-ndk)
 
 ## 貢献者
