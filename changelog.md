@@ -1,7 +1,5 @@
-***✨ v3.0.1 – Version Changes:***
+***✨ v3.0.3 – Version Changes:***
 
--> Fix issue on actions.sh
+-> fix(service): Fix service.sh file was incorrect
 
--> Add more resetprop
-
-→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.0...main).
+→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.2...main).
