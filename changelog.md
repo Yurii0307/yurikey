@@ -4,6 +4,6 @@
 
 -> Add more language string
 
--> Various performance, log message improvment
+-> Various performance, log message improvement
 
 → [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.3...main).
