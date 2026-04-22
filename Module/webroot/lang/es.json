@@ -2,7 +2,6 @@
   "nav_home": "Casa",
   "nav_menu": "Menú",
   "nav_update": "Actualizar",
-  "nav_advancemenu": "Menú avanzado",
   "nav_settings": "Ajustes",
   "home_version": "Versión Del módulo",
   "home_root": "Implementación De Superusuario",
@@ -65,5 +64,7 @@
   "settings_language": "Idioma",
   "menu_keybox_title": "Caja de claves",
   "advance_upd_yurirka": "Actualizar configuración RKA",
-  "advance_widevinel1": "Corregir Vid ancha L1"
+  "advance_widevinel1": "Corregir Vid ancha L1",
+  "nav_advance_menu": "Menú avanzado",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

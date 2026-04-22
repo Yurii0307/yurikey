@@ -2,7 +2,6 @@
   "nav_home": "Αρχική σελίδα",
   "nav_menu": "Μενού",
   "nav_update": "Ενημέρωση",
-  "nav_advancemenu": "Μενού +",
   "nav_settings": "Ρυθμίσεις",
   "home_version": "Έκδοση ενότητας",
   "home_root": "Υλοποίηση Root",
@@ -65,5 +64,7 @@
   "settings_language": "Γλώσσα",
   "menu_keybox_title": "Κλειδοκιβώτιο",
   "advance_upd_yurirka": "Ενημέρωση διαμόρφωσης RKA",
-  "advance_widevinel1": "Διόρθωση Widevine L1"
+  "advance_widevinel1": "Διόρθωση Widevine L1",
+  "nav_advance_menu": "Μενού +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

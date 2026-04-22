@@ -2,7 +2,6 @@
   "nav_home": "Home",
   "nav_menu": "Menu",
   "nav_update": "Aggiorna",
-  "nav_advancemenu": "Menu +",
   "nav_settings": "Impostazioni",
   "home_version": "Versione modulo",
   "home_root": "Implementazione root",
@@ -65,5 +64,7 @@
   "settings_language": "Lingua",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "Aggiorna configurazione RKA",
-  "advance_widevinel1": "Correggi Widevine L1"
+  "advance_widevinel1": "Correggi Widevine L1",
+  "nav_advance_menu": "Menu +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

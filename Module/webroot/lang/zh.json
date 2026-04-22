@@ -2,7 +2,6 @@
   "nav_home": "主页",
   "nav_menu": "菜单",
   "nav_update": "更新",
-  "nav_advancemenu": "菜单 +",
   "nav_settings": "设置",
   "home_version": "模块版本",
   "home_root": "Root 实现",
@@ -65,5 +64,7 @@
   "settings_language": "语言",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "更新 RKA 配置",
-  "advance_widevinel1": "修复 Widevine L1"
+  "advance_widevinel1": "修复 Widevine L1",
+  "nav_advance_menu": "菜单 +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

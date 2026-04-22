@@ -2,7 +2,6 @@
   "nav_home": "홈",
   "nav_menu": "메뉴",
   "nav_update": "업데이트",
-  "nav_advancemenu": "메뉴 +",
   "nav_settings": "설정",
   "home_version": "모듈 버전",
   "home_root": "루트 구현",
@@ -65,5 +64,7 @@
   "settings_language": "언어",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "RKA 구성 업데이트",
-  "advance_widevinel1": "Widevine L1 수정"
+  "advance_widevinel1": "Widevine L1 수정",
+  "nav_advance_menu": "메뉴 +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }
