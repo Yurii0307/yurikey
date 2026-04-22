@@ -21,7 +21,7 @@
             <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
             <p id="version-text" class="mini-card-value module-version-value">Error</p>
           </div>
-          <button id="refresh-info-btn" type="button" class="menu-btn" data-script="device-info.sh" data-i18n="home_refresh">Refresh Info</button>
+          <button id="refresh-info-btn" type="button" class="menu-btn" data-script="webroot/common/device-info.sh" data-i18n="home_refresh">Refresh Info</button>
         </div>
 
         <div class="home-grid">
@@ -63,7 +63,7 @@
         <h5 class="page-title" data-i18n="menu_title">Main Menu</h5>
 
         <article class="surface-variant block menu-card">
-          <h6 class="section-heading" data-i18n="menu_keybox_title">Keybox</h6>
+          <h6 class="section-heading">Keybox</h6>
           <div class="stack">
             <button class="menu-btn" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
           </div>
@@ -87,13 +87,15 @@
         <h5 class="page-title" data-i18n="advance_menu_title">Advanced Menu</h5>
 
         <article class="surface-variant block menu-card">
-          <h6 class="section-heading" data-i18n="nav_advancemenu">Menu +</h6>
+          <h6 class="section-heading" data-i18n="nav_advance_menu">Menu +</h6>
           <div class="stack">
             <button class="menu-btn" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
             <button class="menu-btn" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
-            <button class="menu-btn" data-script="lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
-            <button class="menu-btn" data-script="pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
-            <button class="menu-btn" data-script="twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
+            <button class="menu-btn" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
+            <button class="menu-btn" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
+            <button class="menu-btn" data-script="webroot/common/lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
+            <button class="menu-btn" data-script="webroot/common/pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
+            <button class="menu-btn" data-script="webroot/common/twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
             <button class="menu-btn" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
             <button class="menu-btn" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
           </div>
@@ -102,7 +104,7 @@
         <article class="surface-variant block menu-card">
           <h6 class="section-heading long-heading">Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</h6>
           <div class="stack">
-            <button class="menu-btn" data-script="widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
+            <button class="menu-btn" data-script="webroot/common/widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
           </div>
         </article>
       </article>
@@ -186,7 +188,7 @@
           <p data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
 
           <div class="stack">
-            <button class="menu-btn" data-url="https://github.com/YurikeyDev/yurikey" data-i18n="update_github">View on GitHub</button>
+            <button class="menu-btn" data-url="https://github.com/Yurii0307/yurikey" data-i18n="update_github">View on GitHub</button>
             <button class="menu-btn" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
           </div>
 
@@ -212,7 +214,7 @@
     </button>
     <button class="nav-btn" type="button">
       <i class="material-symbols-rounded nav-icon" aria-hidden="true">tune</i>
-      <span data-i18n="nav_advancemenu">Menu +</span>
+      <span data-i18n="nav_advance_menu">Menu +</span>
     </button>
     <button class="nav-btn" type="button">
       <i class="material-symbols-rounded nav-icon" aria-hidden="true">settings</i>
