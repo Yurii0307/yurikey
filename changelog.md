@@ -1,5 +1,9 @@
-***✨ v3.0.3 – Version Changes:***
+***✨ v3.1.0 – Version Changes:***
 
--> fix(service): Fix service.sh file was incorrect
+-> Add button hardware so you can decide which scripts to run
 
-→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.2...main).
+-> Add more language string
+
+-> Various performance, log message improvment
+
+→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.3...main).
