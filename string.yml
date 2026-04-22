@@ -1,0 +1,3 @@
+files:
+  - source: /Module/webroot/lang/source/string.json
+    translation: /Module/webroot/lang/%two_letters_code%.json
