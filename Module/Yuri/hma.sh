@@ -20,9 +20,12 @@ download() {
     PATH="$ORG_PATH"
 }
 
-mkdir -p "$HMA_DIR"
-download "$REMOTE_URL" > "$HMA_FILE" || log_message "Error: HMA-oss configs download failed, please download and add it manually!"
-if [ ! -f "HMA_FILE" ]; then
+if pm list packages | grep -q org.frknkrc44.hma_oss; then
+  mkdir -p "$HMA_DIR"
+  download "$REMOTE_URL" > "$HMA_FILE" || log_message "Error: HMA-oss configs download failed, please download and add it manually!"
+elif pm list packages | grep -q com.tsng.hidemyapplist; then
+  log_message "HMA is deprecated and not supported, please use latest HMA-oss to get latest configs"
+else
   log_message "Error: HMA-oss not found, please install latest HMA-oss"
   return 1
 fi
