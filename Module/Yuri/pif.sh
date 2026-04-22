@@ -5,12 +5,13 @@ log_message() {
 }
 
 log_message "Start"
+
 TARGET_FILE="/data/adb/modules/playintegrityfix"
 
 # Check if the directory exists 
 if [ ! -d "$TARGET_FILE" ]; then
     log_message "Error: Play Integrity Fix is not found, please install the latest Play Integrity Fix."
-    exit 1 # Changed from return to exit 
+    return 1
 fi
 
 fetch_pif () {
@@ -20,10 +21,9 @@ fetch_pif () {
 }
 
 update_pif () {
-    # Call the fetch function [cite: 4]
     if ! fetch_pif; then
         log_message "Failed to update fingerprints!"
-        return # [cite: 5]
+        return
     fi
 }
 
