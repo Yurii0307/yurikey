@@ -2,7 +2,6 @@
   "nav_home": "Ana Sayfa",
   "nav_menu": "Menü",
   "nav_update": "Güncelle",
-  "nav_advancemenu": "Menü+",
   "nav_settings": "Ayarlar",
   "home_version": "Modül Sürümü",
   "home_root": "root Temelli Uygulama Biçimi",
@@ -65,5 +64,7 @@
   "settings_language": "Dil",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "RKA ayarını güncelle",
-  "advance_widevinel1": "Widevine L1 Düzelt"
+  "advance_widevinel1": "Widevine L1 Düzelt",
+  "nav_advance_menu": "Menü+",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

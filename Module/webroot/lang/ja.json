@@ -2,7 +2,6 @@
   "nav_home": "ホーム",
   "nav_menu": "メニュー",
   "nav_update": "更新",
-  "nav_advancemenu": "メニュー +",
   "nav_settings": "設定",
   "home_version": "モジュールのバージョン",
   "home_root": "root の実装",
@@ -65,5 +64,7 @@
   "settings_language": "言語",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "RKA の構成を更新",
-  "advance_widevinel1": "Widevine L1 の修正"
+  "advance_widevinel1": "Widevine L1 の修正",
+  "nav_advance_menu": "メニュー +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }

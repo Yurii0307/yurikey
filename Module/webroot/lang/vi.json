@@ -2,7 +2,6 @@
   "nav_home": "Trang chủ",
   "nav_menu": "Menu",
   "nav_update": "Cập nhật",
-  "nav_advancemenu": "Menu +",
   "nav_settings": "Cài đặt",
   "home_version": "Phiên Bản Mô-Đun",
   "home_root": "Phần mềm Root",
@@ -65,5 +64,7 @@
   "settings_language": "Ngôn ngữ",
   "menu_keybox_title": "Keybox",
   "advance_upd_yurirka": "Cập nhật cấu hình RKA",
-  "advance_widevinel1": "Sửa Widevine L1"
+  "advance_widevinel1": "Sửa Widevine L1",
+  "nav_advance_menu": "Menu +",
+  "advance_set_zygisk_next_configs": "Set Zygisk Next configs"
 }
