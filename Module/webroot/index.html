@@ -21,7 +21,7 @@
             <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
             <p id="version-text" class="mini-card-value module-version-value">Error</p>
           </div>
-          <button id="refresh-info-btn" type="button" class="menu-btn" data-script="webroot/common/device-info.sh" data-i18n="home_refresh">Refresh Info</button>
+          <button id="refresh-info-btn" type="button" class="menu-btn pill-btn refresh-btn" data-script="webroot/common/device-info.sh" data-i18n="home_refresh">Refresh Info</button>
         </div>
 
         <div class="home-grid">
@@ -62,21 +62,21 @@
       <article class="surface page-card">
         <h5 class="page-title" data-i18n="menu_title">Main Menu</h5>
 
-        <article class="surface-variant block menu-card">
+        <article class="surface-variant block menu-card section-card">
           <h6 class="section-heading">Keybox</h6>
           <div class="stack">
-            <button class="menu-btn" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
+            <button class="menu-btn pill-btn" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
           </div>
         </article>
 
-        <article class="surface-variant block menu-card">
+        <article class="surface-variant block menu-card section-card">
           <h6 class="section-heading">GMS</h6>
           <div class="stack">
-            <button class="menu-btn" data-script="kill_google_process.sh" data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</button>
-            <button class="menu-btn" data-script="target_txt.sh" data-i18n="menu_target">Set up target.txt</button>
-            <button class="menu-btn" data-script="select_app_neccesary.sh" data-i18n="menu_necessary">Set Necessary App</button>
-            <button class="menu-btn" data-script="security_patch.sh" data-i18n="menu_patch">Set up Security Patch</button>
-            <button class="menu-btn" data-script="boot_hash.sh" data-i18n="advance_set_verified_boot">Set Verified Boothash</button>
+            <button class="menu-btn pill-btn" data-script="kill_google_process.sh" data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</button>
+            <button class="menu-btn pill-btn" data-script="target_txt.sh" data-i18n="menu_target">Set up target.txt</button>
+            <button class="menu-btn pill-btn" data-script="select_app_neccesary.sh" data-i18n="menu_necessary">Set Necessary App</button>
+            <button class="menu-btn pill-btn" data-script="security_patch.sh" data-i18n="menu_patch">Set up Security Patch</button>
+            <button class="menu-btn pill-btn" data-script="boot_hash.sh" data-i18n="advance_set_verified_boot">Set Verified Boothash</button>
           </div>
         </article>
       </article>
@@ -86,25 +86,25 @@
       <article class="surface page-card">
         <h5 class="page-title" data-i18n="advance_menu_title">Advanced Menu</h5>
 
-        <article class="surface-variant block menu-card">
+        <article class="surface-variant block menu-card section-card">
           <h6 class="section-heading" data-i18n="nav_advance_menu">Menu +</h6>
           <div class="stack">
-            <button class="menu-btn" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
-            <button class="menu-btn" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
-            <button class="menu-btn" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
-            <button class="menu-btn" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
-            <button class="menu-btn" data-script="webroot/common/lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
-            <button class="menu-btn" data-script="webroot/common/pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
-            <button class="menu-btn" data-script="webroot/common/twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
-            <button class="menu-btn" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
-            <button class="menu-btn" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
+            <button class="menu-btn pill-btn" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
+            <button class="menu-btn pill-btn" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
+            <button class="menu-btn pill-btn" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
+            <button class="menu-btn pill-btn" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
+            <button class="menu-btn pill-btn" data-script="webroot/common/lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
+            <button class="menu-btn pill-btn" data-script="webroot/common/pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
+            <button class="menu-btn pill-btn" data-script="webroot/common/twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
+            <button class="menu-btn pill-btn" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
+            <button class="menu-btn pill-btn" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
           </div>
         </article>
 
-        <article class="surface-variant block menu-card">
+        <article class="surface-variant block menu-card section-card">
           <h6 class="section-heading long-heading">Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</h6>
           <div class="stack">
-            <button class="menu-btn" data-script="webroot/common/widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
+            <button class="menu-btn pill-btn" data-script="webroot/common/widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
           </div>
         </article>
       </article>
@@ -114,10 +114,10 @@
       <article class="surface page-card">
         <h5 class="page-title" data-i18n="settings_title">Settings</h5>
 
-        <article class="surface-variant block">
+        <article class="surface-variant block section-card">
           <h6 data-i18n="settings_language">Language</h6>
           <div class="custom-dropdown lang-select-wrap">
-            <button id="lang-btn" class="menu-btn lang-select-btn">🇬🇧 English</button>
+            <button id="lang-btn" class="menu-btn lang-select-btn select-btn">🇬🇧 English</button>
             <ul id="lang-options" class="dropdown-list lang-options-list">
               <li data-lang="af">🇿🇦 Afrikaans</li>
               <li data-lang="ar">🇸🇦 Arabic</li>
@@ -151,12 +151,12 @@
           </div>
         </article>
 
-        <article class="surface-variant block">
+        <article class="surface-variant block section-card">
           <div class="appearance-header">
             <h6 class="appearance-title" data-i18n="settings_appearance">Appearance</h6>
           </div>
           <div class="custom-dropdown lang-select-wrap">
-            <button id="theme-mode-btn" class="menu-btn lang-select-btn" data-i18n="theme_mode_dark">Dark</button>
+            <button id="theme-mode-btn" class="menu-btn lang-select-btn select-btn" data-i18n="theme_mode_dark">Dark</button>
             <ul id="theme-mode-options" class="dropdown-list lang-options-list">
               <li data-mode="dark" data-i18n="theme_mode_dark">Dark</li>
               <li data-mode="light" data-i18n="theme_mode_light">Light</li>
@@ -172,10 +172,10 @@
           </div>
         </article>
 
-        <article class="surface-variant block">
+        <article class="surface-variant block section-card">
           <h6 data-i18n="settings_clock_format">Clock Format</h6>
           <div class="custom-dropdown lang-select-wrap">
-            <button id="clock-format-btn" class="menu-btn lang-select-btn" data-i18n="clock_format_auto">Auto (Device)</button>
+            <button id="clock-format-btn" class="menu-btn lang-select-btn select-btn" data-i18n="clock_format_auto">Auto (Device)</button>
             <ul id="clock-format-options" class="dropdown-list lang-options-list">
               <li data-format="auto" data-i18n="clock_format_auto">Auto (Device)</li>
               <li data-format="24h" data-i18n="clock_format_24h">24-hour (00:00)</li>
@@ -183,19 +183,19 @@
             </ul>
           </div>
         </article>
-        <article class="surface-variant block update-support">
+        <article class="surface-variant block update-support section-card">
           <h6 data-i18n="update_title">Update & Support</h6>
           <p data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
 
           <div class="stack">
-            <button class="menu-btn" data-url="https://github.com/Yurii0307/yurikey" data-i18n="update_github">View on GitHub</button>
-            <button class="menu-btn" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
+            <button class="menu-btn pill-btn" data-url="https://github.com/Yurii0307/yurikey" data-i18n="update_github">View on GitHub</button>
+            <button class="menu-btn pill-btn" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
           </div>
 
           <p class="small-text" data-i18n="update_note">Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.</p>
         </article>
 
-        <article id="dev-info" class="surface-variant block">
+        <article id="dev-info" class="surface-variant block section-card">
           <h6 data-i18n="settings_contributors">Project Contributors</h6>
           <div id="contrib-list" class="contrib-grid"></div>
         </article>
@@ -230,8 +230,8 @@
     <h5 data-i18n="script_history_title">Script Outputs</h5>
     <div id="script-history-content" class="snackbar-output-pre"></div>
     <nav class="right-align history-dialog-actions">
-      <button id="script-history-clear" class="history-btn" data-i18n="dialog_clear">Clear</button>
-      <button id="script-history-close" class="history-btn" data-i18n="dialog_close">Close</button>
+      <button id="script-history-clear" class="history-btn pill-btn" data-i18n="dialog_clear">Clear</button>
+      <button id="script-history-close" class="history-btn pill-btn" data-i18n="dialog_close">Close</button>
     </nav>
   </dialog>
 
