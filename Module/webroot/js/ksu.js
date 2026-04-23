@@ -100,6 +100,15 @@
     return subpath ? `${basePath}/${subpath}` : basePath;
   }
 
+  async function resolveScriptFile(scriptName, defaultDir = "") {
+    const normalizedScript = String(scriptName || "").replace(/^\/+/, "").replace(/^\.\//, "");
+    const normalizedDefaultDir = String(defaultDir || "").replace(/^\/+/, "");
+    const moduleRelativePath = normalizedScript.includes("/")
+      ? normalizedScript
+      : `${normalizedDefaultDir}${normalizedScript}`;
+    return resolveModuleFile(moduleRelativePath);
+  }
+
   window.KsuBridge = {
     exec,
     execWithCallback,
@@ -108,5 +117,6 @@
     hasExec,
     resolveModuleBasePath,
     resolveModuleFile,
+    resolveScriptFile,
   };
 })();
