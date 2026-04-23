@@ -463,22 +463,16 @@ body {
   line-height: 1.5;
 }
 
-#settings-page h6[data-i18n="settings_language"],
-#settings-page h6[data-i18n="update_title"],
-#settings-page h6[data-i18n="settings_contributors"] {
+.settings-section-title {
   font-size: 1.08rem;
 }
 
-#settings-page .surface-variant.block > h6:not(.section-heading) {
-  font-size: 1.08rem;
-}
-
-#settings-page p[data-i18n="update_desc"] {
+.settings-copy {
   font-size: 1rem;
   line-height: 1.55;
 }
 
-#settings-page p[data-i18n="update_note"] {
+.settings-note {
   font-size: 1rem;
   line-height: 1.6;
 }
