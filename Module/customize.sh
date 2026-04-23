@@ -11,6 +11,7 @@ DEPENDENCY_MODULE="/data/adb/modules/tricky_store"
 DEPENDENCY_MODULE_UPDATE="/data/adb/modules_update/tricky_store"
 BBIN="/data/adb/Yurikey/bin"
 ORG_PATH="$PATH"
+RESOLVE_SCRIPT="$TMPDIR/Yuri/resolve_module_path.sh"
 
 # Show UI banner
 ui_print ""
@@ -96,9 +97,8 @@ if [ -f "$DEVICE_INFO_SCRIPT" ]; then
   sh "$DEVICE_INFO_SCRIPT"
 else
   # fallback: run already-installed one
-  if [ -f /data/adb/modules_update/Yurikey/webroot/common/device-info.sh ]; then
-    sh /data/adb/modules_update/Yurikey/webroot/common/device-info.sh
-  elif [ -f /data/adb/modules/yurikey/webroot/common/device-info.sh ]; then
-    sh /data/adb/modules/yurikey/webroot/common/device-info.sh
+  DEVICE_INFO_SCRIPT="$(sh "$RESOLVE_SCRIPT" "webroot/common/device-info.sh" 2>/dev/null)"
+  if [ -n "$DEVICE_INFO_SCRIPT" ] && [ -f "$DEVICE_INFO_SCRIPT" ]; then
+    sh "$DEVICE_INFO_SCRIPT"
   fi
 fi
