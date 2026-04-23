@@ -9,14 +9,7 @@ function t(key) {
 // Execute a shell script with KernelSU
 function runScript(scriptName, callback) {
   const fullPath = `${BASE_SCRIPT}${scriptName}`;
-  if (typeof ksu === "object" && typeof ksu.exec === "function") {
-    const cbId = `cb_${Date.now()}`;
-    window[cbId] = () => {
-      delete window[cbId];
-      if (typeof callback === "function") callback();
-    };
-    ksu.exec(`sh '${fullPath}'`, "{}", cbId);
-  } else {
+  if (!window.KsuBridge?.runShellScript(fullPath, callback)) {
     console.warn("ksu.exec not available.");
     if (typeof callback === "function") callback();
   }

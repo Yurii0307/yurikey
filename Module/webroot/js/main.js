@@ -24,8 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       };
     }
 
-    if (typeof ksu === "object" && typeof ksu.exec === "function") {
-      return (scriptPath, _scriptName, cbName) => ksu.exec(`sh "${scriptPath}"`, "{}", cbName);
+    if (window.KsuBridge?.hasExec()) {
+      return (scriptPath, _scriptName, cbName) =>
+        window.KsuBridge.execWithCallback(`sh "${scriptPath}"`, (...args) => window[cbName]?.(...args));
     }
 
     return null;
