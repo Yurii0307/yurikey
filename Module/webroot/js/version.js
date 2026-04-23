@@ -1,9 +1,10 @@
 // ========== VERSION MODULE DETECTION ==========
-// Reads the 'version' from /data/adb/modules/Yurikey/module.prop
+// Reads the 'version' from the active module.prop
 async function loadVersionFromModuleProp() {
   const versionElement = document.getElementById('version-text');
   try {
-    const version = await window.KsuBridge.exec("grep '^version=' /data/adb/modules/Yurikey/module.prop | cut -d'=' -f2");
+    const moduleProp = await window.KsuBridge.resolveModuleFile("module.prop");
+    const version = await window.KsuBridge.exec(`grep '^version=' '${moduleProp}' | cut -d'=' -f2`);
     versionElement.textContent = version.trim();
   } catch (error) {
     versionElement.textContent = "Error";
