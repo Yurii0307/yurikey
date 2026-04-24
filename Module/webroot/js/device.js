@@ -1,22 +1,7 @@
-// Base path to script directory
-const BASE_SCRIPT = "/data/adb/modules/Yurikey/webroot/common/";
-
-// Simple translation getter (from language.js)
-function t(key) {
-  return window.translations?.[key] || key;
-}
-
 // Execute a shell script with KernelSU
-function runScript(scriptName, callback) {
-  const fullPath = `${BASE_SCRIPT}${scriptName}`;
-  if (typeof ksu === "object" && typeof ksu.exec === "function") {
-    const cbId = `cb_${Date.now()}`;
-    window[cbId] = () => {
-      delete window[cbId];
-      if (typeof callback === "function") callback();
-    };
-    ksu.exec(`sh '${fullPath}'`, "{}", cbId);
-  } else {
+async function runScript(scriptName, callback) {
+  const fullPath = await window.KsuBridge.resolveScriptFile(scriptName, "webroot/common/");
+  if (!window.KsuBridge?.runShellScript(fullPath, callback)) {
     console.warn("ksu.exec not available.");
     if (typeof callback === "function") callback();
   }
@@ -75,12 +60,12 @@ function setupRefreshButton() {
 
   const scriptName = refreshBtn.dataset.script;
 
-  refreshBtn.addEventListener("click", () => {
+  refreshBtn.addEventListener("click", async () => {
     if (refreshBtn.disabled) return;
     refreshBtn.disabled = true;
     refreshBtn.classList.add("rotating");
 
-    runScript(scriptName, async () => {
+    await runScript(scriptName, async () => {
       try {
         const data = await waitForValidDeviceInfo();
         document.getElementById("android-version").innerText = data.android || "-";
@@ -101,14 +86,6 @@ window.addEventListener("DOMContentLoaded", async () => {
   await waitForTranslations();     // Make sure translations are loaded
   loadDeviceInfo();                // Load initial device info
   setupRefreshButton();           // Setup refresh button
-
-  // Bind all action buttons to their scripts
-  document.querySelectorAll(".action-buttons .menu-btn").forEach(button => {
-    const scriptName = button.dataset.script;
-    if (scriptName) {
-      button.addEventListener("click", () => runScript(scriptName));
-    }
-  });
 });
 
 window.loadDeviceInfo = loadDeviceInfo;

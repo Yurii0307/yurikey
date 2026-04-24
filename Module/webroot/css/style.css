@@ -85,15 +85,7 @@ body {
   justify-content: center;
 }
 
-.page-title {
-  font-size: 1.5rem;
-  line-height: 1.2;
-}
-
-#home-page #refresh-info-btn,
-#actions-page .menu-btn,
-#advance-menu .menu-btn,
-#settings-page .update-support .menu-btn {
+.pill-btn {
   border-radius: 999px;
   min-height: 46px;
   padding: 0.65rem 1rem;
@@ -105,7 +97,20 @@ body {
   box-shadow: none;
 }
 
-#home-page #refresh-info-btn {
+.pill-btn:hover {
+  background: var(--ui-pill-bg-hover);
+}
+
+.pill-btn:active {
+  transform: translateY(1px);
+}
+
+.page-title {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.refresh-btn {
   width: auto;
   min-width: 180px;
   align-self: flex-start;
@@ -144,16 +149,8 @@ body {
   margin-bottom: 0.5rem;
 }
 
-
-#home-page #refresh-info-btn:hover,
-#actions-page .menu-btn:hover,
-#advance-menu .menu-btn:hover,
-#settings-page .update-support .menu-btn:hover {
-  background: var(--ui-pill-bg-hover);
-}
-
-#home-page #refresh-info-btn:disabled,
-#home-page #refresh-info-btn.rotating {
+.refresh-btn:disabled,
+.refresh-btn.rotating {
   opacity: 1 !important;
   background: var(--ui-pill-bg) !important;
   background-image: none !important;
@@ -163,23 +160,16 @@ body {
   filter: none !important;
 }
 
-#home-page #refresh-info-btn.rotating:hover,
-#home-page #refresh-info-btn.rotating:active {
+.refresh-btn.rotating:hover,
+.refresh-btn.rotating:active {
   background: var(--ui-pill-bg) !important;
   background-image: none !important;
 }
 
-#home-page #refresh-info-btn.rotating::before,
-#home-page #refresh-info-btn.rotating::after {
+.refresh-btn.rotating::before,
+.refresh-btn.rotating::after {
   color: var(--ui-pill-text) !important;
   border-color: var(--ui-pill-text) !important;
-}
-
-#home-page #refresh-info-btn:active,
-#actions-page .menu-btn:active,
-#advance-menu .menu-btn:active,
-#settings-page .update-support .menu-btn:active:active {
-  transform: translateY(1px);
 }
 
 .home-grid {
@@ -291,7 +281,7 @@ body {
   margin-top: 0.4rem;
 }
 
-#settings-page .lang-select-btn {
+.select-btn {
   width: 100%;
   min-height: 54px;
   border-radius: 999px;
@@ -304,7 +294,7 @@ body {
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 6%);
 }
 
-#settings-page .lang-select-btn::after {
+.select-btn::after {
   content: "";
   width: 0;
   height: 0;
@@ -383,9 +373,7 @@ body {
   border-color: var(--ui-pill-border);
 }
 
-#settings-page .surface-variant.block,
-#actions-page .surface-variant.block.menu-card,
-#advance-menu .surface-variant.block.menu-card {
+.section-card {
   background: var(--ui-card-bg);
   border: 1px solid var(--ui-card-border);
   color: var(--ui-text);
@@ -398,26 +386,20 @@ body {
   justify-content: center;
 }
 
-#actions-page .surface-variant.block.menu-card h6,
-#advance-menu .surface-variant.block.menu-card h6,
-#settings-page .surface-variant.block h6 {
+.section-card h6 {
   color: var(--ui-text);
   font-size: 1rem;
   font-weight: 600;
 }
 
 @media (max-width: 768px) {
-  #settings-page .surface-variant.block,
-  #actions-page .surface-variant.block.menu-card,
-  #advance-menu .surface-variant.block.menu-card {
+  .section-card {
     padding: 0.6rem 0.8rem;
     min-height: 90px;
     border-radius: 0.9rem;
   }
 
-  #actions-page .surface-variant.block.menu-card h6,
-  #advance-menu .surface-variant.block.menu-card h6,
-  #settings-page .surface-variant.block h6 {
+  .section-card h6 {
     font-size: 0.9rem;
   }
 }
@@ -481,22 +463,16 @@ body {
   line-height: 1.5;
 }
 
-#settings-page h6[data-i18n="settings_language"],
-#settings-page h6[data-i18n="update_title"],
-#settings-page h6[data-i18n="settings_contributors"] {
+.settings-section-title {
   font-size: 1.08rem;
 }
 
-#settings-page .surface-variant.block > h6:not(.section-heading) {
-  font-size: 1.08rem;
-}
-
-#settings-page p[data-i18n="update_desc"] {
+.settings-copy {
   font-size: 1rem;
   line-height: 1.55;
 }
 
-#settings-page p[data-i18n="update_note"] {
+.settings-note {
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -580,18 +556,7 @@ body {
 }
 
 .history-dialog-actions .history-btn {
-  border-radius: 999px;
   min-width: 110px;
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--ui-pill-border);
-  background: var(--ui-pill-bg);
-  color: var(--ui-pill-text);
-  font-weight: 700;
-  box-shadow: none;
-}
-
-.history-dialog-actions .history-btn:hover {
-  background: var(--ui-pill-bg-hover);
 }
 
 @media (max-width: 768px) {
