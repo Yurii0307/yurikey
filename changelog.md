@@ -1,4 +1,4 @@
-***✨ v3.1.0 – Version Changes:***
+***✨ v3.0.4 – Version Changes:***
 
 -> Add more language string
 
