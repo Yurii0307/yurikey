@@ -1,13 +1,7 @@
 MODPATH="${0%/*}"
 
-for SCRIPT in \
-  "integrity.sh" \
-  "root.sh"
-do
-  if ! sh "$MODPATH/Yuri/$SCRIPT"; then
-    exit 1
-  fi
-done
+cd "$MODPATH/Yuri/action"
+sh integrity.sh
 
 if [ -f /data/adb/modules_update/Yurikey/webroot/common/device-info.sh ]; then
   sh /data/adb/modules_update/Yurikey/webroot/common/device-info.sh
