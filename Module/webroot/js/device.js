@@ -1,11 +1,14 @@
+// Base path to script directory
+const BASE_SCRIPT = "/data/adb/modules/Yurikey/webroot/common/";
+
 // Simple translation getter (from language.js)
 function t(key) {
   return window.translations?.[key] || key;
 }
 
 // Execute a shell script with KernelSU
-async function runScript(scriptName, callback) {
-  const fullPath = await window.KsuBridge.resolveModuleFile(`webroot/common/${scriptName}`);
+function runScript(scriptName, callback) {
+  const fullPath = `${BASE_SCRIPT}${scriptName}`;
   if (!window.KsuBridge?.runShellScript(fullPath, callback)) {
     console.warn("ksu.exec not available.");
     if (typeof callback === "function") callback();
@@ -65,12 +68,12 @@ function setupRefreshButton() {
 
   const scriptName = refreshBtn.dataset.script;
 
-  refreshBtn.addEventListener("click", async () => {
+  refreshBtn.addEventListener("click", () => {
     if (refreshBtn.disabled) return;
     refreshBtn.disabled = true;
     refreshBtn.classList.add("rotating");
 
-    await runScript(scriptName, async () => {
+    runScript(scriptName, async () => {
       try {
         const data = await waitForValidDeviceInfo();
         document.getElementById("android-version").innerText = data.android || "-";
@@ -96,9 +99,7 @@ window.addEventListener("DOMContentLoaded", async () => {
   document.querySelectorAll(".action-buttons .menu-btn").forEach(button => {
     const scriptName = button.dataset.script;
     if (scriptName) {
-      button.addEventListener("click", () => {
-        runScript(scriptName);
-      });
+      button.addEventListener("click", () => runScript(scriptName));
     }
   });
 });

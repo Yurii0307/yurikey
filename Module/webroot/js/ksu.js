@@ -1,10 +1,4 @@
 (function initKsuBridge() {
-  const MODULE_BASE_CANDIDATES = [
-    "/data/adb/modules_update/Yurikey",
-    "/data/adb/modules/Yurikey",
-    "/data/adb/modules/yurikey",
-  ];
-
   function createCallback(handler) {
     const callbackId = `cb_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
     window[callbackId] = (...args) => {
@@ -70,43 +64,5 @@
     return fireAndForget(`sh '${path}'`, onComplete);
   }
 
-  async function resolveModuleBasePath() {
-    if (!hasExec()) {
-      return MODULE_BASE_CANDIDATES[1];
-    }
-
-    try {
-      const resolved = await exec(
-        "for base in /data/adb/modules_update/Yurikey /data/adb/modules/Yurikey /data/adb/modules/yurikey; do " +
-        "[ -d \"$base\" ] && { printf '%s' \"$base\"; break; }; " +
-        "done"
-      );
-      return (resolved || "").trim() || MODULE_BASE_CANDIDATES[1];
-    } catch {
-      for (const basePath of MODULE_BASE_CANDIDATES) {
-        try {
-          const resolved = await exec(`test -d '${basePath}' && printf '%s' '${basePath}'`);
-          if ((resolved || "").trim()) {
-            return basePath;
-          }
-        } catch {}
-      }
-      return MODULE_BASE_CANDIDATES[1];
-    }
-  }
-
-  async function resolveModuleFile(subpath = "") {
-    const basePath = await resolveModuleBasePath();
-    return subpath ? `${basePath}/${subpath}` : basePath;
-  }
-
-  window.KsuBridge = {
-    exec,
-    execWithCallback,
-    fireAndForget,
-    runShellScript,
-    hasExec,
-    resolveModuleBasePath,
-    resolveModuleFile,
-  };
+  window.KsuBridge = { exec, execWithCallback, fireAndForget, runShellScript, hasExec };
 })();

@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   console.log("main.js active");
+
+  const BASE_SCRIPT = "/data/adb/modules/Yurikey/Yuri/";
   // Make sure language.js is already loaded so that t and tFormat are available
 
   let toastTimer;
@@ -134,7 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  async function runScript(scriptName, basePath, button) {
+  function runScript(scriptName, basePath, button) {
+    const scriptPath = `${basePath}${scriptName}`;
     const executeScript = getScriptExecutor();
 
     const originalClass = button.className;
@@ -155,7 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
         throw new Error("executor-unavailable");
       }
 
-      const scriptPath = await window.KsuBridge.resolveModuleFile(`${basePath}${scriptName}`);
       showToast(tFormat("executing", { script: scriptName }), "info");
       executeScript(scriptPath, scriptName, cb);
     } catch (_e) {
@@ -179,7 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#actions-page .menu-btn[data-script]").forEach(button => {
     const scriptName = button.dataset.script;
     if (scriptName) {
-      button.addEventListener("click", () => runScript(scriptName, "Yuri/", button));
+      button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
     }
   });
 
@@ -187,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#advance-menu .menu-btn[data-script]").forEach(button => {
       const scriptName = button.dataset.script;
       if (scriptName) {
-          button.addEventListener("click", () => runScript(scriptName, "Yuri/", button));
+          button.addEventListener("click", () => runScript(scriptName, BASE_SCRIPT, button));
       }
   });
 
