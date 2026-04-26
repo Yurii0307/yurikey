@@ -12,7 +12,6 @@ DEPENDENCY_MODULE_UPDATE="/data/adb/modules_update/tricky_store"
 BBIN="/data/adb/Yurikey/bin"
 ORG_PATH="$PATH"
 RESOLVE_SCRIPT="$TMPDIR/Yuri/resolve_module_path.sh"
-MARK_LEGACY_REMOVE_SCRIPT="$TMPDIR/Yuri/mark_legacy_module_for_removal.sh"
 
 # Show UI banner
 ui_print ""
@@ -22,8 +21,8 @@ ui_print "*********************************"
 ui_print ""
 
 # Remove old module if legacy path exists (lowercase 'yurikey')
-if [ -f "$MARK_LEGACY_REMOVE_SCRIPT" ]; then
-  sh "$MARK_LEGACY_REMOVE_SCRIPT"
+if [ -d "/data/adb/modules/yurikey" ]; then
+  touch /data/adb/modules/yurikey/remove
 fi
 
 # Check if Tricky Store module is installed (required dependency)
