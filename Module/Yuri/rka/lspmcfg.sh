@@ -39,9 +39,7 @@ LSP_UID="${LSP_UID:-$(id -u)}"
 
 if [ -z "$LSP_SQLITE" ]; then
     _lsp_abi=$(getprop ro.product.cpu.abi 2>/dev/null)
-    _lsp_script_dir="${0%/*}"
-    _lsp_module_root="${_lsp_script_dir%/rka}"
-    LSP_SQLITE="${_lsp_module_root}/rka/${_lsp_abi}/sqlite3"
+    LSP_SQLITE="/data/adb/modules/Yurikey/Yuri/rka/${_lsp_abi}/sqlite3"
 fi
 
 _LSP_SCHEMA_OK=""
