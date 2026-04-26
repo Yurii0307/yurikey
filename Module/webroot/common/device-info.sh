@@ -1,10 +1,11 @@
 #!/system/bin/sh
 
-SCRIPT_DIR="${0%/*}"
-RESOLVE_SCRIPT="${SCRIPT_DIR%/webroot/common}/Yuri/resolve_module_path.sh"
-
-BASE_PATH="$(sh "$RESOLVE_SCRIPT" 2>/dev/null)"
-[ -z "$BASE_PATH" ] && BASE_PATH="${SCRIPT_DIR%/webroot/common}"
+# Specify the current root directory for both normal and update path
+if [ -d "/data/adb/modules_update/Yurikey" ]; then
+  BASE_PATH="/data/adb/modules_update/Yurikey"
+else
+  BASE_PATH="/data/adb/modules/Yurikey"
+fi
 
 INFO_PATH="$BASE_PATH/webroot/json/device-info.json"
 
