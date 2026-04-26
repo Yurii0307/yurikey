@@ -17,9 +17,6 @@ function tFormat(key, vars = {}) {
   return str;
 }
 
-window.t = t;
-window.tFormat = tFormat;
-
 // Load and apply translations to all elements
 async function applyLanguage(langCode) {
   try {
@@ -102,16 +99,27 @@ function setupLanguageDropdown(currentLang) {
   const activeItem = document.querySelector(`#lang-options li[data-lang='${currentLang}']`);
   if (langBtn && activeItem) langBtn.innerText = activeItem.innerText;
 
-  window.WebrootUI?.bindDropdown({
-    button: langBtn,
-    menu: langOptions,
-    itemSelector: "li[data-lang]",
-    onSelect: (item, { close }) => {
+  // Toggle dropdown visibility
+  langBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langOptions?.classList.toggle("show");
+  });
+
+  // Close dropdown if clicked outside
+  document.addEventListener("click", (e) => {
+    if (!langOptions.contains(e.target) && e.target !== langBtn) {
+      langOptions?.classList.remove("show");
+    }
+  });
+
+  // Handle language option click
+  document.querySelectorAll("#lang-options li").forEach(item => {
+    item.addEventListener("click", () => {
       const lang = item.getAttribute("data-lang");
       applyLanguage(lang);
-      close();
+      langOptions?.classList.remove("show");
       langBtn.innerText = item.innerText;
-    },
+    });
   });
 }
 

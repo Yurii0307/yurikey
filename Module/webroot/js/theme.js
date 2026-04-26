@@ -204,19 +204,18 @@ window.addEventListener("DOMContentLoaded", () => {
   modeBtn.innerText = modeLabel(mode);
   applyThemeMode(mode);
 
-  window.WebrootUI?.bindDropdown({
-    button: modeBtn,
-    menu: modeOptions,
-    itemSelector: "li[data-mode]",
-    onSelect: (item, { close }) => {
+  modeBtn.addEventListener("click", (e) => { e.stopPropagation(); modeOptions.classList.toggle("show"); });
+  modeOptions.querySelectorAll("li[data-mode]").forEach(item => {
+    item.addEventListener("click", () => {
       const m = item.dataset.mode || "dark";
       localStorage.setItem(THEME_MODE_KEY, m);
       modeBtn.innerText = modeLabel(m);
-      close();
+      modeOptions.classList.remove("show");
       applyThemeMode(m);
       applyThemePreset(getStoredPreset());
-    },
+    });
   });
+  document.addEventListener("click", (e) => { if (!modeOptions.contains(e.target) && e.target !== modeBtn) modeOptions.classList.remove("show"); });
 
   document.querySelectorAll(".theme-preset-btn").forEach(btn => {
     btn.addEventListener("click", () => {

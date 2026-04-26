@@ -1,6 +1,11 @@
+// Simple translation getter (from language.js)
+function t(key) {
+  return window.translations?.[key] || key;
+}
+
 // Execute a shell script with KernelSU
 async function runScript(scriptName, callback) {
-  const fullPath = await window.KsuBridge.resolveScriptFile(scriptName, "webroot/common/");
+  const fullPath = await window.KsuBridge.resolveModuleFile(`webroot/common/${scriptName}`);
   if (!window.KsuBridge?.runShellScript(fullPath, callback)) {
     console.warn("ksu.exec not available.");
     if (typeof callback === "function") callback();
@@ -86,6 +91,16 @@ window.addEventListener("DOMContentLoaded", async () => {
   await waitForTranslations();     // Make sure translations are loaded
   loadDeviceInfo();                // Load initial device info
   setupRefreshButton();           // Setup refresh button
+
+  // Bind all action buttons to their scripts
+  document.querySelectorAll(".action-buttons .menu-btn").forEach(button => {
+    const scriptName = button.dataset.script;
+    if (scriptName) {
+      button.addEventListener("click", () => {
+        runScript(scriptName);
+      });
+    }
+  });
 });
 
 window.loadDeviceInfo = loadDeviceInfo;
