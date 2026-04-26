@@ -1,7 +1,8 @@
+// Internationalization Utilities
 const LANG_PATH = "lang/";
 const DEFAULT_LANG = "en";
 let translations = {};
-window.translations = translations; // Make translations globally accessible
+window.translations = translations;
 
 // Translation helper function
 function t(key) {
@@ -129,3 +130,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   await applyLanguage(savedLang);
   setupLanguageDropdown(savedLang);
 });
+
+// Export functions to window object
+window.t = t;
+window.tFormat = tFormat;
+window.applyLanguage = applyLanguage;
+window.setupLanguageDropdown = setupLanguageDropdown;
