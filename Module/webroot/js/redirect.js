@@ -6,7 +6,11 @@ function openUrlViaIntent(url) {
   const intentCmd = `nohup am start -a android.intent.action.VIEW -d '${url}' >/dev/null 2>&1 &`;
 
   // Check if KernelSU is available and execute the intent command
-  if (!window.KsuBridge?.fireAndForget(intentCmd)) {
+  if (typeof ksu === "object" && typeof ksu.exec === "function") {
+    const cbId = `cb_${Date.now()}`;
+    window[cbId] = () => delete window[cbId];
+    ksu.exec(intentCmd, "{}", cbId);
+  } else {
     // Fallback for non-KernelSU environments (desktop browser, webview without exec bridge)
     try {
       const opened = window.open(url, "_blank", "noopener,noreferrer");

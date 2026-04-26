@@ -1,9 +1,12 @@
 MODPATH="${0%/*}"
 SCRIPT_PATH="$MODPATH/.."
 
-if ! sh "$MODPATH/run_sequence.sh" "$SCRIPT_PATH" \
-  "hma.sh" \
-  "znctl.sh"
-then
-  exit 1
-fi
+for SCRIPT in \
+  "hma.sh"
+do
+  if ! sh "$SCRIPT_PATH/$SCRIPT"; then
+    echo "- Error: $SCRIPT failed. Aborting..."
+    exit 1
+  fi
+done
+  sh "$SCRIPT_PATH/znctl.sh"
