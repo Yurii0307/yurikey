@@ -46,7 +46,7 @@ https://t.me/yurikernel
 > 
 > For the error on the side
 >
-> `"ERROR: Keybox updated failed!"`:
+> `ERROR: Keybox updated failed!`:
 > [BusyBox](https://mmrl.dev/repository/grdoglgmr/busybox-ndk)
 
 ## Contributors
