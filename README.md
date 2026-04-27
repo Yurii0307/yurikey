@@ -4,11 +4,11 @@
 
 [![Telegram](https://img.shields.io/badge/Follow-Telegram-blue.svg?logo=telegram)](https://t.me/yuriiroot)
 [![latest release](https://img.shields.io/github/v/release/Yurii0307/yurikey?label=Release&logo=github)](https://github.com/Yurii0307/yurikey/releases/latest)
-[![CI](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml/badge.svg)](https://github.com/Yurii0307/yurikey/actions/workflows/build.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/Yurii0307/yurikey/build-test.yml?label=Build%20Test%20Module)](https://github.com/Yurii0307/yurikey/actions/workflows/build-test.yml)
 ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/Yurii0307/yurikey/total)
 [![Crowdin](https://badges.crowdin.net/yurikey/localized.svg)](https://crowdin.com/project/yurikey)
 
-**Language:** [日本語](./doc/README_ja-JP.md)
+**Language:** [ja-JP/日本語](./doc/README_ja-JP.md)
 
 A Systemless Module to get Strong Integrity so Easily
 
