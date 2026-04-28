@@ -9,15 +9,26 @@ log_message "Start"
 TARGET_FILE="/data/adb/modules/playintegrityfix"
 
 # Check if the directory exists 
-if [ ! -d "$TARGET_FILE" ]; then
+if [ ! -d "$TARGET_FILE" ] && [ ! -f "$TARGET_FILE/module.prop" ]; then
     log_message "Error: Play Integrity Fix is not found, please install the latest Play Integrity Fix."
     return 1
 fi
 
 fetch_pif () {
-    # Using 'sh' for better Android compatibility
-    sh "$TARGET_FILE/autopif_ota.sh" || true
-    sh "$TARGET_FILE/autopif.sh"
+    # Extract the name from module.prop
+    MODULE_NAME=$(grep "^name=" "$TARGET_FILE/module.prop" | cut -d= -f2-)
+    if [ "$MODULE_NAME" = "Play Integrity Fix [INJECT]" ]; then
+      log_message "Detected Play Integrity Fix [INJECTS]. Executing..."
+      sh "$TARGET_FILE/autopif_ota.sh" || true
+      sh "$TARGET_FILE/autopif.sh"
+    elif [ "$MODULE_NAME" = "Play Integrity Fork" ]; then
+      log_message "Detected Play Integrity Fork. Executing..."
+      sh "$TARGET_FILE/autopif4.sh" -m || return
+    else
+      log_message "Unknown module $MODULE_NAME"
+      log_message "Please use Play Integrity Fix [INJECTS] or Play Integrity Fork to update fingeprint"
+      return
+    fi
 }
 
 update_pif () {
