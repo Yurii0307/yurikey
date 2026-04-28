@@ -1,5 +1,9 @@
 MODPATH="${0%/*}"
 
+# ensure not running in busybox ash standalone shell
+set +o standalone
+unset ASH_STANDALONE
+
 for SCRIPT in \
   "kill_google_process.sh" \
   "target_txt.sh" \
