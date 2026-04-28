@@ -1,7 +1,9 @@
-***✨ v3.0.4 – Version Changes:***
+***✨ v3.0.5 – Version Changes:***
 
--> Add more language string
+-> perf(pif): Enhance pif detection
 
--> Various performance, log message improvement
+-> Update language string
 
-→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.3...main).
+-> Various performance improvement
+
+→ [All changes](https://github.com/YurikeyDev/yurikey/compare/v3.0.4...main).
