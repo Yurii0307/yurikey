@@ -1,0 +1,14 @@
+{
+  "name": "yurikey",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun dev/server.ts 2>/dev/null || node dev/server.ts"
+  },
+  "dependencies": {
+    "express": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0"
+  }
+}
