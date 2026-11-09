@@ -21,6 +21,34 @@
   --snackbar-warning: #f9a825;
   --snackbar-error: #e53935;
   --snackbar-text: #ffffff;
+
+  /* Material 3 Expressive Typography Tokens */
+  --md-sys-typescale-font: "Google Sans Flex", "Google Sans", system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  --md-sys-typescale-headline-small-size: 1.5rem;
+  --md-sys-typescale-headline-small-weight: 700;
+  --md-sys-typescale-headline-small-line-height: 1.25;
+  --md-sys-typescale-title-large-size: 1.25rem;
+  --md-sys-typescale-title-large-weight: 600;
+  --md-sys-typescale-title-large-line-height: 1.3;
+  --md-sys-typescale-title-medium-size: 1rem;
+  --md-sys-typescale-title-medium-weight: 600;
+  --md-sys-typescale-title-medium-line-height: 1.4;
+  --md-sys-typescale-title-small-size: 0.875rem;
+  --md-sys-typescale-title-small-weight: 600;
+  --md-sys-typescale-title-small-line-height: 1.4;
+  --md-sys-typescale-title-small-tracking: 0.01em;
+  --md-sys-typescale-body-large-size: 1rem;
+  --md-sys-typescale-body-large-weight: 400;
+  --md-sys-typescale-body-large-line-height: 1.5;
+  --md-sys-typescale-body-medium-size: 0.875rem;
+  --md-sys-typescale-body-medium-weight: 400;
+  --md-sys-typescale-body-medium-line-height: 1.43;
+  --md-sys-typescale-label-large-size: 0.9375rem;
+  --md-sys-typescale-label-large-weight: 600;
+  --md-sys-typescale-label-large-tracking: 0.015em;
+  --md-sys-typescale-label-medium-size: 0.8125rem;
+  --md-sys-typescale-label-medium-weight: 600;
+  --md-sys-typescale-label-medium-tracking: 0.02em;
 }
 
 :root[data-theme-mode="light"] {
@@ -43,10 +71,29 @@
   --ui-select-panel-border: #c3d8f3;
 }
 
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--md-sys-typescale-font);
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body {
   margin: 0;
   background: var(--ui-bg);
   color: var(--ui-text);
+  font-size: var(--md-sys-typescale-body-large-size);
+  line-height: var(--md-sys-typescale-body-large-line-height);
+}
+
+/* Prevents text flicker before language loads */
+body:not(.i18n-ready) [data-i18n] {
+  visibility: hidden;
 }
 
 .page-shell {
@@ -86,8 +133,10 @@ body {
 }
 
 .page-title {
-  font-size: 1.5rem;
-  line-height: 1.2;
+  font-size: var(--md-sys-typescale-headline-small-size);
+  font-weight: var(--md-sys-typescale-headline-small-weight);
+  line-height: var(--md-sys-typescale-headline-small-line-height);
+  letter-spacing: -0.015em;
 }
 
 #home-page #refresh-info-btn,
@@ -100,8 +149,9 @@ body {
   border: 1px solid var(--ui-pill-border);
   background: var(--ui-pill-bg);
   color: var(--ui-pill-text);
-  font-weight: 700;
-  letter-spacing: 0.01em;
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
   box-shadow: none;
 }
 
@@ -202,22 +252,28 @@ body {
 
 .card-title {
   color: var(--ui-muted);
-  font-size: 1rem;
+  font-size: var(--md-sys-typescale-title-small-size);
+  font-weight: var(--md-sys-typescale-title-small-weight);
+  line-height: var(--md-sys-typescale-title-small-line-height);
+  letter-spacing: var(--md-sys-typescale-title-small-tracking);
 }
 
 .section-heading {
-  font-size: 1.14rem;
-  line-height: 1.35;
+  font-size: var(--md-sys-typescale-title-large-size);
+  font-weight: var(--md-sys-typescale-title-large-weight);
+  line-height: var(--md-sys-typescale-title-large-line-height);
 }
 
 .long-heading {
-  font-size: 1.08rem;
+  font-size: var(--md-sys-typescale-title-medium-size);
+  font-weight: var(--md-sys-typescale-title-medium-weight);
 }
 
 .card-value {
-  margin: 0.65rem 0 0;
+  margin: 0.5rem 0 0;
   font-weight: 700;
-  font-size: 1.02rem;
+  font-size: var(--md-sys-typescale-title-medium-size);
+  line-height: var(--md-sys-typescale-title-medium-line-height);
   color: var(--ui-text);
 }
 
@@ -279,7 +335,9 @@ body {
 }
 
 .nav-btn span {
-  font-size: 0.85rem;
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  letter-spacing: var(--md-sys-typescale-label-medium-tracking);
   white-space: nowrap;
 }
 

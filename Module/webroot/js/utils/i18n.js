@@ -1,14 +1,14 @@
 // Internationalization Utilities
 const LANG_PATH = "lang/";
 const DEFAULT_LANG = "en";
+let baseTranslations = {};
 let translations = {};
 window.translations = translations;
 
-// Translation helper function
+// Translation helper function with fallback
 function t(key) {
-  return window.translations?.[key] || key;
+  return window.translations?.[key] || baseTranslations[key] || key;
 }
-
 // Interpolation formatter for translation strings
 function tFormat(key, vars = {}) {
   let str = t(key);
@@ -21,16 +21,19 @@ function tFormat(key, vars = {}) {
 // Load and apply translations to all elements
 async function applyLanguage(langCode) {
   try {
-    let fetchUrl = `${LANG_PATH}${langCode}.json?ts=${Date.now()}`;
-    if (langCode === 'en') {
-      fetchUrl = `${LANG_PATH}source/string.json?ts=${Date.now()}`;
-    }
-    const res = await fetch(fetchUrl);
-    const json = await res.json();
+    const isEnglish = !langCode || langCode === "en";
+    const [base, localized] = await Promise.all([
+      Object.keys(baseTranslations).length
+        ? baseTranslations
+        : fetch(`${LANG_PATH}en.json?ts=${Date.now()}`).then(r => r.json()).catch(() => ({})),
+      !isEnglish
+        ? fetch(`${LANG_PATH}${langCode}.json?ts=${Date.now()}`).then(r => r.json()).catch(() => ({}))
+        : null
+    ]);
 
-    translations = json;
-    window.translations = json;
-
+    baseTranslations = base;
+    translations = Object.assign({}, base, localized || {});
+    window.translations = translations;
     // Apply to elements using [data-i18n] attribute
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.getAttribute("data-i18n");
@@ -87,8 +90,10 @@ async function applyLanguage(langCode) {
     document.dispatchEvent(new CustomEvent("languageChanged", {
       detail: { language: langCode, translations: translations }
     }));
+    document.body.classList.add("i18n-ready");
   } catch (err) {
     console.error("Failed to load language:", err);
+    document.body.classList.add("i18n-ready");
   }
 }
 
