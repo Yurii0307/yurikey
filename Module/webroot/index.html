@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,ROND,wdth,wght@6..144,0..100,25..151,400..700&display=swap" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.css" />
+  <link rel="stylesheet" href="css/beer.min.css" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="dark">
@@ -147,6 +147,19 @@
           <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
         </div>
       </article>
+      <article class="beer-card" id="log-viewer-settings-card">
+        <h6 class="card-title"><i>terminal</i><span data-i18n="settings_log_viewer">Log Viewer</span></h6>
+        <div class="log-viewer-setting-row">
+          <div class="log-viewer-setting-info">
+            <div class="log-viewer-setting-title" id="log-viewer-setting-title" data-i18n="settings_enable_log_viewer">Enable Log Viewer</div>
+            <div class="card-desc" id="log-viewer-setting-desc" data-i18n="settings_enable_log_viewer_desc">Show floating terminal button to view script outputs</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="log-viewer-toggle" aria-labelledby="log-viewer-setting-title" aria-describedby="log-viewer-setting-desc" />
+            <span></span>
+          </label>
+        </div>
+      </article>
 
       <article class="beer-card">
         <h6 class="card-title" id="clock-format-heading"><i>schedule</i><span data-i18n="settings_clock_format">Clock Format</span></h6>
@@ -186,6 +199,9 @@
       </article>
     </section>
   </main>
+  <button id="logs-fab" type="button" class="circle extra wave logs-fab" data-i18n-title="home_recent_logs" aria-label="Recent Logs">
+    <i>terminal</i>
+  </button>
 
   <div class="m3-nav-wrapper">
     <nav class="m3-floating-nav">
@@ -211,14 +227,37 @@
 
   <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
 
-  <div id="script-history-overlay" class="overlay blur"></div>
-  <dialog id="script-history-dialog" class="snackbar-dialog">
-    <h5 data-i18n="script_history_title">Script Outputs</h5>
-    <div id="script-history-content" class="snackbar-output-pre"></div>
-    <nav class="right-align history-dialog-actions">
-      <button id="script-history-clear" class="history-btn" data-i18n="dialog_clear">Clear</button>
-      <button id="script-history-close" class="history-btn" data-i18n="dialog_close">Close</button>
-    </nav>
+  <div id="logs-dialog-overlay" class="overlay blur"></div>
+  <dialog id="logs-dialog" class="round">
+    <header>
+      <nav>
+        <h5 class="max">
+          <i>terminal</i>
+          <span data-i18n="home_recent_logs">Recent Logs</span>
+        </h5>
+        <div class="dialog-actions">
+          <button type="button" id="logs-dialog-copy" class="circle transparent wave" data-i18n-title="action_copy" aria-label="Copy Logs">
+            <i class="icon-copy">content_copy</i>
+            <i class="icon-check">check</i>
+          </button>
+          <button type="button" id="logs-dialog-clear" class="circle transparent wave" data-i18n-title="action_clear" aria-label="Clear Logs">
+            <i>delete_sweep</i>
+          </button>
+          <button type="button" id="logs-dialog-close" class="circle transparent wave" data-i18n-title="dialog_close" aria-label="Close">
+            <i>close</i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <div class="dialog-scroll-body logs-dialog-body">
+      <div id="recent-logs-content" class="recent-logs-content">
+        <div class="recent-logs-empty">
+          <i class="empty-icon">history</i>
+          <span data-i18n="home_no_logs">No logs recorded yet.</span>
+        </div>
+      </div>
+    </div>
   </dialog>
   <div id="language-dialog-overlay" class="overlay blur"></div>
   <dialog id="language-dialog" class="round">
@@ -440,7 +479,7 @@
     </div>
   </dialog>
 
-  <script src="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.js" type="module"></script>
+  <script src="js/beer.min.js" type="module"></script>
   <!-- Utilities -->
   <script src="js/utils/i18n.js"></script>
   <script src="js/utils/toast.js"></script>

@@ -18,7 +18,7 @@ async function waitForValidDeviceInfo(maxWait = 4000, interval = 400) {
   const start = Date.now();
   while (Date.now() - start < maxWait) {
     try {
-      const res = await fetch("/json/device-info.json?ts=" + Date.now());
+      const res = await fetch("json/device-info.json?ts=" + Date.now());
       if (!res.ok) throw new Error("Fetch failed");
 
       const data = await res.json();
@@ -32,7 +32,7 @@ async function waitForValidDeviceInfo(maxWait = 4000, interval = 400) {
 // Load device info and display it in the UI
 async function loadDeviceInfo() {
   try {
-    const res = await fetch("/json/device-info.json?ts=" + Date.now());
+    const res = await fetch("json/device-info.json?ts=" + Date.now());
     if (!res.ok) throw new Error("Failed to fetch");
 
     const data = await res.json();

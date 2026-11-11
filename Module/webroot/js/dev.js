@@ -1,3 +1,41 @@
+// === HTML Escaping Helper ===
+function escapeHtml(str) {
+  if (typeof str !== "string") return "";
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function getRoleTranslation(role, translations = window.translations || {}) {
+  if (!role) return "";
+  const directKey = `role_${role}`;
+  if (translations && translations[directKey]) return translations[directKey];
+
+  if (role.includes("/")) {
+    const parts = role.split("/").map(p => p.trim());
+    const translatedParts = parts.map(part => {
+      const candidates = [
+        `role_${part}`,
+        `role_${part} Developer`,
+        `role_${part.replace(/ Developer$/, "")}`,
+      ];
+      for (const k of candidates) {
+        if (translations && translations[k]) {
+          return translations[k];
+        }
+      }
+      return part;
+    });
+    return translatedParts.join(" / ");
+  }
+  return role;
+}
+
+function updateRoleTranslations() {
+  document.querySelectorAll(".contrib-role[data-role]").forEach(el => {
+    const rawRole = el.getAttribute("data-role");
+    el.textContent = getRoleTranslation(rawRole, window.translations);
+  });
+}
+
+
 // === Load Contributors and Apply Translations ===
 (function loadContributors() {
   fetch("json/dev.json")
@@ -22,6 +60,11 @@
         const avatar = `https://github.com/${encodeURIComponent(avatarUser)}.png`;
         const rawRole = user.role || "Unknown Role";
         const roleKey = `role_${rawRole}`; // Use this for translation lookup
+        const safeName = escapeHtml(user.name || "");
+        const safeRole = escapeHtml(rawRole);
+        const safeRoleKey = escapeHtml(roleKey);
+        const safeGithubUsername = escapeHtml(githubUsername);
+        const safeTelegramUsername = escapeHtml(telegramUsername);
 
         const defaultAvatar = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239e9e9e'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
         const ghUrl = githubUsername ? `https://github.com/${encodeURIComponent(githubUsername)}` : "";
@@ -37,9 +80,9 @@
           card.setAttribute("aria-label", `${user.name} - GitHub: ${githubUsername}`);
 
           card.innerHTML = `
-            <img src="${avatar}" alt="${user.name}" width="48" height="48" loading="lazy" onerror="this.onerror=null;this.src='${defaultAvatar}'" />
-            <div class="contrib-name">${user.name}</div>
-            <div class="contrib-role" data-i18n="${roleKey}">${rawRole}</div>
+            <img src="${avatar}" alt="${safeName}" width="48" height="48" loading="lazy" onerror="this.onerror=null;this.src='${defaultAvatar}'" />
+            <div class="contrib-name">${safeName}</div>
+            <div class="contrib-role" data-i18n="${safeRoleKey}" data-role="${escapeHtml(rawRole)}">${safeRole}</div>
           `;
 
           card.addEventListener("click", (e) => {
@@ -74,7 +117,7 @@
         let buttonsHtml = "";
         if (tgUrl) {
           buttonsHtml += `
-            <a href="${tgUrl}" target="_blank" rel="noopener noreferrer" class="button responsive round small wave contrib-btn" data-url="${tgUrl}" aria-label="Telegram: ${telegramUsername}">
+            <a href="${tgUrl}" target="_blank" rel="noopener noreferrer" class="button responsive round small wave contrib-btn" data-url="${tgUrl}" aria-label="Telegram: ${safeTelegramUsername}">
               ${telegramIcon}
               <span>Telegram</span>
             </a>
@@ -82,7 +125,7 @@
         }
         if (ghUrl) {
           buttonsHtml += `
-            <a href="${ghUrl}" target="_blank" rel="noopener noreferrer" class="button responsive round small wave contrib-btn" data-url="${ghUrl}" aria-label="GitHub: ${githubUsername}">
+            <a href="${ghUrl}" target="_blank" rel="noopener noreferrer" class="button responsive round small wave contrib-btn" data-url="${ghUrl}" aria-label="GitHub: ${safeGithubUsername}">
               ${githubIcon}
               <span>GitHub</span>
             </a>
@@ -90,9 +133,9 @@
         }
 
         card.innerHTML = `
-          <img src="${avatar}" alt="${user.name}" width="48" height="48" loading="lazy" onerror="this.onerror=null;this.src='${defaultAvatar}'" />
-          <div class="contrib-name">${user.name}</div>
-          <div class="contrib-role" data-i18n="${roleKey}">${rawRole}</div>
+          <img src="${avatar}" alt="${safeName}" width="48" height="48" loading="lazy" onerror="this.onerror=null;this.src='${defaultAvatar}'" />
+          <div class="contrib-name">${safeName}</div>
+          <div class="contrib-role" data-i18n="${safeRoleKey}" data-role="${escapeHtml(rawRole)}">${safeRole}</div>
           <div class="contrib-overlay" aria-hidden="true">
             ${buttonsHtml}
           </div>
@@ -171,7 +214,23 @@
 
       // Re-apply language translation after cards are rendered
       const currentLang = localStorage.getItem("selectedLanguage") || "en";
-      setTimeout(() => applyLanguage(currentLang), 50); // delay to ensure DOM is updated
+      setTimeout(async () => {
+        if (typeof applyLanguage === "function") {
+          await applyLanguage(currentLang);
+        }
+        updateRoleTranslations();
+      }, 50);
+
+      // Hook applyLanguage so future language changes also update composite roles
+      if (typeof window.applyLanguage === "function" && !window.applyLanguage._compositeHooked) {
+        const origApplyLanguage = window.applyLanguage;
+        window.applyLanguage = async function(langCode) {
+          const res = await origApplyLanguage(langCode);
+          updateRoleTranslations();
+          return res;
+        };
+        window.applyLanguage._compositeHooked = true;
+      }
     })
     .catch(err => {
       console.error("Failed to load contributors:", err);

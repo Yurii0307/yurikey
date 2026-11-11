@@ -56,7 +56,7 @@ body.light {
   --on-surface-variant: var(--ui-muted);
 
   /* Material 3 Expressive Typography Tokens */
-  --md-sys-typescale-font: "Google Sans Flex", "Google Sans", system-ui, -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  --md-sys-typescale-font: "Google Sans Flex", Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   --md-sys-typescale-headline-small-size: 1.5rem;
   --md-sys-typescale-headline-small-weight: 700;
   --md-sys-typescale-headline-small-line-height: 1.25;
@@ -315,9 +315,9 @@ article,
 
 .home-grid > article,
 .home-grid .beer-card {
-  padding: 0.85rem 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 1.25rem;
-  min-height: 92px;
+  min-height: 84px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -376,6 +376,358 @@ article,
   color: color-mix(in srgb, #ef4444 80%, var(--ui-text));
 }
 
+/* Floating Terminal Button for Logs Dialog */
+.logs-fab {
+  display: none;
+  position: fixed;
+  bottom: calc(80px + 1.75rem);
+  right: max(1rem, calc((100vw - 480px) / 2 + 1rem));
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  padding: 0;
+  border-radius: 1.25rem;
+  background: var(--ui-pill-bg) !important;
+  color: var(--ui-pill-text) !important;
+  border: 1px solid var(--ui-pill-border);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 28%);
+  z-index: 95;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.logs-fab:hover {
+  background: var(--ui-pill-bg-hover) !important;
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 32%);
+}
+
+.logs-fab:active {
+  transform: scale(0.97);
+  border-radius: 1.15rem !important;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 22%);
+}
+
+.logs-fab i {
+  font-size: 24px;
+  color: inherit;
+}
+
+/* Logs Dialog (Material 3 Expressive) */
+dialog#logs-dialog {
+  display: none;
+  position: fixed;
+  z-index: 61;
+  inset: 0;
+  margin: auto;
+  width: min(calc(100vw - 2rem), 680px);
+  max-width: calc(100vw - 2rem);
+  height: min(calc(100dvh - 3.5rem), 746px);
+  max-height: calc(100dvh - 3.5rem);
+  border-radius: 1.75rem;
+  border: 1px solid var(--ui-card-border);
+  background: var(--ui-card-bg);
+  color: var(--ui-text);
+  padding: 1.25rem;
+  box-sizing: border-box;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
+}
+
+dialog#logs-dialog:is(.active, [open]) {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+#logs-dialog header,
+#logs-dialog header.fixed {
+  margin: 0 !important;
+  margin-block-start: 0 !important;
+  inset: auto !important;
+  top: 0 !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  min-block-size: auto !important;
+  background: transparent !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+#logs-dialog header nav {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0 0 0.85rem 0 !important;
+  padding: 0 !important;
+  min-height: 36px !important;
+}
+
+#logs-dialog header h5 {
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+  font-size: var(--md-sys-typescale-title-large-size) !important;
+  font-weight: 700 !important;
+  color: var(--ui-text) !important;
+}
+
+#logs-dialog header h5 i {
+  font-size: 1.4rem !important;
+  color: var(--ui-pill-bg) !important;
+}
+
+#logs-dialog .dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+#logs-dialog .dialog-actions button {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  color: var(--ui-muted) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+#logs-dialog .dialog-actions button:focus,
+#logs-dialog .dialog-actions button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#logs-dialog .dialog-actions button:hover {
+  background: color-mix(in srgb, var(--ui-pill-bg) 18%, transparent) !important;
+  color: var(--ui-pill-bg) !important;
+}
+
+#logs-dialog .dialog-actions button:active {
+  transform: scale(0.92);
+}
+
+#logs-dialog .dialog-actions button i {
+  font-size: 1.2rem;
+  color: inherit;
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy {
+  display: inline-grid;
+  place-items: center;
+  position: relative;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  overflow: hidden;
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy i {
+  grid-area: 1 / 1;
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  pointer-events: none;
+  transform-origin: center center;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy .icon-copy {
+  opacity: 1;
+  transform: translate(1px, -1px) scale(1) rotate(0deg);
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy .icon-check {
+  opacity: 0;
+  transform: scale(0.3) rotate(-60deg);
+  color: var(--ui-pill-bg) !important;
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy.success .icon-copy {
+  opacity: 0;
+  transform: translate(1px, -1px) scale(0.3) rotate(90deg);
+}
+
+#logs-dialog .dialog-actions #logs-dialog-copy.success .icon-check {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+#logs-dialog .logs-dialog-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--ui-card-bg) 55%, var(--ui-bg) 45%);
+  border: 1px solid color-mix(in srgb, var(--ui-card-border) 60%, transparent);
+  padding: 0 !important;
+  box-sizing: border-box;
+}
+
+#logs-dialog .logs-dialog-body::-webkit-scrollbar {
+  display: none !important;
+}
+
+.recent-logs-content {
+  margin: 0;
+  padding: 0 !important;
+}
+
+.recent-logs-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  color: var(--ui-muted);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: 500;
+}
+
+.recent-logs-empty .empty-icon {
+  font-size: 1.15rem;
+  opacity: 0.75;
+}
+
+.recent-logs-content .log-item {
+  padding: 0.75rem 1rem;
+  border: none !important;
+  border-bottom: none !important;
+  transition: background-color 0.15s ease;
+}
+
+.recent-logs-content .log-item:last-child {
+  border-bottom: none;
+}
+
+.recent-logs-content .log-item:hover {
+  background: color-mix(in srgb, var(--ui-card-border) 12%, transparent);
+}
+
+/* Settings Log Viewer */
+.log-viewer-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  gap: 1rem;
+}
+
+.log-viewer-setting-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.log-viewer-setting-title {
+  font-weight: 600;
+  font-size: var(--md-sys-typescale-title-small-size);
+  color: var(--ui-text);
+  margin: 0 !important;
+  line-height: 1.3;
+}
+
+.log-viewer-setting-info .card-desc {
+  margin: 0 !important;
+  margin-block-start: 0 !important;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--ui-muted);
+}
+.recent-logs-content .log-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.recent-logs-content .log-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.18rem 0.5rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--ui-pill-bg) 18%, transparent);
+  color: var(--ui-pill-bg);
+  line-height: 1;
+  max-width: 75%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent-logs-content .log-badge i {
+  font-size: 0.8rem;
+  display: inline-flex;
+}
+
+.recent-logs-content .log-badge.badge-error {
+  background: color-mix(in srgb, #ef4444 18%, transparent);
+  color: #f87171;
+}
+
+.recent-logs-content .log-badge.badge-success {
+  background: color-mix(in srgb, #22c55e 18%, transparent);
+  color: #4ade80;
+}
+
+:root[data-theme-mode="light"] .recent-logs-content .log-badge.badge-error {
+  background: color-mix(in srgb, #dc2626 14%, transparent);
+  color: #b91c1c;
+}
+
+:root[data-theme-mode="light"] .recent-logs-content .log-badge.badge-success {
+  background: color-mix(in srgb, #16a34a 14%, transparent);
+  color: #15803d;
+}
+
+.recent-logs-content .log-time {
+  font-size: 0.7rem;
+  color: var(--ui-muted);
+  font-family: var(--md-sys-typescale-font);
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.recent-logs-content .log-output {
+  margin: 0 !important;
+  padding: 0.4rem 0.55rem !important;
+  background: color-mix(in srgb, var(--ui-bg) 70%, #000 30%) !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  font-family: var(--md-sys-typescale-body-small-font), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--ui-text);
+}
 /* Buttons & Interactive Elements */
 
 .stack {
