@@ -2,6 +2,10 @@
 // Executes a shell command using KernelSU and returns a Promise with the output
 function exec(command) {
   return new Promise((resolve, reject) => {
+    if (typeof ksu !== "object" || typeof ksu.exec !== "function") {
+      reject("ksu.exec not available");
+      return;
+    }
     const cb = `cb_${Date.now()}`;
     window[cb] = (code, out, err) => {
       delete window[cb];
@@ -10,6 +14,15 @@ function exec(command) {
     ksu.exec(command, "{}", cb);
   });
 }
+
+function appendToOutput(msg) {
+  if (window.addLogEntry) {
+    window.addLogEntry(msg);
+  } else {
+    console.log(msg);
+  }
+}
+window.appendToOutput = appendToOutput;
 
 // ========== VERSION MODULE DETECTION ==========
 // Reads the 'version' from /data/adb/modules/Yurikey/module.prop

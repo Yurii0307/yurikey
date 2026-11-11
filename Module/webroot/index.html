@@ -7,223 +7,206 @@
   <title>Yurikey Manager</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,wght@6..144,400..700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:FILL@1" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@3.9.8/dist/cdn/beer.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,ROND,wdth,wght@6..144,0..100,25..151,400..700&display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.css" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body class="dark">
   <main id="app" class="page-shell">
     <section id="home-page" class="page active">
-      <article class="surface page-card">
-        <h4 class="center-align page-title">Yurikey Manager</h4>
+      <header class="home-header">
+        <h4 class="page-title home-title">
+          <span>Yurikey</span>
+          <span>Manager</span>
+        </h4>
+        <button id="refresh-info-btn" type="button" class="circle wave" data-script="webroot/common/device-info.sh" data-i18n-title="home_refresh" aria-label="Refresh Info">
+          <i class="icon-refresh">refresh</i>
+          <i class="icon-check">check</i>
+        </button>
+      </header>
 
-        <div class="home-top-controls">
-          <div id="module-version-card" class="mini-card">
-            <h6 class="no-margin module-version-label" data-i18n="home_version">Version</h6>
-            <p id="version-text" class="mini-card-value module-version-value">Error</p>
-          </div>
-          <button id="refresh-info-btn" type="button" class="menu-btn" data-script="webroot/common/device-info.sh" data-i18n="home_refresh">Refresh Info</button>
-        </div>
+      <div class="home-top-controls">
+        <article id="module-version-card" class="mini-card">
+          <h6 class="card-title"><i>extension</i><span data-i18n="home_version">Version</span></h6>
+          <p id="version-text" class="card-value">Error</p>
+        </article>
+      </div>
 
-        <div class="home-grid">
-          <article class="beer-card">
-            <h6 class="card-title no-margin" data-i18n="home_clock_date">Clock Date</h6>
-            <p id="clock-date" class="card-value">--/--/--</p>
-          </article>
+      <div class="home-grid">
+        <article class="beer-card">
+          <h6 class="card-title"><i>calendar_today</i><span data-i18n="home_clock_date">Clock Date</span></h6>
+          <p id="clock-date" class="card-value">--/--/--</p>
+        </article>
 
-          <article class="beer-card">
-            <h6 class="card-title no-margin" data-i18n="home_clock_time">Clock Time</h6>
-            <p id="clock-time" class="card-value">--:--:--</p>
-          </article>
+        <article class="beer-card">
+          <h6 class="card-title"><i>schedule</i><span data-i18n="home_clock_time">Clock Time</span></h6>
+          <p id="clock-time" class="card-value">--:--:--</p>
+        </article>
 
-          <article id="status-row" class="beer-card offline">
-            <h6 class="card-title no-margin" data-i18n="home_status">Status</h6>
-            <p id="status-bar-text" class="card-value" data-i18n="home_status_offline">Offline</p>
-          </article>
+        <article id="status-row" class="beer-card offline">
+          <h6 class="card-title"><i>wifi</i><span data-i18n="home_status">Status</span></h6>
+          <p id="status-bar-text" class="card-value" data-i18n="home_status_offline">Offline</p>
+        </article>
 
-          <article class="beer-card">
-            <h6 class="card-title no-margin">Android</h6>
-            <p id="android-version" class="card-value">Error</p>
-          </article>
+        <article class="beer-card">
+          <h6 class="card-title"><i>android</i><span>Android</span></h6>
+          <p id="android-version" class="card-value">Error</p>
+        </article>
 
-          <article class="beer-card">
-            <h6 class="card-title no-margin">Kernel</h6>
-            <p id="kernel-version" class="card-value">Error</p>
-          </article>
+        <article class="beer-card">
+          <h6 class="card-title"><i>terminal</i><span>Kernel</span></h6>
+          <p id="kernel-version" class="card-value">Error</p>
+        </article>
 
-          <article class="beer-card">
-            <h6 class="card-title no-margin" data-i18n="home_root">Root Implementation</h6>
-            <p id="root-type" class="card-value">Error</p>
-          </article>
-        </div>
-      </article>
+        <article class="beer-card">
+          <h6 class="card-title"><i>security</i><span data-i18n="home_root">Root Implementation</span></h6>
+          <p id="root-type" class="card-value">Error</p>
+        </article>
+      </div>
     </section>
 
     <section id="actions-page" class="page">
-      <article class="surface page-card">
-        <h5 class="page-title" data-i18n="menu_title">Main Menu</h5>
+      <h5 class="page-title" data-i18n="menu_title">Main Menu</h5>
 
-        <article class="surface-variant block menu-card">
-          <h6 class="section-heading">Keybox</h6>
-          <div class="stack">
-            <button class="menu-btn" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
-          </div>
-        </article>
-
-        <article class="surface-variant block menu-card">
-          <h6 class="section-heading">GMS</h6>
-          <div class="stack">
-            <button class="menu-btn" data-script="kill_google_process.sh" data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</button>
-            <button class="menu-btn" data-script="target_txt.sh" data-i18n="menu_target">Set up target.txt</button>
-            <button class="menu-btn" data-script="select_app_neccesary.sh" data-i18n="menu_necessary">Set Necessary App</button>
-            <button class="menu-btn" data-script="security_patch.sh" data-i18n="menu_patch">Set up Security Patch</button>
-            <button class="menu-btn" data-script="boot_hash.sh" data-i18n="advance_set_verified_boot">Set Verified Boothash</button>
-          </div>
-        </article>
+      <article class="beer-card">
+        <h6 class="card-title"><i>vpn_key</i><span>Keybox</span></h6>
+        <div class="stack">
+          <button class="responsive round large wave" data-script="yuri_keybox.sh" data-i18n="menu_keybox">Set up Yuri Keybox</button>
+        </div>
       </article>
-    </section>
 
+       <article class="beer-card">
+         <h6 class="card-title"><i>apps</i><span>GMS</span></h6>
+        <div class="stack">
+          <button class="responsive round large wave" data-script="kill_google_process.sh" data-i18n="menu_force_clear">Force Stop & Clear Data Play Store</button>
+          <button class="responsive round large wave" data-script="target_txt.sh" data-i18n="menu_target">Set up target.txt</button>
+          <button class="responsive round large wave" data-script="select_app_neccesary.sh" data-i18n="menu_necessary">Set Necessary App</button>
+          <button class="responsive round large wave" data-script="security_patch.sh" data-i18n="menu_patch">Set up Security Patch</button>
+          <button class="responsive round large wave" data-script="boot_hash.sh" data-i18n="advance_set_verified_boot">Set Verified Boothash</button>
+         </div>
+       </article>
+    </section>
     <section id="advance-menu" class="page">
-      <article class="surface page-card">
-        <h5 class="page-title" data-i18n="advance_menu_title">Advanced Menu</h5>
+      <h5 class="page-title" data-i18n="advance_menu_title">Advanced Menu</h5>
 
-        <article class="surface-variant block menu-card">
-          <h6 class="section-heading" data-i18n="nav_advance_menu">Menu +</h6>
-          <div class="stack">
-            <button class="menu-btn" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
-            <button class="menu-btn" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
-            <button class="menu-btn" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
-            <button class="menu-btn" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
-            <button class="menu-btn" data-script="webroot/common/lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
-            <button class="menu-btn" data-script="webroot/common/pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
-            <button class="menu-btn" data-script="webroot/common/twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
-            <button class="menu-btn" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
-            <button class="menu-btn" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
-          </div>
-        </article>
-
-        <article class="surface-variant block menu-card">
-          <h6 class="section-heading long-heading">Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</h6>
-          <div class="stack">
-            <button class="menu-btn" data-script="webroot/common/widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
-          </div>
-        </article>
+      <article class="beer-card">
+        <h6 class="card-title"><i>tune</i><span data-i18n="nav_advance_menu">Menu +</span></h6>
+        <div class="stack">
+          <button class="responsive round large wave" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
+          <button class="responsive round large wave" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
+          <button class="responsive round large wave" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
+          <button class="responsive round large wave" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
+          <button class="responsive round large wave" data-script="webroot/common/lsposed2.sh" data-i18n="advance_fix_detect_lsposed">Fix LSPosed Detection</button>
+          <button class="responsive round large wave" data-script="webroot/common/pif2.sh" data-i18n="advance_fix_detect_pif">Fix PIF Detection</button>
+          <button class="responsive round large wave" data-script="webroot/common/twrp.sh" data-i18n="advance_fix_detect_recovery_file">Fix Recovery File Detection</button>
+          <button class="responsive round large wave" data-script="kill_all.sh" data-i18n="advance_kill_all">Kill All Process</button>
+          <button class="responsive round large wave" data-script="yurirka.sh" data-i18n="advance_upd_yurirka">Update RKA config</button>
       </article>
+
+       <article class="beer-card">
+         <h6 class="card-title"><i>build</i><span>Fix TEE broken: Oneplus, Redmagic, Realme, Oppo,...</span></h6>
+        <div class="stack">
+          <button class="responsive round large wave" data-script="webroot/common/widevinel1.sh" data-i18n="advance_widevinel1">Fix Widevine L1</button>
+         </div>
+       </article>
     </section>
-
     <section id="settings-page" class="page">
-      <article class="surface page-card">
-        <h5 class="page-title" data-i18n="settings_title">Settings</h5>
+      <h5 class="page-title" data-i18n="settings_title">Settings</h5>
 
-        <article class="surface-variant block">
-          <h6 data-i18n="settings_language">Language</h6>
-          <div class="custom-dropdown lang-select-wrap">
-            <button id="lang-btn" class="menu-btn lang-select-btn">🇬🇧 English</button>
-            <ul id="lang-options" class="dropdown-list lang-options-list">
-              <li data-lang="af">🇿🇦 Afrikaans</li>
-              <li data-lang="ar">🇸🇦 Arabic</li>
-              <li data-lang="ca">🇪🇸 Catalan</li>
-              <li data-lang="cs">🇨🇿 Czech</li>
-              <li data-lang="da">🇩🇰 Danish</li>
-              <li data-lang="de">🇩🇪 German</li>
-              <li data-lang="el">🇬🇷 Greek</li>
-              <li data-lang="en">🇬🇧 English</li>
-              <li data-lang="es">🇪🇸 Spanish</li>
-              <li data-lang="fi">🇫🇮 Finnish</li>
-              <li data-lang="fr">🇫🇷 French</li>
-              <li data-lang="he">🇮🇱 Hebrew</li>
-              <li data-lang="hu">🇭🇺 Hungarian</li>
-              <li data-lang="it">🇮🇹 Italian</li>
-              <li data-lang="ja">🇯🇵 Japanese</li>
-              <li data-lang="ko">🇰🇷 Korean</li>
-              <li data-lang="nl">🇳🇱 Dutch</li>
-              <li data-lang="no">🇳🇴 Norwegian</li>
-              <li data-lang="pl">🇵🇱 Polish</li>
-              <li data-lang="pt">🇵🇹 Portuguese</li>
-              <li data-lang="ro">🇷🇴 Romanian</li>
-              <li data-lang="ru">🇷🇺 Russian</li>
-              <li data-lang="sr">🇷🇸 Serbian</li>
-              <li data-lang="sv">🇸🇪 Swedish</li>
-              <li data-lang="tr">🇹🇷 Turkish</li>
-              <li data-lang="uk">🇺🇦 Ukrainian</li>
-              <li data-lang="vi">🇻🇳 Vietnamese</li>
-              <li data-lang="zh">🇨🇳 Chinese</li>
-            </ul>
-          </div>
-        </article>
+      <article class="beer-card">
+        <h6 class="card-title"><i>language</i><span data-i18n="settings_language">Language</span></h6>
+        <button id="lang-btn" type="button" class="responsive border round extra wave lang-trigger-btn">
+          <span id="current-lang-text">🇬🇧 English</span>
+          <i>arrow_drop_down</i>
+        </button>
+      </article>
 
-        <article class="surface-variant block">
-          <div class="appearance-header">
-            <h6 class="appearance-title" data-i18n="settings_appearance">Appearance</h6>
-          </div>
-          <div class="custom-dropdown lang-select-wrap">
-            <button id="theme-mode-btn" class="menu-btn lang-select-btn" data-i18n="theme_mode_dark">Dark</button>
-            <ul id="theme-mode-options" class="dropdown-list lang-options-list">
-              <li data-mode="dark" data-i18n="theme_mode_dark">Dark</li>
-              <li data-mode="light" data-i18n="theme_mode_light">Light</li>
-              <li data-mode="auto" data-i18n="theme_mode_auto">Auto (System)</li>
-            </ul>
-          </div>
-          <div class="theme-presets">
-            <button class="theme-preset-btn" data-theme-preset="ocean" data-i18n="theme_preset_ocean">Ocean</button>
-            <button class="theme-preset-btn" data-theme-preset="rose" data-i18n="theme_preset_rose">Rose</button>
-            <button class="theme-preset-btn" data-theme-preset="forest" data-i18n="theme_preset_forest">Forest</button>
-            <button class="theme-preset-btn" data-theme-preset="sunset" data-i18n="theme_preset_sunset">Sunset</button>
-            <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
-          </div>
-        </article>
+      <article class="beer-card">
+        <h6 class="card-title" id="appearance-heading"><i>palette</i><span data-i18n="settings_appearance">Appearance</span></h6>
+        <div class="theme-mode-grid" role="radiogroup" aria-labelledby="appearance-heading">
+          <button type="button" class="theme-mode-card wave" data-mode="dark" role="radio" aria-checked="false">
+            <div class="theme-mode-card-top">
+              <span class="theme-mode-card-label" data-i18n="theme_mode_dark">Dark</span>
+              <i class="theme-mode-card-check" aria-hidden="true">check</i>
+            </div>
+            <i class="theme-mode-card-icon" aria-hidden="true">dark_mode</i>
+          </button>
+          <button type="button" class="theme-mode-card wave" data-mode="light" role="radio" aria-checked="false">
+            <div class="theme-mode-card-top">
+              <span class="theme-mode-card-label" data-i18n="theme_mode_light">Light</span>
+              <i class="theme-mode-card-check" aria-hidden="true">check</i>
+            </div>
+            <i class="theme-mode-card-icon" aria-hidden="true">light_mode</i>
+          </button>
+        </div>
+        <div class="theme-presets">
+          <button class="theme-preset-btn" data-theme-preset="ocean" data-i18n="theme_preset_ocean">Ocean</button>
+          <button class="theme-preset-btn" data-theme-preset="rose" data-i18n="theme_preset_rose">Rose</button>
+          <button class="theme-preset-btn" data-theme-preset="forest" data-i18n="theme_preset_forest">Forest</button>
+          <button class="theme-preset-btn" data-theme-preset="sunset" data-i18n="theme_preset_sunset">Sunset</button>
+          <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
+        </div>
+      </article>
 
-        <article class="surface-variant block">
-          <h6 data-i18n="settings_clock_format">Clock Format</h6>
-          <div class="custom-dropdown lang-select-wrap">
-            <button id="clock-format-btn" class="menu-btn lang-select-btn" data-i18n="clock_format_auto">Auto (Device)</button>
-            <ul id="clock-format-options" class="dropdown-list lang-options-list">
-              <li data-format="auto" data-i18n="clock_format_auto">Auto (Device)</li>
-              <li data-format="24h" data-i18n="clock_format_24h">24-hour (00:00)</li>
-              <li data-format="12h" data-i18n="clock_format_12h">12-hour (AM/PM)</li>
-            </ul>
-          </div>
-        </article>
-        <article class="surface-variant block update-support">
-          <h6 data-i18n="update_title">Update & Support</h6>
-          <p data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
+      <article class="beer-card">
+        <h6 class="card-title" id="clock-format-heading"><i>schedule</i><span data-i18n="settings_clock_format">Clock Format</span></h6>
+        <div class="clock-format-grid" role="radiogroup" aria-labelledby="clock-format-heading">
+          <button type="button" class="clock-format-card wave" data-format="12h" role="radio" aria-checked="false">
+            <div class="clock-format-card-top">
+              <span class="clock-format-card-label" data-i18n="clock_format_12h">12-hour</span>
+              <i class="clock-format-card-check" aria-hidden="true">check</i>
+            </div>
+            <div class="clock-format-card-time clock-card-time" id="clock-preview-12h">--:--:--</div>
+          </button>
+          <button type="button" class="clock-format-card wave" data-format="24h" role="radio" aria-checked="false">
+            <div class="clock-format-card-top">
+              <span class="clock-format-card-label" data-i18n="clock_format_24h">24-hour</span>
+              <i class="clock-format-card-check" aria-hidden="true">check</i>
+            </div>
+            <div class="clock-format-card-time clock-card-time" id="clock-preview-24h">--:--:--</div>
+          </button>
+        </div>
+      </article>
 
-          <div class="stack">
-            <button class="menu-btn" data-url="https://github.com/Yurii0307/yurikey" data-i18n="update_github">View on GitHub</button>
-            <button class="menu-btn" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
-          </div>
+      <article class="beer-card update-support">
+        <h6 class="card-title"><i>update</i><span data-i18n="update_title">Update & Support</span></h6>
+        <p class="card-desc" data-i18n="update_desc">Stay up-to-date with the latest version of <strong>YuriKey</strong>, bug fixes, and new features.</p>
 
-          <p class="small-text" data-i18n="update_note">Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.</p>
-        </article>
+        <div class="stack">
+          <button class="responsive round large wave" data-url="https://github.com/Yurii0307/yurikey" data-i18n="update_github">View on GitHub</button>
+          <button class="responsive round large wave" data-url="https://t.me/yuriiroot" data-i18n="update_telegram">Join Telegram Channel</button>
+        </div>
 
-        <article id="dev-info" class="surface-variant block">
-          <h6 data-i18n="settings_contributors">Project Contributors</h6>
-          <div id="contrib-list" class="contrib-grid"></div>
-        </article>
+        <p class="card-desc small-text" data-i18n="update_note">Join our Telegram channel or check GitHub for updates, contributions, and technical discussions.</p>
+      </article>
+
+      <article id="dev-info" class="beer-card">
+        <h6 class="card-title"><i>group</i><span data-i18n="settings_contributors">Project Contributors</span></h6>
+        <div id="contrib-list" class="contrib-grid"></div>
       </article>
     </section>
   </main>
 
-  <nav class="bottom-nav surface-container-high">
-    <button class="nav-btn active" type="button">
-      <i class="material-symbols-rounded nav-icon" aria-hidden="true">home</i>
-      <span data-i18n="nav_home">Home</span>
-    </button>
-    <button class="nav-btn" type="button">
-      <i class="material-symbols-rounded nav-icon" aria-hidden="true">grid_view</i>
-      <span data-i18n="nav_menu">Menu</span>
-    </button>
-    <button class="nav-btn" type="button">
-      <i class="material-symbols-rounded nav-icon" aria-hidden="true">tune</i>
-      <span data-i18n="nav_advance_menu">Menu +</span>
-    </button>
-    <button class="nav-btn" type="button">
-      <i class="material-symbols-rounded nav-icon" aria-hidden="true">settings</i>
-      <span data-i18n="nav_settings">Settings</span>
-    </button>
-  </nav>
+  <div class="m3-nav-wrapper">
+    <nav class="m3-floating-nav">
+      <a class="active" data-ui="#home-page">
+        <i>home</i>
+        <span data-i18n="nav_home">Home</span>
+      </a>
+      <a data-ui="#actions-page">
+        <i>grid_view</i>
+        <span data-i18n="nav_menu">Menu</span>
+      </a>
+      <a data-ui="#advance-menu">
+        <i>tune</i>
+        <span data-i18n="nav_advance_menu">Menu +</span>
+      </a>
+      <a data-ui="#settings-page">
+        <i>settings</i>
+        <span data-i18n="nav_settings">Settings</span>
+      </a>
+    </nav>
+  </div>
 
 
   <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
@@ -237,8 +220,227 @@
       <button id="script-history-close" class="history-btn" data-i18n="dialog_close">Close</button>
     </nav>
   </dialog>
+  <div id="language-dialog-overlay" class="overlay blur"></div>
+  <dialog id="language-dialog" class="round">
+    <header>
+      <nav>
+        <h5 class="max">
+          <i>language</i>
+          <span data-i18n="settings_language">Language</span>
+        </h5>
+        <button type="button" id="language-dialog-close" class="circle transparent" data-i18n-title="dialog_close" aria-label="Close">
+          <i>close</i>
+        </button>
+      </nav>
+      <div class="field round small prefix border">
+        <i>search</i>
+        <input id="language-search" type="search" placeholder="Search..." autocomplete="off" />
+      </div>
+    </header>
 
-  <script src="https://cdn.jsdelivr.net/npm/beercss@3.9.8/dist/cdn/beer.min.js" type="module"></script>
+    <div class="dialog-scroll-body">
+      <div id="lang-options" class="grid small-space">
+        <div class="s6 m4" data-lang-item="af">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="af">
+            <span class="lang-flag">🇿🇦</span>
+            <span class="max lang-name">Afrikaans</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ar">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ar">
+            <span class="lang-flag">🇸🇦</span>
+            <span class="max lang-name">Arabic</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ca">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ca">
+            <span class="lang-flag">🇪🇸</span>
+            <span class="max lang-name">Catalan</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="cs">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="cs">
+            <span class="lang-flag">🇨🇿</span>
+            <span class="max lang-name">Czech</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="da">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="da">
+            <span class="lang-flag">🇩🇰</span>
+            <span class="max lang-name">Danish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="de">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="de">
+            <span class="lang-flag">🇩🇪</span>
+            <span class="max lang-name">German</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="el">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="el">
+            <span class="lang-flag">🇬🇷</span>
+            <span class="max lang-name">Greek</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="en">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="en">
+            <span class="lang-flag">🇬🇧</span>
+            <span class="max lang-name">English</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="es">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="es">
+            <span class="lang-flag">🇪🇸</span>
+            <span class="max lang-name">Spanish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="fi">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="fi">
+            <span class="lang-flag">🇫🇮</span>
+            <span class="max lang-name">Finnish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="fr">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="fr">
+            <span class="lang-flag">🇫🇷</span>
+            <span class="max lang-name">French</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="he">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="he">
+            <span class="lang-flag">🇮🇱</span>
+            <span class="max lang-name">Hebrew</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="hu">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="hu">
+            <span class="lang-flag">🇭🇺</span>
+            <span class="max lang-name">Hungarian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="it">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="it">
+            <span class="lang-flag">🇮🇹</span>
+            <span class="max lang-name">Italian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ja">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ja">
+            <span class="lang-flag">🇯🇵</span>
+            <span class="max lang-name">Japanese</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ko">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ko">
+            <span class="lang-flag">🇰🇷</span>
+            <span class="max lang-name">Korean</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="nl">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="nl">
+            <span class="lang-flag">🇳🇱</span>
+            <span class="max lang-name">Dutch</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="no">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="no">
+            <span class="lang-flag">🇳🇴</span>
+            <span class="max lang-name">Norwegian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="pl">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="pl">
+            <span class="lang-flag">🇵🇱</span>
+            <span class="max lang-name">Polish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="pt">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="pt">
+            <span class="lang-flag">🇵🇹</span>
+            <span class="max lang-name">Portuguese</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ro">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ro">
+            <span class="lang-flag">🇷🇴</span>
+            <span class="max lang-name">Romanian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="ru">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="ru">
+            <span class="lang-flag">🇷🇺</span>
+            <span class="max lang-name">Russian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="sr">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="sr">
+            <span class="lang-flag">🇷🇸</span>
+            <span class="max lang-name">Serbian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="sv">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="sv">
+            <span class="lang-flag">🇸🇪</span>
+            <span class="max lang-name">Swedish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="tr">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="tr">
+            <span class="lang-flag">🇹🇷</span>
+            <span class="max lang-name">Turkish</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="uk">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="uk">
+            <span class="lang-flag">🇺🇦</span>
+            <span class="max lang-name">Ukrainian</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="vi">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="vi">
+            <span class="lang-flag">🇻🇳</span>
+            <span class="max lang-name">Vietnamese</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+        <div class="s6 m4" data-lang-item="zh">
+          <button type="button" class="responsive border left-align wave lang-option-btn" data-lang="zh">
+            <span class="lang-flag">🇨🇳</span>
+            <span class="max lang-name">Chinese</span>
+            <i class="lang-check">check</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/beercss@5.0.3/dist/cdn/beer.min.js" type="module"></script>
   <!-- Utilities -->
   <script src="js/utils/i18n.js"></script>
   <script src="js/utils/toast.js"></script>

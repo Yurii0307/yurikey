@@ -47,35 +47,54 @@ async function loadDeviceInfo() {
   }
 }
 
-// Execute a shell script with KernelSU
-function runScript(scriptName, callback) {
+// Execute an internal shell script with KernelSU or raw executor
+function execDeviceScript(scriptName, callback) {
   const fullPath = `${BASE_SCRIPT}${scriptName}`;
-  if (typeof ksu === "object" && typeof ksu.exec === "function") {
-    const cbId = `cb_${Date.now()}`;
+  const executor = window.getRawCommandExecutor ? window.getRawCommandExecutor() : null;
+  if (executor) {
+    executor(`sh '${fullPath}'`, () => {
+      if (typeof callback === "function") callback();
+    });
+  } else if (typeof ksu === "object" && typeof ksu.exec === "function") {
+    const cbId = `cb_dev_${Date.now()}`;
     window[cbId] = () => {
       delete window[cbId];
       if (typeof callback === "function") callback();
     };
     ksu.exec(`sh '${fullPath}'`, "{}", cbId);
   } else {
-    console.warn("ksu.exec not available.");
+    console.warn("Shell executor not available.");
     if (typeof callback === "function") callback();
   }
 }
+
+let refreshSuccessTimer = null;
 
 // Setup refresh button behavior with translation and animation
 function setupRefreshButton() {
   const refreshBtn = document.getElementById("refresh-info-btn");
   if (!refreshBtn) return;
 
-  const scriptName = refreshBtn.dataset.script;
-
   refreshBtn.addEventListener("click", () => {
     if (refreshBtn.disabled) return;
     refreshBtn.disabled = true;
+    if (refreshSuccessTimer) {
+      clearTimeout(refreshSuccessTimer);
+      refreshSuccessTimer = null;
+    }
+    refreshBtn.classList.remove("success");
     refreshBtn.classList.add("rotating");
 
-    runScript(scriptName, async () => {
+    if (window.showToast) {
+      window.showToast(window.t ? window.t("home_refreshing", "Refreshing info...") : "Refreshing info...", "info");
+    }
+    if (window.updateNetworkStatus) {
+      window.updateNetworkStatus();
+    }
+
+    const minSpinPromise = new Promise(resolve => setTimeout(resolve, 600));
+
+    execDeviceScript("device-info.sh", async () => {
       try {
         const data = await waitForValidDeviceInfo();
         document.getElementById("android-version").innerText = data.android || "-";
@@ -83,10 +102,17 @@ function setupRefreshButton() {
         document.getElementById("root-type").innerText = data.root || "-";
       } catch (err) {
         console.warn("Could not update device info:", err);
-      }
+      } finally {
+        await minSpinPromise;
+        refreshBtn.classList.remove("rotating");
+        refreshBtn.classList.add("success");
 
-      refreshBtn.classList.remove("rotating");
-      refreshBtn.disabled = false;
+        refreshSuccessTimer = setTimeout(() => {
+          refreshBtn.classList.remove("success");
+          refreshBtn.disabled = false;
+          refreshSuccessTimer = null;
+        }, 2000);
+      }
     });
   });
 }
@@ -95,15 +121,8 @@ function setupRefreshButton() {
 window.addEventListener("DOMContentLoaded", async () => {
   await waitForTranslations();     // Make sure translations are loaded
   loadDeviceInfo();                // Load initial device info
-  setupRefreshButton();           // Setup refresh button
+  setupRefreshButton();            // Setup refresh button
 
-  // Bind all action buttons to their scripts
-  document.querySelectorAll(".action-buttons .menu-btn").forEach(button => {
-    const scriptName = button.dataset.script;
-    if (scriptName) {
-      button.addEventListener("click", () => runScript(scriptName));
-    }
-  });
 });
 
 window.loadDeviceInfo = loadDeviceInfo;
