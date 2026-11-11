@@ -928,10 +928,13 @@ button.clock-format-card:active,
 
 button.contrib-card,
 .contrib-card {
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  text-decoration: none;
   white-space: normal;
   line-height: normal;
   border: 1px solid var(--ui-card-border);
@@ -943,7 +946,24 @@ button.contrib-card,
   box-shadow: 0 6px 16px rgb(0 0 0 / 18%);
   box-sizing: border-box;
   cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
   transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.contrib-card:focus-visible {
+  outline: 2px solid var(--ui-pill-border);
+  outline-offset: 2px;
+}
+
+.contrib-card.active {
+  border-color: var(--ui-pill-border);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 24%);
+}
+
+:root[data-theme-mode="light"] .contrib-card.active {
+  border-color: var(--ui-pill-border);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 14%);
 }
 
 :root[data-theme-mode="light"] button.contrib-card,
@@ -988,6 +1008,57 @@ button.contrib-card,
 .contrib-role {
   font-size: 0.85rem;
   color: var(--ui-muted);
+}
+
+.contrib-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: color-mix(in srgb, var(--ui-card-bg) 92%, #000000 8%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: inherit;
+  z-index: 2;
+}
+
+:root[data-theme-mode="light"] .contrib-overlay {
+  background: color-mix(in srgb, #ffffff 92%, var(--ui-card-bg) 8%);
+}
+
+.contrib-card.active .contrib-overlay {
+  display: flex;
+}
+
+.contrib-overlay .contrib-btn {
+  text-decoration: none !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  min-height: 2rem !important;
+  max-height: 2rem !important;
+  padding: 0 0.65rem !important;
+  gap: 0.45rem !important;
+  white-space: nowrap !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.contrib-overlay .contrib-btn svg {
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  min-width: 1.15rem !important;
+  min-height: 1.15rem !important;
+  max-width: 1.15rem !important;
+  max-height: 1.15rem !important;
+  fill: currentColor !important;
+  flex-shrink: 0 !important;
 }
 
 /* Snackbar & Dialogs */
