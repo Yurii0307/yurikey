@@ -4,8 +4,8 @@
 check_reset_prop() {
   local NAME=$1
   local EXPECTED=$2
-  local VALUE=$(resetprop $NAME)
-  [ -z $VALUE ] || [ $VALUE = $EXPECTED ] || resetprop -n $NAME $EXPECTED
+  local VALUE=$(resetprop "$NAME")
+  [ -z "$VALUE" ] || [ "$VALUE" = "$EXPECTED" ] || resetprop -n "$NAME" "$EXPECTED"
 }
 
 # Function to check if a property contains a specific string and reset it
@@ -13,7 +13,9 @@ contains_reset_prop() {
   local NAME=$1
   local CONTAINS=$2
   local NEWVAL=$3
-  [[ "$(resetprop $NAME)" = *"$CONTAINS"* ]] && resetprop -n $NAME $NEWVAL
+  case "$(resetprop "$NAME")" in
+    *"$CONTAINS"*) resetprop -n "$NAME" "$NEWVAL" ;;
+  esac
 }
 
 # Wait for boot completion before applying changes
@@ -50,12 +52,6 @@ contains_reset_prop "ro.bootmode" "recovery" "unknown"
 contains_reset_prop "ro.boot.bootmode" "recovery" "unknown"
 contains_reset_prop "vendor.boot.bootmode" "recovery" "unknown"
 
-# Security attributes
-check_reset_prop "ro.secure" "1"
-check_reset_prop "ro.debuggable" "0"
-check_reset_prop "ro.build.type" "user"
-check_reset_prop "ro.build.tags" "release-keys"
-
 # Partition verification (Hide warnings)
 check_reset_prop "partition.system.verified" "0"
 check_reset_prop "partition.vendor.verified" "0"
@@ -72,8 +68,5 @@ check_reset_prop "service.adb.root" "0"
 
 # Boot / Verification status
 check_reset_prop "ro.boot.selinux" "enforcing"
-check_reset_prop "ro.boot.verifiedbootstate" "green"
-check_reset_prop "ro.boot.flash.locked" "1"
 check_reset_prop "ro.boot.avb_version" "1.3"
-check_reset_prop "ro.boot.vbmeta.device_state" "locked"
 check_reset_prop "ro.crypto.state" "encrypted"

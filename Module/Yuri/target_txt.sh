@@ -15,7 +15,7 @@ if [ -f "$tees" ]; then
     teeBroken=$(grep -E '^teeBroken=' "$tees" | cut -d '=' -f2 2>/dev/null || echo "false")
     if [ -z "$teeBroken" ]; then
         log_message "Error: Failed to parse teeBroken status"
-        return 1
+        exit 1
     fi
 fi
 
@@ -50,7 +50,7 @@ com.chunqiunativecheck?"
 for entry in $fixed_targets; do
     if ! echo "$entry" >> "$t"; then
         log_message "Error: Failed to write $entry to $t"
-        return 1
+        exit 1
     fi
 done
 
@@ -58,27 +58,41 @@ done
 log_message "Writing"
 
 add_packages() {
-    pkgs=$(pm list packages "$1" 2>/dev/null)
-    if [ $? -ne 0 ] || [ -z "$pkgs" ]; then
-        log_message "Error: Failed to list packages with flag $1"
-        return 1
+    flag="$1"
+    pkgs=$(pm list packages "$flag" 2>/dev/null | cut -d: -f2 | tr -d '\r')
+    if [ -z "$pkgs" ]; then
+        return 0
     fi
 
-    echo "$pkgs" | cut -d ":" -f 2 | while read -r pkg; do
-        if [ -n "$pkg" ] && ! grep -q "^$pkg" "$t"; then
-            if [ "$teeBroken" = "true" ]; then
-                if ! echo "$pkg?" >> "$t"; then
-                    log_message "Error: Failed to write $pkg? to $t"
-                    return 1
-                fi
-            else
-                if ! echo "$pkg" >> "$t"; then
-                    log_message "Error: Failed to write $pkg to $t"
-                    return 1
-                fi
-            fi
-        fi
-    done
+    if [ "$teeBroken" = "true" ]; then
+        echo "$pkgs" | awk -v target_file="$t" '
+            BEGIN {
+                while ((getline line < target_file) > 0) {
+                    sub(/\?$/, "", line);
+                    seen[line] = 1;
+                }
+                close(target_file);
+            }
+            NF && !seen[$1] {
+                print $1 "?"
+                seen[$1] = 1;
+            }
+        ' >> "$t"
+    else
+        echo "$pkgs" | awk -v target_file="$t" '
+            BEGIN {
+                while ((getline line < target_file) > 0) {
+                    sub(/\?$/, "", line);
+                    seen[line] = 1;
+                }
+                close(target_file);
+            }
+            NF && !seen[$1] {
+                print $1
+                seen[$1] = 1;
+            }
+        ' >> "$t"
+    fi
 }
 
 # add user apps
