@@ -776,12 +776,22 @@ button.large {
 }
 
 button.round,
+button.left-round,
+button.right-round,
 .menu-btn {
   border: 1px solid var(--ui-pill-border);
   font-family: var(--md-sys-typescale-font);
   font-size: var(--md-sys-typescale-label-large-size);
   font-weight: var(--md-sys-typescale-label-large-weight);
   letter-spacing: var(--md-sys-typescale-label-large-tracking);
+}
+
+nav.group.split > button {
+  min-width: 0;
+}
+
+nav.group.split > button svg {
+  flex-shrink: 0;
 }
 
 button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme-preset-btn):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card),
