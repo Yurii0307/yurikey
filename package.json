@@ -3,12 +3,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "bun dev/server.ts 2>/dev/null || node dev/server.ts"
+    "dev": "bun dev/server.ts 2>/dev/null || node dev/server.ts",
+    "test": "bun test",
+    "check:shell": "for f in $(find Module -name '*.sh'); do sh -n \"$f\" || exit 1; done"
   },
   "dependencies": {
     "express": "^5.0.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.4.4",
     "@types/express": "^5.0.0"
   }
 }
