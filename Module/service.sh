@@ -19,7 +19,9 @@ contains_reset_prop() {
 }
 
 # Wait for boot completion before applying changes
-resetprop -w sys.boot_completed 0
+until [ "$(getprop sys.boot_completed)" = "1" ]; do
+  sleep 1
+done
 
 # Bootloader and Verified Boot properties
 check_reset_prop "ro.boot.vbmeta.device_state" "locked"

@@ -1,27 +1,19 @@
 #!/system/bin/sh
 
 banner() {
-    clear
     printf "\033[41m                                               \033[0m\n"
     printf "\033[41m                                               \033[0m\n"
     printf "\033[41m(One-click to clear all detection traces)\033[0m\n"
     printf "\033[41m                                               \033[0m\n"
     printf "\033[41m                                               \033[0m\n"
-    sleep 3
-    clear
 }
 
 progress() {
     printf "\033[31m[1/5] Clearing detector application data...\033[0m\n"
-    sleep 0.5
     printf "\033[31m[2/5] Clearing file cache tool app (MT Manager, HyperCeiler, LuckyTool,....)\033[0m\n"
-    sleep 0.5
     printf "\033[31m[3/5] Resetprop, reset system properties, clear custom rom,HMA paths...\033[0m\n"
-    sleep 0.5
     printf "\033[31m[4/5] Clearing odex, art, cache Lsposed....\033[0m\n"
-    sleep 0.5
     printf "\033[31m[5/5] Clearing...\033[0m\n"
-    sleep 3
 }
 
 complete() {
@@ -167,10 +159,6 @@ remote_control_data_apps() { # Same as detector_data, but for remote control app
     remove_path "/storage/emulated/0/Vysor"
 }
 
-system_properties() { # For /data/property if exists
-    remove_path "/data/property/persistent_properties"
-    remove_path "/data/property"
-}
 
 tmp_data() {    # For /data/local/tmp if exists
     remove_path "/data/local/tmp/shizuku"
@@ -285,7 +273,7 @@ reset_prop() { # Changing on build.prop file
 }
 
 odex_files() { # Delete all odex files
-    su -c 'find /data/app -type f -name base.odex -delete' 2>/dev/null
+    find /data/app -type f -name base.odex -delete 2>/dev/null
 }
 
 main() {
@@ -297,7 +285,6 @@ main() {
     detector_media
     tool_apps_data
     remote_control_data_apps
-    system_properties
     tmp_data
     system_data
     dev_paths

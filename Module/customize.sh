@@ -48,12 +48,25 @@ download() {
 
 # Function to download the remote keybox
 get_keybox() {
-    download "$REMOTE_URL" > "$REMOTE_FILE" || ui_print "Error: Keybox download failed, please add keybox manually!"
-
-    if ! base64 -d "$REMOTE_FILE" > "$DECODE_FILE" 2>/dev/null; then
-        ui_print "- Error: Base64 decode failed!"
+    if ! download "$REMOTE_URL" > "$REMOTE_FILE" || [ ! -s "$REMOTE_FILE" ]; then
+        ui_print "Error: Keybox download failed, please add keybox manually!"
+        rm -f "$REMOTE_FILE"
         return 1
     fi
+
+    if ! base64 -d "$REMOTE_FILE" > "$DECODE_FILE" 2>/dev/null || [ ! -s "$DECODE_FILE" ]; then
+        ui_print "- Error: Base64 decode failed!"
+        rm -f "$REMOTE_FILE" "$DECODE_FILE"
+        return 1
+    fi
+
+    if ! grep -q "<AndroidAttestation" "$DECODE_FILE" && ! grep -q "<Keybox" "$DECODE_FILE"; then
+        ui_print "- Error: Invalid keybox format!"
+        rm -f "$REMOTE_FILE" "$DECODE_FILE"
+        return 1
+    fi
+
+    rm -f "$REMOTE_FILE"
     return 0
 }
 
@@ -70,19 +83,18 @@ update_keybox() {
     # If the new one is identical, skip update
     if cmp -s "$TARGET_FILE" "$DECODE_FILE"; then
       ui_print "- Existing Yuri Keybox found. No changes made."
-      rm -f "$REMOTE_FILE"
+      rm -f "$DECODE_FILE"
       return
     else
       # If the file differs, back up the old one
       ui_print "- Existing keybox is not by Yuri."
       ui_print "- Creating a backup keybox..."
-      mv "$TARGET_FILE" "$BACKUP_FILE"
-      mv "$DECODE_FILE" "$TARGET_FILE"
+      cp -f "$TARGET_FILE" "$BACKUP_FILE"
+      mv -f "$DECODE_FILE" "$TARGET_FILE"
     fi
   else
     ui_print "- No keybox found! Creating a new one..."
-    mv "$DECODE_FILE" "$TARGET_FILE"
-    rm -f "$REMOTE_FILE"
+    mv -f "$DECODE_FILE" "$TARGET_FILE"
   fi
 }
 # Start main logic

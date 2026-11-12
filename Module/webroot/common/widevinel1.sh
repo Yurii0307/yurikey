@@ -22,12 +22,12 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" 2>/dev/null && pwd)"
 cp -r "$SCRIPT_DIR/FixWidevineL1/"* /data/local/tmp/
 
 # Set correct permissions
-chmod 777 /data/local/tmp/FixWidevineL1.sh
-chmod 777 /data/local/tmp/attestation
+chmod 700 /data/local/tmp/FixWidevineL1.sh
+chmod 700 /data/local/tmp/attestation
 
 # Set owner and group to root:root
 chown root:root /data/local/tmp/FixWidevineL1.sh
 chown root:root /data/local/tmp/attestation
 
 # Execute the script
-su -c sh /data/local/tmp/FixWidevineL1.sh
+sh /data/local/tmp/FixWidevineL1.sh
