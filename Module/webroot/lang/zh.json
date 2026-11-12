@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "脚本执行失败。",
   "advance_set_pif": "设置指纹 (PIF)",
   "dialog_clear": "清除",
-  "dialog_close": "关闭"
+  "dialog_close": "关闭",
+  "advance_edit_persist_props": "编辑持久化属性",
+  "persist_props_title": "持久化属性",
+  "persist_props_search": "搜索属性...",
+  "persist_props_empty": "未找到匹配的持久化属性。",
+  "persist_props_add": "添加属性",
+  "persist_props_save": "保存",
+  "persist_props_confirm_delete": "删除属性 {name}？"
 }

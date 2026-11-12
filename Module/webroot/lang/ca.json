@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "L'execució del script ha fallat.",
   "advance_set_pif": "Definir empremta digital (PIF)",
   "dialog_clear": "Netejar",
-  "dialog_close": "Tancar"
+  "dialog_close": "Tancar",
+  "advance_edit_persist_props": "Editar les propietats persistents",
+  "persist_props_title": "Propietats persistents",
+  "persist_props_search": "Cercar propietats...",
+  "persist_props_empty": "No s'han trobat propietats persistents coincidents.",
+  "persist_props_add": "Afegir propietat",
+  "persist_props_save": "Desar",
+  "persist_props_confirm_delete": "Suprimir la propietat {name}?"
 }

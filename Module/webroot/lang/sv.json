@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Skriptkörning misslyckades.",
   "advance_set_pif": "Ställ in fingeravtryck (PIF)",
   "dialog_clear": "Rensa",
-  "dialog_close": "Stäng"
+  "dialog_close": "Stäng",
+  "advance_edit_persist_props": "Redigera beständiga egenskaper",
+  "persist_props_title": "Beständiga egenskaper",
+  "persist_props_search": "Sök egenskaper...",
+  "persist_props_empty": "Inga matchande beständiga egenskaper hittades.",
+  "persist_props_add": "Lägg till egenskap",
+  "persist_props_save": "Spara",
+  "persist_props_confirm_delete": "Ta bort egenskapen {name}?"
 }

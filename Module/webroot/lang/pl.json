@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
   "advance_set_pif": "Ustaw odcisk palca (PIF)",
   "dialog_clear": "Wyczyść",
-  "dialog_close": "Zamknij"
+  "dialog_close": "Zamknij",
+  "advance_edit_persist_props": "Edytuj właściwości trwałe",
+  "persist_props_title": "Właściwości trwałe",
+  "persist_props_search": "Szukaj właściwości...",
+  "persist_props_empty": "Nie znaleziono pasujących właściwości trwałych.",
+  "persist_props_add": "Dodaj właściwość",
+  "persist_props_save": "Zapisz",
+  "persist_props_confirm_delete": "Usunąć właściwość {name}?"
 }

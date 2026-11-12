@@ -446,8 +446,11 @@ body:has(#logs-dialog:is(.active, [open])) .logs-fab {
   color: inherit;
 }
 
-/* Logs Dialog (Material 3 Expressive) */
-dialog#logs-dialog {
+/* Expressive Dialogs Base */
+dialog.expressive-dialog,
+dialog#logs-dialog,
+dialog#language-dialog,
+dialog#prop-dialog {
   display: none;
   position: fixed;
   z-index: 61;
@@ -472,15 +475,24 @@ dialog#logs-dialog {
   overflow: hidden;
   box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
 }
-dialog#logs-dialog:is(.active, [open]) {
+dialog.expressive-dialog:is(.active, [open]),
+dialog#logs-dialog:is(.active, [open]),
+dialog#language-dialog:is(.active, [open]),
+dialog#prop-dialog:is(.active, [open]) {
   display: flex !important;
   visibility: visible !important;
   opacity: 1 !important;
   transform: none !important;
 }
 
+dialog.expressive-dialog header,
+dialog.expressive-dialog header.fixed,
 #logs-dialog header,
-#logs-dialog header.fixed {
+#logs-dialog header.fixed,
+#language-dialog header,
+#language-dialog header.fixed,
+#prop-dialog header,
+#prop-dialog header.fixed {
   margin: 0 !important;
   margin-block-start: 0 !important;
   inset: auto !important;
@@ -493,7 +505,10 @@ dialog#logs-dialog:is(.active, [open]) {
   flex-direction: column !important;
 }
 
-#logs-dialog header nav {
+dialog.expressive-dialog header nav,
+#logs-dialog header nav,
+#language-dialog header nav,
+#prop-dialog header nav {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -502,7 +517,10 @@ dialog#logs-dialog:is(.active, [open]) {
   min-height: 36px !important;
 }
 
-#logs-dialog header h5 {
+dialog.expressive-dialog header h5,
+#logs-dialog header h5,
+#language-dialog header h5,
+#prop-dialog header h5 {
   margin: 0 !important;
   padding-left: 0.45rem !important;
   padding-inline-start: 0.45rem !important;
@@ -514,18 +532,26 @@ dialog#logs-dialog:is(.active, [open]) {
   color: var(--ui-text) !important;
 }
 
-#logs-dialog header h5 i {
+dialog.expressive-dialog header h5 i,
+#logs-dialog header h5 i,
+#language-dialog header h5 i,
+#prop-dialog header h5 i {
   font-size: 1.4rem !important;
   color: var(--ui-pill-bg) !important;
 }
-
-#logs-dialog .dialog-actions {
+dialog.expressive-dialog .dialog-actions,
+#logs-dialog .dialog-actions,
+#language-dialog .dialog-actions,
+#prop-dialog .dialog-actions {
   display: flex;
   align-items: center;
   gap: 0.35rem;
 }
 
-#logs-dialog .dialog-actions button {
+dialog.expressive-dialog .dialog-actions button,
+#logs-dialog .dialog-actions button,
+#language-dialog .dialog-actions button,
+#prop-dialog .dialog-actions button {
   width: 34px;
   height: 34px;
   min-width: 34px;
@@ -544,22 +570,37 @@ dialog#logs-dialog:is(.active, [open]) {
   transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
 }
 
+dialog.expressive-dialog .dialog-actions button:focus,
+dialog.expressive-dialog .dialog-actions button:focus-visible,
 #logs-dialog .dialog-actions button:focus,
-#logs-dialog .dialog-actions button:focus-visible {
+#logs-dialog .dialog-actions button:focus-visible,
+#language-dialog .dialog-actions button:focus,
+#language-dialog .dialog-actions button:focus-visible,
+#prop-dialog .dialog-actions button:focus,
+#prop-dialog .dialog-actions button:focus-visible {
   outline: none !important;
   box-shadow: none !important;
 }
 
-#logs-dialog .dialog-actions button:hover {
+dialog.expressive-dialog .dialog-actions button:hover,
+#logs-dialog .dialog-actions button:hover,
+#language-dialog .dialog-actions button:hover,
+#prop-dialog .dialog-actions button:hover {
   background: color-mix(in srgb, var(--ui-pill-bg) 18%, transparent) !important;
   color: var(--ui-pill-bg) !important;
 }
 
-#logs-dialog .dialog-actions button:active {
+dialog.expressive-dialog .dialog-actions button:active,
+#logs-dialog .dialog-actions button:active,
+#language-dialog .dialog-actions button:active,
+#prop-dialog .dialog-actions button:active {
   transform: scale(0.92);
 }
 
-#logs-dialog .dialog-actions button i {
+dialog.expressive-dialog .dialog-actions button i,
+#logs-dialog .dialog-actions button i,
+#language-dialog .dialog-actions button i,
+#prop-dialog .dialog-actions button i {
   --_size: 1.25rem;
   font-size: 1.25rem;
   width: 1.25rem;
@@ -609,7 +650,54 @@ dialog#logs-dialog:is(.active, [open]) {
   opacity: 1;
   transform: scale(1) rotate(0deg);
 }
-#logs-dialog .logs-dialog-body {
+
+/* Expressive Search Inputs inside Dialog Header */
+dialog.expressive-dialog header .field,
+#language-dialog header .field,
+#prop-dialog header .field {
+  margin-top: 0.25rem !important;
+  margin-block-start: 0.25rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+dialog.expressive-dialog header .field input[type="search"],
+#language-dialog #language-search,
+#prop-dialog #prop-search {
+  color: var(--ui-text) !important;
+  font-weight: 500 !important;
+}
+
+dialog.expressive-dialog header .field input[type="search"]::placeholder,
+#language-dialog #language-search::placeholder,
+#prop-dialog #prop-search::placeholder {
+  color: var(--ui-text) !important;
+  opacity: 0.75 !important;
+}
+
+dialog.expressive-dialog header .field > i,
+#language-dialog .field > i,
+#prop-dialog .field > i {
+  color: var(--ui-text) !important;
+  opacity: 0.85 !important;
+}
+
+dialog.expressive-dialog header .field.border,
+#language-dialog .field.border,
+#prop-dialog .field.border {
+  border: 1px solid var(--ui-select-border) !important;
+  background: color-mix(in srgb, var(--ui-card-bg) 75%, var(--ui-pill-bg) 25%) !important;
+}
+
+dialog.expressive-dialog header .field.border:focus-within,
+#language-dialog .field.border:focus-within,
+#prop-dialog .field.border:focus-within {
+  border-color: var(--ui-pill-bg) !important;
+}
+
+/* Dialog Scroll Body (Inset Container) */
+dialog.expressive-dialog .dialog-scroll-body,
+#logs-dialog .logs-dialog-body,
+#prop-dialog .prop-dialog-body {
   flex: 1 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
@@ -621,7 +709,9 @@ dialog#logs-dialog:is(.active, [open]) {
   box-sizing: border-box;
 }
 
-#logs-dialog .logs-dialog-body::-webkit-scrollbar {
+dialog.expressive-dialog .dialog-scroll-body::-webkit-scrollbar,
+#logs-dialog .logs-dialog-body::-webkit-scrollbar,
+#prop-dialog .prop-dialog-body::-webkit-scrollbar {
   display: none !important;
 }
 
@@ -938,117 +1028,13 @@ button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme
   background: color-mix(in srgb, var(--ui-select-bg) 86%, #ffffff 14%) !important;
 }
 
-dialog#language-dialog {
-  display: none;
-  position: fixed;
-  z-index: 61;
-  top: calc(env(safe-area-inset-top, 0px) + 1rem);
-  bottom: calc(80px + 2rem + env(safe-area-inset-bottom, 0px));
-  left: max(1rem, env(safe-area-inset-left, 0px));
-  right: max(1rem, env(safe-area-inset-right, 0px));
-  margin: auto;
-  width: min(calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 680px);
-  max-width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
-  height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  max-height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  max-height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  background: var(--ui-card-bg);
-  color: var(--ui-text);
-  padding: 1.25rem;
-  box-sizing: border-box;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
-}
-
-dialog#language-dialog:is(.active, [open]) {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-#language-dialog header,
-#language-dialog header.fixed {
-  margin: 0 !important;
-  margin-block-start: 0 !important;
-  inset: auto !important;
-  top: 0 !important;
-  padding: 0 !important;
-  min-height: auto !important;
-  min-block-size: auto !important;
-  background: transparent !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-#language-dialog header nav {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  min-height: 36px !important;
-}
-
-#language-dialog header h5 {
-  margin: 0 !important;
-  padding-left: 0.45rem !important;
-  padding-inline-start: 0.45rem !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 0.5rem !important;
-  font-size: 1.35rem !important;
-  font-weight: 700 !important;
-  color: var(--ui-text) !important;
-  line-height: 1.2 !important;
-}
-
-#language-dialog header .field {
-  margin-top: 1.25rem !important;
-  margin-block-start: 1.25rem !important;
-  margin-bottom: 0 !important;
-}
-
-#language-dialog #language-search {
-  color: var(--ui-text) !important;
-  font-weight: 500 !important;
-}
-
-#language-dialog #language-search::placeholder {
-  color: var(--ui-text) !important;
-  opacity: 0.75 !important;
-}
-
-#language-dialog .field > i {
-  color: var(--ui-text) !important;
-  opacity: 0.85 !important;
-}
-
-#language-dialog .field.border {
-  border: 1px solid var(--ui-select-border) !important;
-  background: color-mix(in srgb, var(--ui-card-bg) 75%, var(--ui-pill-bg) 25%) !important;
-}
-
-#language-dialog .field.border:focus-within {
-  border-color: var(--ui-pill-bg) !important;
-}
-
 #language-dialog .dialog-scroll-body {
-  flex: 1 !important;
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  min-height: 0 !important;
   margin-top: 0.85rem !important;
   padding: 0 0 0.75rem 0 !important;
   margin-bottom: 0 !important;
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
   border-radius: 0 !important;
-}
-
-#language-dialog .dialog-scroll-body::-webkit-scrollbar {
-  display: none !important;
 }
 
 #language-dialog #lang-options,
@@ -1682,28 +1668,35 @@ dialog.snackbar-dialog h5 {
 }
 
 @media (max-width: 480px) {
+  dialog.expressive-dialog,
   dialog#logs-dialog,
-  dialog#language-dialog {
+  dialog#language-dialog,
+  dialog#prop-dialog {
     width: min(calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 680px);
     max-width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
     padding: 1rem 0.85rem;
     border-radius: 1.5rem;
   }
 
+  dialog.expressive-dialog header h5,
   #logs-dialog header h5,
-  #language-dialog header h5 {
+  #language-dialog header h5,
+  #prop-dialog header h5 {
     padding-left: 0.5rem !important;
     padding-inline-start: 0.5rem !important;
   }
 
-  .recent-logs-content .log-item {
+  .recent-logs-content .log-item,
+  .prop-list .prop-item {
     padding: 0.65rem 0.75rem;
   }
 }
 
 @media (max-height: 560px) {
+  dialog.expressive-dialog,
   dialog#logs-dialog,
-  dialog#language-dialog {
+  dialog#language-dialog,
+  dialog#prop-dialog {
     top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
     bottom: calc(80px + 1.5rem + env(safe-area-inset-bottom, 0px));
     height: calc(100vh - 80px - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
@@ -1714,8 +1707,141 @@ dialog.snackbar-dialog h5 {
     border-radius: 1.25rem;
   }
 
+  dialog.expressive-dialog header nav,
   #logs-dialog header nav,
-  #language-dialog header nav {
+  #language-dialog header nav,
+  #prop-dialog header nav {
     margin-bottom: 0.5rem !important;
   }
+}
+
+/* Persistent Property Items */
+.prop-list {
+  margin: 0;
+  padding: 0 !important;
+}
+
+.prop-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: none !important;
+  border-radius: 0 !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--ui-card-border) 40%, transparent) !important;
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.prop-item:last-child {
+  border-bottom: none !important;
+}
+
+.prop-item:hover {
+  background: color-mix(in srgb, var(--ui-card-border) 12%, transparent);
+}
+
+.prop-item.prop-disabled {
+  opacity: 0.55;
+}
+
+.prop-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.prop-name {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--ui-text);
+  word-break: break-all;
+  line-height: 1.3;
+}
+
+.prop-item.prop-disabled .prop-name {
+  text-decoration: line-through;
+  color: var(--ui-muted);
+}
+
+.prop-value {
+  font-size: 0.75rem;
+  color: var(--ui-muted);
+  font-family: var(--md-sys-typescale-body-small-font), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  word-break: break-all;
+  line-height: 1.35;
+}
+
+.prop-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.prop-actions button {
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  min-height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--ui-muted);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.prop-actions button:hover {
+  background: color-mix(in srgb, var(--ui-pill-bg) 18%, transparent) !important;
+  color: var(--ui-pill-bg) !important;
+}
+
+.prop-actions button:active {
+  transform: scale(0.92);
+}
+
+.prop-actions button i {
+  font-size: 1.25rem;
+}
+
+.prop-empty,
+.prop-loading,
+.prop-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  color: var(--ui-muted);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  font-weight: 500;
+  text-align: center;
+}
+
+.prop-empty i,
+.prop-loading i,
+.prop-error i {
+  font-size: 1.15rem;
+  opacity: 0.75;
+}
+
+.prop-error {
+  color: #f87171;
+}
+
+.prop-loading i.loading-icon {
+  animation: prop-spin 1s linear infinite;
+}
+
+@keyframes prop-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }

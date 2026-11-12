@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "ביצוע הסקריפט נכשל.",
   "advance_set_pif": "הגדרת טביעת אצבע (PIF)",
   "dialog_clear": "נקה",
-  "dialog_close": "סגור"
+  "dialog_close": "סגור",
+  "advance_edit_persist_props": "עריכת מאפיינים מתמשכים",
+  "persist_props_title": "מאפיינים מתמשכים",
+  "persist_props_search": "חיפוש מאפיינים...",
+  "persist_props_empty": "לא נמצאו מאפיינים מתמשכים תואמים.",
+  "persist_props_add": "הוספת מאפיין",
+  "persist_props_save": "שמירה",
+  "persist_props_confirm_delete": "למחוק את המאפיין {name}?"
 }

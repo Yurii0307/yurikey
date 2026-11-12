@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Scriptudførelse mislykkedes.",
   "advance_set_pif": "Angiv fingeraftryk (PIF)",
   "dialog_clear": "Ryd",
-  "dialog_close": "Luk"
+  "dialog_close": "Luk",
+  "advance_edit_persist_props": "Rediger vedvarende egenskaber",
+  "persist_props_title": "Vedvarende egenskaber",
+  "persist_props_search": "Søg efter egenskaber...",
+  "persist_props_empty": "Ingen matchende vedvarende egenskaber fundet.",
+  "persist_props_add": "Tilføj egenskab",
+  "persist_props_save": "Gem",
+  "persist_props_confirm_delete": "Slet egenskaben {name}?"
 }

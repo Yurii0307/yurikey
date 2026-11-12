@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Spuštění skriptu selhalo.",
   "advance_set_pif": "Nastavit otisk prstu (PIF)",
   "dialog_clear": "Vymazat",
-  "dialog_close": "Zavřít"
+  "dialog_close": "Zavřít",
+  "advance_edit_persist_props": "Upravit trvalé vlastnosti",
+  "persist_props_title": "Trvalé vlastnosti",
+  "persist_props_search": "Hledat vlastnosti...",
+  "persist_props_empty": "Nebyly nalezeny žádné odpovídající trvalé vlastnosti.",
+  "persist_props_add": "Přidat vlastnost",
+  "persist_props_save": "Uložit",
+  "persist_props_confirm_delete": "Smazat vlastnost {name}?"
 }

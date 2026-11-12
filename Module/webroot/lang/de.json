@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Skriptausführung fehlgeschlagen.",
   "advance_set_pif": "Fingerabdruck festlegen (PIF)",
   "dialog_clear": "Löschen",
-  "dialog_close": "Schließen"
+  "dialog_close": "Schließen",
+  "advance_edit_persist_props": "Persistente Eigenschaften bearbeiten",
+  "persist_props_title": "Persistente Eigenschaften",
+  "persist_props_search": "Eigenschaften suchen...",
+  "persist_props_empty": "Keine passenden persistenten Eigenschaften gefunden.",
+  "persist_props_add": "Eigenschaft hinzufügen",
+  "persist_props_save": "Speichern",
+  "persist_props_confirm_delete": "Eigenschaft {name} löschen?"
 }

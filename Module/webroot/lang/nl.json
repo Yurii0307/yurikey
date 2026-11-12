@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Scriptuitvoering mislukt.",
   "advance_set_pif": "Vingerafdruk instellen (PIF)",
   "dialog_clear": "Wissen",
-  "dialog_close": "Sluiten"
+  "dialog_close": "Sluiten",
+  "advance_edit_persist_props": "Permanente eigenschappen bewerken",
+  "persist_props_title": "Permanente eigenschappen",
+  "persist_props_search": "Eigenschappen zoeken...",
+  "persist_props_empty": "Geen overeenkomende permanente eigenschappen gevonden.",
+  "persist_props_add": "Eigenschap toevoegen",
+  "persist_props_save": "Opslaan",
+  "persist_props_confirm_delete": "Eigenschap {name} verwijderen?"
 }

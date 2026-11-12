@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "스크립트 실행에 실패했습니다。",
   "advance_set_pif": "지문 설정 (PIF)",
   "dialog_clear": "지우기",
-  "dialog_close": "닫기"
+  "dialog_close": "닫기",
+  "advance_edit_persist_props": "영구 속성 편집",
+  "persist_props_title": "영구 속성",
+  "persist_props_search": "속성 검색...",
+  "persist_props_empty": "일치하는 영구 속성을 찾을 수 없습니다.",
+  "persist_props_add": "속성 추가",
+  "persist_props_save": "저장",
+  "persist_props_confirm_delete": "{name} 속성을 삭제할까요?"
 }

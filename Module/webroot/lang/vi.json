@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Thực thi tập lệnh thất bại.",
   "advance_set_pif": "Đặt dấu vân tay (PIF)",
   "dialog_clear": "Xóa",
-  "dialog_close": "Đóng"
+  "dialog_close": "Đóng",
+  "advance_edit_persist_props": "Chỉnh sửa thuộc tính cố định",
+  "persist_props_title": "Thuộc tính cố định",
+  "persist_props_search": "Tìm kiếm thuộc tính...",
+  "persist_props_empty": "Không tìm thấy thuộc tính cố định phù hợp.",
+  "persist_props_add": "Thêm thuộc tính",
+  "persist_props_save": "Lưu",
+  "persist_props_confirm_delete": "Xóa thuộc tính {name}?"
 }

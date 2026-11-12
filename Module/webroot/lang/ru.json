@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Не удалось выполнить скрипт.",
   "advance_set_pif": "Установить отпечаток (PIF)",
   "dialog_clear": "Очистить",
-  "dialog_close": "Закрыть"
+  "dialog_close": "Закрыть",
+  "advance_edit_persist_props": "Изменить постоянные свойства",
+  "persist_props_title": "Постоянные свойства",
+  "persist_props_search": "Поиск свойств...",
+  "persist_props_empty": "Соответствующие постоянные свойства не найдены.",
+  "persist_props_add": "Добавить свойство",
+  "persist_props_save": "Сохранить",
+  "persist_props_confirm_delete": "Удалить свойство {name}?"
 }

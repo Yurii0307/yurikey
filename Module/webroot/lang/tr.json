@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Komut dosyası çalıştırılamadı.",
   "advance_set_pif": "Parmak izi ayarla (PIF)",
   "dialog_clear": "Temizle",
-  "dialog_close": "Kapat"
+  "dialog_close": "Kapat",
+  "advance_edit_persist_props": "Kalıcı özellikleri düzenle",
+  "persist_props_title": "Kalıcı özellikler",
+  "persist_props_search": "Özellikleri ara...",
+  "persist_props_empty": "Eşleşen kalıcı özellik bulunamadı.",
+  "persist_props_add": "Özellik ekle",
+  "persist_props_save": "Kaydet",
+  "persist_props_confirm_delete": "{name} özelliği silinsin mi?"
 }

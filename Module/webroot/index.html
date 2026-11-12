@@ -93,6 +93,7 @@
         <h6 class="card-title"><i>tune</i><span data-i18n="nav_advance_menu">Menu +</span></h6>
         <div class="stack">
           <button class="responsive round large wave" data-script="clear_all_detection_traces.sh" data-i18n="advance_clear_all_detection_traces">Clear all detection traces</button>
+          <button type="button" id="open-persist-props-btn" class="responsive round large wave" data-i18n="advance_edit_persist_props">Edit Persistent Properties</button>
           <button class="responsive round large wave" data-script="hma.sh" data-i18n="advance_set_hma-oss_configs">Set HMA-oss configs</button>
           <button class="responsive round large wave" data-script="znctl.sh" data-i18n="advance_set_zygisk_next_configs">Set Zygisk Next configs</button>
           <button class="responsive round large wave" data-script="pif.sh" data-i18n="advance_set_pif">Set fingerprint (PIF)</button>
@@ -238,7 +239,7 @@
   <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
 
   <div id="logs-dialog-overlay" class="overlay blur"></div>
-  <dialog id="logs-dialog" class="round">
+  <dialog id="logs-dialog" class="round expressive-dialog">
     <header>
       <nav>
         <h5 class="max">
@@ -270,7 +271,7 @@
     </div>
   </dialog>
   <div id="language-dialog-overlay" class="overlay blur"></div>
-  <dialog id="language-dialog" class="round">
+  <dialog id="language-dialog" class="round expressive-dialog">
     <header>
       <nav>
         <h5 class="max">
@@ -489,10 +490,44 @@
     </div>
   </dialog>
 
+  <div id="prop-dialog-overlay" class="overlay blur"></div>
+  <dialog id="prop-dialog" class="round expressive-dialog">
+    <header>
+      <nav>
+        <h5 class="max">
+          <i>tune</i>
+          <span data-i18n="persist_props_title">Persistent Properties</span>
+        </h5>
+        <div class="dialog-actions">
+          <button type="button" id="prop-add-btn" class="circle transparent wave" data-i18n-title="persist_props_add" title="Add Property" aria-label="Add Property">
+            <i>add</i>
+          </button>
+          <button type="button" id="prop-dialog-close" class="circle transparent wave" data-i18n-title="dialog_close" aria-label="Close">
+            <i>close</i>
+          </button>
+        </div>
+      </nav>
+      <div class="field round small prefix border">
+        <i>search</i>
+        <input id="prop-search" type="search" data-i18n-placeholder="persist_props_search" placeholder="Search properties..." autocomplete="off" />
+      </div>
+    </header>
+
+    <div class="dialog-scroll-body prop-dialog-body">
+      <div id="prop-list-container" class="prop-list">
+        <div class="prop-loading">
+          <i class="loading-icon">sync</i>
+          <span>Loading properties...</span>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <script src="js/beer.min.js" type="module"></script>
   <!-- Utilities -->
   <script src="js/utils/i18n.js"></script>
   <script src="js/utils/toast.js"></script>
+  <script src="js/utils/bridge.js"></script>
   <script src="js/utils/scriptExecutor.js"></script>
   <!-- Components -->
   <script src="js/components/navigation.js"></script>
@@ -502,6 +537,7 @@
   <script src="js/theme.js"></script>
   <script src="js/redirect.js"></script>
   <script src="js/device.js"></script>
+  <script src="js/components/propEditor.js"></script>
   <script src="js/main.js"></script>
   <script src="js/version.js"></script>
   <script src="js/dev.js?v=3"></script>

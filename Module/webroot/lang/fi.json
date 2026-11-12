@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Komentosarjan suoritus epäonnistui.",
   "advance_set_pif": "Aseta sormenjälki (PIF)",
   "dialog_clear": "Tyhjennä",
-  "dialog_close": "Sulje"
+  "dialog_close": "Sulje",
+  "advance_edit_persist_props": "Muokkaa pysyviä ominaisuuksia",
+  "persist_props_title": "Pysyvät ominaisuudet",
+  "persist_props_search": "Hae ominaisuuksia...",
+  "persist_props_empty": "Vastaavia pysyviä ominaisuuksia ei löytynyt.",
+  "persist_props_add": "Lisää ominaisuus",
+  "persist_props_save": "Tallenna",
+  "persist_props_confirm_delete": "Poistetaanko ominaisuus {name}?"
 }

@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
   "advance_set_pif": "تعيين بصمة الإصبع (PIF)",
   "dialog_clear": "مسح",
-  "dialog_close": "إغلاق"
+  "dialog_close": "إغلاق",
+  "advance_edit_persist_props": "تعديل الخصائص الدائمة",
+  "persist_props_title": "الخصائص الدائمة",
+  "persist_props_search": "بحث عن الخصائص...",
+  "persist_props_empty": "لم يتم العثور على خصائص دائمة مطابقة.",
+  "persist_props_add": "إضافة خاصية",
+  "persist_props_save": "حفظ",
+  "persist_props_confirm_delete": "حذف الخاصية {name}؟"
 }

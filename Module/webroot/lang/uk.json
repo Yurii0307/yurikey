@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Не вдалося виконати скрипт.",
   "advance_set_pif": "Встановити відбиток (PIF)",
   "dialog_clear": "Очистити",
-  "dialog_close": "Закрити"
+  "dialog_close": "Закрити",
+  "advance_edit_persist_props": "Редагувати постійні властивості",
+  "persist_props_title": "Постійні властивості",
+  "persist_props_search": "Пошук властивостей...",
+  "persist_props_empty": "Відповідних постійних властивостей не знайдено.",
+  "persist_props_add": "Додати властивість",
+  "persist_props_save": "Зберегти",
+  "persist_props_confirm_delete": "Видалити властивість {name}?"
 }

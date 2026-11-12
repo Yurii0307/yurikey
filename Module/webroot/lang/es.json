@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Error al ejecutar el script.",
   "advance_set_pif": "Establecer huella digital (PIF)",
   "dialog_clear": "Limpiar",
-  "dialog_close": "Cerrar"
+  "dialog_close": "Cerrar",
+  "advance_edit_persist_props": "Editar propiedades persistentes",
+  "persist_props_title": "Propiedades persistentes",
+  "persist_props_search": "Buscar propiedades...",
+  "persist_props_empty": "No se encontraron propiedades persistentes coincidentes.",
+  "persist_props_add": "Añadir propiedad",
+  "persist_props_save": "Guardar",
+  "persist_props_confirm_delete": "¿Eliminar la propiedad {name}?"
 }

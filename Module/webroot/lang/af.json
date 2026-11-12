@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Skripuitvoering het misluk.",
   "advance_set_pif": "Stel vingerafdruk (PIF) in",
   "dialog_clear": "Vee uit",
-  "dialog_close": "Sluit"
+  "dialog_close": "Sluit",
+  "advance_edit_persist_props": "Wysig blywende eienskappe",
+  "persist_props_title": "Blywende eienskappe",
+  "persist_props_search": "Soek eienskappe...",
+  "persist_props_empty": "Geen ooreenstemmende blywende eienskappe gevind nie.",
+  "persist_props_add": "Voeg eienskap by",
+  "persist_props_save": "Stoor",
+  "persist_props_confirm_delete": "Verwyder eienskap {name}?"
 }

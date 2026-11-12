@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Falha na execução do script.",
   "advance_set_pif": "Definir impressão digital (PIF)",
   "dialog_clear": "Limpar",
-  "dialog_close": "Fechar"
+  "dialog_close": "Fechar",
+  "advance_edit_persist_props": "Editar propriedades persistentes",
+  "persist_props_title": "Propriedades persistentes",
+  "persist_props_search": "Pesquisar propriedades...",
+  "persist_props_empty": "Nenhuma propriedade persistente correspondente encontrada.",
+  "persist_props_add": "Adicionar propriedade",
+  "persist_props_save": "Salvar",
+  "persist_props_confirm_delete": "Excluir a propriedade {name}?"
 }

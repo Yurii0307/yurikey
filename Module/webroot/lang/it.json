@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Esecuzione dello script non riuscita.",
   "advance_set_pif": "Imposta impronta digitale (PIF)",
   "dialog_clear": "Cancella",
-  "dialog_close": "Chiudi"
+  "dialog_close": "Chiudi",
+  "advance_edit_persist_props": "Modifica proprietà persistenti",
+  "persist_props_title": "Proprietà persistenti",
+  "persist_props_search": "Cerca proprietà...",
+  "persist_props_empty": "Nessuna proprietà persistente corrispondente trovata.",
+  "persist_props_add": "Aggiungi proprietà",
+  "persist_props_save": "Salva",
+  "persist_props_confirm_delete": "Eliminare la proprietà {name}?"
 }

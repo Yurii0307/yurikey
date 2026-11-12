@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Η εκτέλεση του σεναρίου απέτυχε.",
   "advance_set_pif": "Ορισμός αποτυπώματος (PIF)",
   "dialog_clear": "Εκκαθάριση",
-  "dialog_close": "Κλείσιμο"
+  "dialog_close": "Κλείσιμο",
+  "advance_edit_persist_props": "Επεξεργασία μόνιμων ιδιοτήτων",
+  "persist_props_title": "Μόνιμες ιδιότητες",
+  "persist_props_search": "Αναζήτηση ιδιοτήτων...",
+  "persist_props_empty": "Δεν βρέθηκαν αντίστοιχες μόνιμες ιδιότητες.",
+  "persist_props_add": "Προσθήκη ιδιότητας",
+  "persist_props_save": "Αποθήκευση",
+  "persist_props_confirm_delete": "Διαγραφή ιδιότητας {name};"
 }

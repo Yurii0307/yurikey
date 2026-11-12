@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Script could not be executed. Check script path or runtime environment.",
   "advance_set_pif": "Ujjlenyomat beállítása (PIF)",
   "dialog_clear": "Törlés",
-  "dialog_close": "Bezárás"
+  "dialog_close": "Bezárás",
+  "advance_edit_persist_props": "Állandó tulajdonságok szerkesztése",
+  "persist_props_title": "Állandó tulajdonságok",
+  "persist_props_search": "Tulajdonságok keresése...",
+  "persist_props_empty": "Nem találhatók egyező állandó tulajdonságok.",
+  "persist_props_add": "Tulajdonság hozzáadása",
+  "persist_props_save": "Mentés",
+  "persist_props_confirm_delete": "Törli a(z) {name} tulajdonságot?"
 }

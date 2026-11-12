@@ -90,5 +90,12 @@
   "script_execution_failed_generic": "Script execution failed.",
   "advance_set_pif": "Set fingerprint (PIF)",
   "dialog_clear": "Clear",
-  "dialog_close": "Close"
+  "dialog_close": "Close",
+  "advance_edit_persist_props": "Edit Persistent Properties",
+  "persist_props_title": "Persistent Properties",
+  "persist_props_search": "Search properties...",
+  "persist_props_empty": "No matching persistent properties found.",
+  "persist_props_add": "Add Property",
+  "persist_props_save": "Save",
+  "persist_props_confirm_delete": "Delete property {name}?"
 }

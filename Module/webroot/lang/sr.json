@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Извршавање скрипте није успело.",
   "advance_set_pif": "Подеси отисак (PIF)",
   "dialog_clear": "Обриши",
-  "dialog_close": "Затвори"
+  "dialog_close": "Затвори",
+  "advance_edit_persist_props": "Уреди трајна својства",
+  "persist_props_title": "Трајна својства",
+  "persist_props_search": "Претражи својства...",
+  "persist_props_empty": "Нису пронађена одговарајућа трајна својства.",
+  "persist_props_add": "Додај својство",
+  "persist_props_save": "Сачувај",
+  "persist_props_confirm_delete": "Избрисати својство {name}?"
 }

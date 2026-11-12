@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Échec de l'exécution du script.",
   "advance_set_pif": "Définir l'empreinte digitale (PIF)",
   "dialog_clear": "Effacer",
-  "dialog_close": "Fermer"
+  "dialog_close": "Fermer",
+  "advance_edit_persist_props": "Modifier les propriétés persistantes",
+  "persist_props_title": "Propriétés persistantes",
+  "persist_props_search": "Rechercher des propriétés...",
+  "persist_props_empty": "Aucune propriété persistante correspondante trouvée.",
+  "persist_props_add": "Ajouter une propriété",
+  "persist_props_save": "Enregistrer",
+  "persist_props_confirm_delete": "Supprimer la propriété {name} ?"
 }

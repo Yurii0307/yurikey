@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "スクリプトの実行に失敗しました。",
   "advance_set_pif": "指紋を設定 (PIF)",
   "dialog_clear": "消去",
-  "dialog_close": "閉じる"
+  "dialog_close": "閉じる",
+  "advance_edit_persist_props": "永続プロパティを編集",
+  "persist_props_title": "永続プロパティ",
+  "persist_props_search": "プロパティを検索...",
+  "persist_props_empty": "一致する永続プロパティが見つかりません。",
+  "persist_props_add": "プロパティを追加",
+  "persist_props_save": "保存",
+  "persist_props_confirm_delete": "プロパティ {name} を削除しますか？"
 }

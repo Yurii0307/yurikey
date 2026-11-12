@@ -89,5 +89,12 @@
   "script_execution_failed_generic": "Skriptkjøring mislyktes.",
   "advance_set_pif": "Angi fingeravtrykk (PIF)",
   "dialog_clear": "Tøm",
-  "dialog_close": "Lukk"
+  "dialog_close": "Lukk",
+  "advance_edit_persist_props": "Rediger vedvarende egenskaper",
+  "persist_props_title": "Vedvarende egenskaper",
+  "persist_props_search": "Søk etter egenskaper...",
+  "persist_props_empty": "Ingen samsvarende vedvarende egenskaper funnet.",
+  "persist_props_add": "Legg til egenskap",
+  "persist_props_save": "Lagre",
+  "persist_props_confirm_delete": "Slette egenskapen {name}?"
 }
