@@ -1,35 +1,7 @@
-// === Function: Open a URL using Android Intent via KernelSU ===
+// === Function: Open a URL using Android Intent via Unified Bridge ===
 function openUrlViaIntent(url) {
-  if (!url || typeof url !== "string") return;
-
-  // Restrict to safe web protocols
-  const trimmed = url.trim();
-  if (!/^https?:\/\//i.test(trimmed)) {
-    console.warn("Disallowed URL protocol:", trimmed);
-    return;
-  }
-
-  // Escape single quotes for POSIX sh: ' -> '\''
-  const safeUrl = trimmed.replace(/'/g, "'\\''");
-
-  // Build the intent command to open the URL
-  const intentCmd = `nohup am start -a android.intent.action.VIEW -d '${safeUrl}' >/dev/null 2>&1 &`;
-
-  // Check if KernelSU is available and execute the intent command
-  if (typeof ksu === "object" && typeof ksu.exec === "function") {
-    const cbId = `cb_${Date.now()}`;
-    window[cbId] = () => delete window[cbId];
-    ksu.exec(intentCmd, "{}", cbId);
-  } else {
-    // Fallback for non-KernelSU environments (desktop browser, webview without exec bridge)
-    try {
-      const opened = window.open(trimmed, "_blank", "noopener,noreferrer");
-      if (!opened) {
-        window.location.href = trimmed;
-      }
-    } catch {
-      window.location.href = trimmed;
-    }
+  if (window.Bridge && typeof window.Bridge.openUrl === "function") {
+    window.Bridge.openUrl(url);
   }
 }
 

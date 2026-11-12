@@ -1,39 +1,37 @@
-// Network Status Component
+// Network Status Component with Multi-Region Probes
+const PROBE_ENDPOINTS = [
+  "https://clients3.google.com/generate_204",
+  "https://cp.cloudflare.com/generate_204",
+  "https://connect.rom.miui.com/generate_204",
+];
+
 let lastStatus = null;
 let isChecking = false;
 let refreshTimer = null;
 
-async function verifyRealInternet() {
+async function probeUrl(url, timeoutMs = 2500) {
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
-
-    await fetch("https://clients3.google.com/generate_204", {
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+    await fetch(url, {
       method: "GET",
       cache: "no-store",
+      mode: "no-cors",
       signal: controller.signal,
     });
-
-    clearTimeout(timeoutId);
+    clearTimeout(timer);
     return true;
   } catch {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 4000);
-
-      await fetch("https://clients3.google.com/generate_204", {
-        method: "GET",
-        cache: "no-store",
-        mode: "no-cors",
-        signal: controller.signal,
-      });
-
-      clearTimeout(timeoutId);
-      return true;
-    } catch {
-      return false;
-    }
+    return false;
   }
+}
+
+async function verifyRealInternet() {
+  for (const endpoint of PROBE_ENDPOINTS) {
+    const ok = await probeUrl(endpoint);
+    if (ok) return true;
+  }
+  return false;
 }
 
 async function updateNetworkStatus() {
@@ -82,7 +80,7 @@ async function updateNetworkStatus() {
         statusRow.classList.add("offline");
         statusText.textContent = t("home_status_offline");
         statusRow.title = t("status_offline");
-        if (lastStatus !== null) {
+        if (lastStatus !== null && !navigator.onLine) {
           showToast(t("status_offline"), "error");
         }
         lastStatus = "offline";
