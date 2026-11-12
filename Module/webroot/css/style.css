@@ -139,6 +139,7 @@ body:not(.i18n-ready) [data-i18n] {
   max-width: 480px;
   margin: 0 auto;
   padding: 1rem 0 6.5rem;
+  padding: calc(env(safe-area-inset-top, 0px) + 1rem) 0 calc(6.5rem + env(safe-area-inset-bottom, 0px));
   box-sizing: border-box;
 }
 
@@ -147,6 +148,8 @@ body:not(.i18n-ready) [data-i18n] {
   width: 100%;
   box-sizing: border-box;
   opacity: 1;
+  margin: 0 !important;
+  margin-block-start: 0 !important;
 }
 
 .page.active {
@@ -155,9 +158,13 @@ body:not(.i18n-ready) [data-i18n] {
   box-sizing: border-box;
   opacity: 1;
   animation: none;
+  margin: 0 !important;
+  margin-block-start: 0 !important;
 }
 .page-title {
-  margin: 0 0 1rem;
+  margin: 0 0 1rem !important;
+  margin-block-start: 0 !important;
+  padding-top: 0 !important;
   font-size: var(--md-sys-typescale-headline-small-size);
   font-weight: var(--md-sys-typescale-headline-small-weight);
   line-height: var(--md-sys-typescale-headline-small-line-height);
@@ -232,12 +239,16 @@ article,
 /* Home Page Components */
 
 .home-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
   gap: 1rem;
-  padding: 0;
-  margin-bottom: 0.5rem;
+  padding: 0 !important;
+  min-height: auto !important;
+  min-block-size: auto !important;
+  margin-bottom: 1.25rem !important;
+  border: none !important;
+  border-bottom: none !important;
 }
 
 #home-page .home-title {
@@ -245,8 +256,8 @@ article,
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  padding: 1.1rem 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   font-size: clamp(1.85rem, 5.5vw, 2.25rem);
   font-weight: 700;
   font-stretch: 151%;
@@ -358,6 +369,15 @@ article,
   color: var(--ui-text);
   word-break: break-word;
 }
+
+#clock-date,
+#clock-time {
+  font-size: clamp(1.1rem, 3.8vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+}
 #status-row.online {
   background: color-mix(in srgb, #22c55e 16%, var(--ui-card-bg));
   border-color: color-mix(in srgb, #22c55e 30%, var(--ui-card-border));
@@ -381,6 +401,7 @@ article,
   display: none;
   position: fixed;
   bottom: calc(80px + 1.75rem);
+  bottom: calc(80px + 1.75rem + env(safe-area-inset-bottom, 0px));
   right: max(1rem, calc((100vw - 480px) / 2 + 1rem));
   width: 52px;
   height: 52px;
@@ -392,12 +413,20 @@ article,
   color: var(--ui-pill-text) !important;
   border: 1px solid var(--ui-pill-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 28%);
-  z-index: 95;
+  z-index: 55;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
+}
+
+body.logs-dialog-open .logs-fab,
+body:has(#logs-dialog:is(.active, [open])) .logs-fab {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: scale(0.6) !important;
 }
 
 .logs-fab:hover {
@@ -422,12 +451,17 @@ dialog#logs-dialog {
   display: none;
   position: fixed;
   z-index: 61;
-  inset: 0;
+  top: calc(env(safe-area-inset-top, 0px) + 1rem);
+  bottom: calc(80px + 2rem + env(safe-area-inset-bottom, 0px));
+  left: max(1rem, env(safe-area-inset-left, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
   margin: auto;
-  width: min(calc(100vw - 2rem), 680px);
-  max-width: calc(100vw - 2rem);
-  height: min(calc(100dvh - 3.5rem), 746px);
-  max-height: calc(100dvh - 3.5rem);
+  width: min(calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 680px);
+  max-width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  max-height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  max-height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   border-radius: 1.75rem;
   border: 1px solid var(--ui-card-border);
   background: var(--ui-card-bg);
@@ -438,7 +472,6 @@ dialog#logs-dialog {
   overflow: hidden;
   box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
 }
-
 dialog#logs-dialog:is(.active, [open]) {
   display: flex !important;
   visibility: visible !important;
@@ -471,6 +504,8 @@ dialog#logs-dialog:is(.active, [open]) {
 
 #logs-dialog header h5 {
   margin: 0 !important;
+  padding-left: 0.45rem !important;
+  padding-inline-start: 0.45rem !important;
   display: flex !important;
   align-items: center !important;
   gap: 0.55rem !important;
@@ -525,7 +560,18 @@ dialog#logs-dialog:is(.active, [open]) {
 }
 
 #logs-dialog .dialog-actions button i {
-  font-size: 1.2rem;
+  --_size: 1.25rem;
+  font-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 0;
+  min-height: 0;
+  min-inline-size: 0;
+  min-block-size: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
   color: inherit;
 }
 
@@ -533,23 +579,11 @@ dialog#logs-dialog:is(.active, [open]) {
   display: inline-grid;
   place-items: center;
   position: relative;
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
-  min-height: 34px;
-  padding: 0;
   overflow: hidden;
 }
 
 #logs-dialog .dialog-actions #logs-dialog-copy i {
   grid-area: 1 / 1;
-  font-size: 1.25rem;
-  width: 1.25rem;
-  height: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
   pointer-events: none;
   transform-origin: center center;
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -579,6 +613,7 @@ dialog#logs-dialog:is(.active, [open]) {
   flex: 1 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
+  min-height: 0 !important;
   border-radius: 1rem;
   background: color-mix(in srgb, var(--ui-card-bg) 55%, var(--ui-bg) 45%);
   border: 1px solid color-mix(in srgb, var(--ui-card-border) 60%, transparent);
@@ -897,14 +932,17 @@ dialog#language-dialog {
   display: none;
   position: fixed;
   z-index: 61;
-  inset: 0;
+  top: calc(env(safe-area-inset-top, 0px) + 1rem);
+  bottom: calc(80px + 2rem + env(safe-area-inset-bottom, 0px));
+  left: max(1rem, env(safe-area-inset-left, 0px));
+  right: max(1rem, env(safe-area-inset-right, 0px));
   margin: auto;
-  width: min(calc(100vw - 2rem), 680px);
-  max-width: calc(100vw - 2rem);
-  height: min(calc(100dvh - 3.5rem), 746px);
-  max-height: calc(100dvh - 3.5rem);
-  border-radius: 1.75rem;
-  border: 1px solid var(--ui-card-border);
+  width: min(calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 680px);
+  max-width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  max-height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  max-height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   background: var(--ui-card-bg);
   color: var(--ui-text);
   padding: 1.25rem;
@@ -945,6 +983,8 @@ dialog#language-dialog:is(.active, [open]) {
 
 #language-dialog header h5 {
   margin: 0 !important;
+  padding-left: 0.45rem !important;
+  padding-inline-start: 0.45rem !important;
   display: flex !important;
   align-items: center !important;
   gap: 0.5rem !important;
@@ -988,6 +1028,7 @@ dialog#language-dialog:is(.active, [open]) {
   flex: 1 !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
+  min-height: 0 !important;
   margin-top: 0.85rem !important;
   padding: 0 0 0.75rem 0 !important;
   margin-bottom: 0 !important;
@@ -1285,6 +1326,7 @@ button.contrib-card,
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   text-align: center;
   text-decoration: none;
   white-space: normal;
@@ -1360,6 +1402,9 @@ button.contrib-card,
 .contrib-role {
   font-size: 0.85rem;
   color: var(--ui-muted);
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .contrib-overlay {
@@ -1531,6 +1576,7 @@ dialog.snackbar-dialog h5 {
 .m3-nav-wrapper {
   position: fixed;
   bottom: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
   left: 0;
   right: 0;
   display: flex;
@@ -1622,5 +1668,44 @@ dialog.snackbar-dialog h5 {
 
   .mini-card {
     padding: 0.6rem 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  dialog#logs-dialog,
+  dialog#language-dialog {
+    width: min(calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), 680px);
+    max-width: calc(100vw - 2rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+    padding: 1rem 0.85rem;
+    border-radius: 1.5rem;
+  }
+
+  #logs-dialog header h5,
+  #language-dialog header h5 {
+    padding-left: 0.5rem !important;
+    padding-inline-start: 0.5rem !important;
+  }
+
+  .recent-logs-content .log-item {
+    padding: 0.65rem 0.75rem;
+  }
+}
+
+@media (max-height: 560px) {
+  dialog#logs-dialog,
+  dialog#language-dialog {
+    top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
+    bottom: calc(80px + 1.5rem + env(safe-area-inset-bottom, 0px));
+    height: calc(100vh - 80px - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    height: calc(100dvh - 80px - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100vh - 80px - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    max-height: calc(100dvh - 80px - 2rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    padding: 0.75rem 1rem;
+    border-radius: 1.25rem;
+  }
+
+  #logs-dialog header nav,
+  #language-dialog header nav {
+    margin-bottom: 0.5rem !important;
   }
 }
