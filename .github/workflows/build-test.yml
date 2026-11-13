@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - main
-      - expressive
   pull_request:
     branches:
       - main
-      - expressive
   workflow_dispatch:
 
 jobs:
