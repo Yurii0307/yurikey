@@ -96,5 +96,10 @@
   "persist_props_empty": "Ingen samsvarende vedvarende egenskaper funnet.",
   "persist_props_add": "Legg til egenskap",
   "persist_props_save": "Lagre",
-  "persist_props_confirm_delete": "Slette egenskapen {name}?"
+  "persist_props_confirm_delete": "Slette egenskapen {name}?",
+  "persist_props_saved": "Egenskapen {name} lagret.",
+  "persist_props_deleted": "Egenskapen {name} slettet.",
+  "persist_props_enabled": "Egenskapen {name} aktivert.",
+  "persist_props_disabled": "Egenskapen {name} deaktivert.",
+  "persist_props_failed": "Kunne ikke oppdatere egenskapen {name}."
 }

@@ -96,5 +96,10 @@
   "persist_props_empty": "Không tìm thấy thuộc tính cố định phù hợp.",
   "persist_props_add": "Thêm thuộc tính",
   "persist_props_save": "Lưu",
-  "persist_props_confirm_delete": "Xóa thuộc tính {name}?"
+  "persist_props_confirm_delete": "Xóa thuộc tính {name}?",
+  "persist_props_saved": "Đã lưu thuộc tính {name}.",
+  "persist_props_deleted": "Đã xóa thuộc tính {name}.",
+  "persist_props_enabled": "Đã bật thuộc tính {name}.",
+  "persist_props_disabled": "Đã tắt thuộc tính {name}.",
+  "persist_props_failed": "Không thể cập nhật thuộc tính {name}."
 }

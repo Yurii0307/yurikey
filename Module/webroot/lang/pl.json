@@ -96,5 +96,10 @@
   "persist_props_empty": "Nie znaleziono pasujących właściwości trwałych.",
   "persist_props_add": "Dodaj właściwość",
   "persist_props_save": "Zapisz",
-  "persist_props_confirm_delete": "Usunąć właściwość {name}?"
+  "persist_props_confirm_delete": "Usunąć właściwość {name}?",
+  "persist_props_saved": "Zapisano właściwość {name}.",
+  "persist_props_deleted": "Usunięto właściwość {name}.",
+  "persist_props_enabled": "Włączono właściwość {name}.",
+  "persist_props_disabled": "Wyłączono właściwość {name}.",
+  "persist_props_failed": "Nie udało się zaktualizować właściwości {name}."
 }

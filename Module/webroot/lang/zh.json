@@ -96,5 +96,10 @@
   "persist_props_empty": "未找到匹配的持久化属性。",
   "persist_props_add": "添加属性",
   "persist_props_save": "保存",
-  "persist_props_confirm_delete": "删除属性 {name}？"
+  "persist_props_confirm_delete": "删除属性 {name}？",
+  "persist_props_saved": "已保存属性 {name}。",
+  "persist_props_deleted": "已删除属性 {name}。",
+  "persist_props_enabled": "已启用属性 {name}。",
+  "persist_props_disabled": "已禁用属性 {name}。",
+  "persist_props_failed": "更新属性 {name} 失败。"
 }

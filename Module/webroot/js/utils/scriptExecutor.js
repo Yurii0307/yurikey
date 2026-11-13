@@ -265,6 +265,7 @@ function initLoggingUI() {
     if (logsFab) {
       logsFab.style.display = isEnabled ? "inline-flex" : "none";
     }
+    document.body.classList.toggle("log-viewer-enabled", isEnabled);
     if (!isEnabled) {
       closeLogsDialog();
     }

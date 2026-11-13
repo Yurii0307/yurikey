@@ -102,12 +102,57 @@
     return `'${String(value).replace(/'/g, "'\\''")}'`;
   }
 
-  function runPropAction(action, ...args) {
+  const PROP_STATUS_KEYS = {
+    set: "persist_props_saved",
+    delete: "persist_props_deleted",
+    enable: "persist_props_enabled",
+    disable: "persist_props_disabled",
+  };
+
+  const PROP_MESSAGES = {
+    persist_props_saved: name => `Saved property ${name}.`,
+    persist_props_deleted: name => `Deleted property ${name}.`,
+    persist_props_enabled: name => `Enabled property ${name}.`,
+    persist_props_disabled: name => `Disabled property ${name}.`,
+    persist_props_failed: name => `Failed to update property ${name}.`,
+  };
+
+  function propMessage(key, name) {
+    const fallback = PROP_MESSAGES[key] ? PROP_MESSAGES[key](name) : "";
+    return typeof window.tFormat === "function"
+      ? window.tFormat(key, { name }, fallback)
+      : fallback;
+  }
+
+  function notifyPropAction(action, name, error) {
+    if (typeof window.showToast !== "function") return;
+    if (error) {
+      window.showToast(error, "error", 4000);
+      return;
+    }
+    const key = PROP_STATUS_KEYS[action] || "persist_props_failed";
+    window.showToast(propMessage(key, name), "success");
+  }
+
+  async function runPropAction(action, ...args) {
+    const name = args[0];
     const argv = args.map(shQuote).join(" ");
     const suffix = argv ? ` ${argv}` : "";
-    return window.Bridge.exec(
-      `sh /data/adb/modules/Yurikey/Yuri/persist_props.sh ${action}${suffix}`
-    );
+    try {
+      const res = await window.Bridge.exec(
+        `sh /data/adb/modules/Yurikey/Yuri/persist_props.sh ${action}${suffix}`
+      );
+      if (res && typeof res.code === "number" && res.code !== 0) {
+        const detail = (res.stderr || res.stdout || "").trim();
+        notifyPropAction(action, name, detail || propMessage("persist_props_failed", name));
+      } else {
+        notifyPropAction(action, name);
+      }
+      return res;
+    } catch (err) {
+      notifyPropAction(action, name, err?.message || propMessage("persist_props_failed", name));
+      return null;
+    }
   }
 
   function bindItemEvents() {

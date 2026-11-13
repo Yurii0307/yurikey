@@ -96,5 +96,10 @@
   "persist_props_empty": "Nu s-au găsit proprietăți persistente corespunzătoare.",
   "persist_props_add": "Adaugă proprietate",
   "persist_props_save": "Salvează",
-  "persist_props_confirm_delete": "Ștergi proprietatea {name}?"
+  "persist_props_confirm_delete": "Ștergi proprietatea {name}?",
+  "persist_props_saved": "Proprietatea {name} a fost salvată.",
+  "persist_props_deleted": "Proprietatea {name} a fost ștearsă.",
+  "persist_props_enabled": "Proprietatea {name} a fost activată.",
+  "persist_props_disabled": "Proprietatea {name} a fost dezactivată.",
+  "persist_props_failed": "Nu s-a putut actualiza proprietatea {name}."
 }

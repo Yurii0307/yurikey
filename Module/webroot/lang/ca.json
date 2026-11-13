@@ -96,5 +96,10 @@
   "persist_props_empty": "No s'han trobat propietats persistents coincidents.",
   "persist_props_add": "Afegir propietat",
   "persist_props_save": "Desar",
-  "persist_props_confirm_delete": "Suprimir la propietat {name}?"
+  "persist_props_confirm_delete": "Suprimir la propietat {name}?",
+  "persist_props_saved": "Propietat {name} desada.",
+  "persist_props_deleted": "Propietat {name} suprimida.",
+  "persist_props_enabled": "Propietat {name} activada.",
+  "persist_props_disabled": "Propietat {name} desactivada.",
+  "persist_props_failed": "No s'ha pogut actualitzar la propietat {name}."
 }

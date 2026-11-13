@@ -96,5 +96,10 @@
   "persist_props_empty": "Vastaavia pysyviä ominaisuuksia ei löytynyt.",
   "persist_props_add": "Lisää ominaisuus",
   "persist_props_save": "Tallenna",
-  "persist_props_confirm_delete": "Poistetaanko ominaisuus {name}?"
+  "persist_props_confirm_delete": "Poistetaanko ominaisuus {name}?",
+  "persist_props_saved": "Ominaisuus {name} tallennettu.",
+  "persist_props_deleted": "Ominaisuus {name} poistettu.",
+  "persist_props_enabled": "Ominaisuus {name} otettu käyttöön.",
+  "persist_props_disabled": "Ominaisuus {name} poistettu käytöstä.",
+  "persist_props_failed": "Ominaisuuden {name} päivitys epäonnistui."
 }

@@ -96,5 +96,10 @@
   "persist_props_empty": "일치하는 영구 속성을 찾을 수 없습니다.",
   "persist_props_add": "속성 추가",
   "persist_props_save": "저장",
-  "persist_props_confirm_delete": "{name} 속성을 삭제할까요?"
+  "persist_props_confirm_delete": "{name} 속성을 삭제할까요?",
+  "persist_props_saved": "{name} 속성을 저장했습니다.",
+  "persist_props_deleted": "{name} 속성을 삭제했습니다.",
+  "persist_props_enabled": "{name} 속성을 활성화했습니다.",
+  "persist_props_disabled": "{name} 속성을 비활성화했습니다.",
+  "persist_props_failed": "{name} 속성 업데이트에 실패했습니다."
 }

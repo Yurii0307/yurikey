@@ -236,7 +236,16 @@
   </div>
 
 
-  <div id="snackbar" class="snackbar" role="status" aria-live="polite"></div>
+  <div id="toast-host" class="toast-host">
+    <div class="toast-track">
+      <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true">
+        <span class="shape sided-cookie12 toast-shape" aria-hidden="true"><i id="toast-icon">check</i></span>
+        <div class="toast-body">
+          <span id="toast-message" class="toast-message"></span>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="logs-dialog-overlay" class="overlay blur"></div>
   <dialog id="logs-dialog" class="round expressive-dialog">

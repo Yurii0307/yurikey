@@ -96,5 +96,10 @@
   "persist_props_empty": "Δεν βρέθηκαν αντίστοιχες μόνιμες ιδιότητες.",
   "persist_props_add": "Προσθήκη ιδιότητας",
   "persist_props_save": "Αποθήκευση",
-  "persist_props_confirm_delete": "Διαγραφή ιδιότητας {name};"
+  "persist_props_confirm_delete": "Διαγραφή ιδιότητας {name};",
+  "persist_props_saved": "Η ιδιότητα {name} αποθηκεύτηκε.",
+  "persist_props_deleted": "Η ιδιότητα {name} διαγράφηκε.",
+  "persist_props_enabled": "Η ιδιότητα {name} ενεργοποιήθηκε.",
+  "persist_props_disabled": "Η ιδιότητα {name} απενεργοποιήθηκε.",
+  "persist_props_failed": "Αποτυχία ενημέρωσης της ιδιότητας {name}."
 }

@@ -97,5 +97,10 @@
   "persist_props_empty": "No matching persistent properties found.",
   "persist_props_add": "Add Property",
   "persist_props_save": "Save",
-  "persist_props_confirm_delete": "Delete property {name}?"
+  "persist_props_confirm_delete": "Delete property {name}?",
+  "persist_props_saved": "Saved property {name}.",
+  "persist_props_deleted": "Deleted property {name}.",
+  "persist_props_enabled": "Enabled property {name}.",
+  "persist_props_disabled": "Disabled property {name}.",
+  "persist_props_failed": "Failed to update property {name}."
 }

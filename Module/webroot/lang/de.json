@@ -96,5 +96,10 @@
   "persist_props_empty": "Keine passenden persistenten Eigenschaften gefunden.",
   "persist_props_add": "Eigenschaft hinzufügen",
   "persist_props_save": "Speichern",
-  "persist_props_confirm_delete": "Eigenschaft {name} löschen?"
+  "persist_props_confirm_delete": "Eigenschaft {name} löschen?",
+  "persist_props_saved": "Eigenschaft {name} gespeichert.",
+  "persist_props_deleted": "Eigenschaft {name} gelöscht.",
+  "persist_props_enabled": "Eigenschaft {name} aktiviert.",
+  "persist_props_disabled": "Eigenschaft {name} deaktiviert.",
+  "persist_props_failed": "Eigenschaft {name} konnte nicht aktualisiert werden."
 }

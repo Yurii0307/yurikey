@@ -96,5 +96,10 @@
   "persist_props_empty": "Nem találhatók egyező állandó tulajdonságok.",
   "persist_props_add": "Tulajdonság hozzáadása",
   "persist_props_save": "Mentés",
-  "persist_props_confirm_delete": "Törli a(z) {name} tulajdonságot?"
+  "persist_props_confirm_delete": "Törli a(z) {name} tulajdonságot?",
+  "persist_props_saved": "A(z) {name} tulajdonság mentve.",
+  "persist_props_deleted": "A(z) {name} tulajdonság törölve.",
+  "persist_props_enabled": "A(z) {name} tulajdonság engedélyezve.",
+  "persist_props_disabled": "A(z) {name} tulajdonság letiltva.",
+  "persist_props_failed": "A(z) {name} tulajdonság frissítése sikertelen."
 }

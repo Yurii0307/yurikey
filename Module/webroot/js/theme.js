@@ -1,22 +1,6 @@
 const THEME_MODE_KEY = "themeMode";
 const THEME_PRESET_KEY = "themePreset";
 
-const SNACKBAR_COLOR_KEYS = {
-  info: "snackbarInfoColor",
-  success: "snackbarSuccessColor",
-  warning: "snackbarWarningColor",
-  error: "snackbarErrorColor",
-  text: "snackbarTextColor",
-};
-
-const SNACKBAR_DEFAULTS = {
-  info: "#2196f3",
-  success: "#43a047",
-  warning: "#f9a825",
-  error: "#e53935",
-  text: "#ffffff",
-};
-
 const THEME_PRESETS = {
   ocean: {
     dark: { "--ui-bg": "#111a26", "--ui-card-bg": "#1d2a3a", "--ui-card-border": "#334759", "--ui-pill-bg": "#9ecaff", "--ui-pill-text": "#003258", "--ui-select-bg": "#3a546f", "--ui-select-border": "#6f90b2", "--ui-select-panel": "#273a4e", "--ui-select-panel-border": "#587493", "--ui-text": "#f3edf7", "--ui-muted": "#c2d0e3" },
@@ -160,104 +144,6 @@ function setupThemeModeGrid() {
 }
 
 
-function normalizeHex(value, fallback = "#2196f3") {
-  const raw = (value || "").trim();
-  const match = raw.match(/^#?[0-9a-fA-F]{6}$/);
-  if (!match) return fallback;
-  return raw.startsWith("#") ? raw.toLowerCase() : `#${raw.toLowerCase()}`;
-}
-
-function hexToRgbTuple(hex) {
-  const n = normalizeHex(hex).replace("#", "");
-  return {
-    r: parseInt(n.slice(0, 2), 16),
-    g: parseInt(n.slice(2, 4), 16),
-    b: parseInt(n.slice(4, 6), 16),
-  };
-}
-
-function rgbToHexTuple(r, g, b) {
-  return `#${[r, g, b].map(v => Number(v).toString(16).padStart(2, "0")).join("")}`;
-}
-
-function setSnackbarColor(type, value) {
-  const key = SNACKBAR_COLOR_KEYS[type];
-  const normalized = normalizeHex(value, SNACKBAR_DEFAULTS[type]);
-  localStorage.setItem(key, normalized);
-  document.documentElement.style.setProperty(`--snackbar-${type}`, normalized);
-
-  const input = document.getElementById(`snackbar-${type}-color`);
-  const preview = document.getElementById(`snackbar-${type}-preview`);
-  if (input) input.value = normalized;
-  if (preview) preview.style.background = normalized;
-  return normalized;
-}
-
-function applySnackbarColors() {
-  Object.entries(SNACKBAR_COLOR_KEYS).forEach(([type, key]) => {
-    const value = localStorage.getItem(key) || SNACKBAR_DEFAULTS[type];
-    setSnackbarColor(type, value);
-  });
-}
-
-function bindSnackbarColorInputs() {
-  Object.keys(SNACKBAR_COLOR_KEYS).forEach(type => {
-    const input = document.getElementById(`snackbar-${type}-color`);
-    if (!input) return;
-
-    input.addEventListener("change", () => setSnackbarColor(type, input.value));
-    input.addEventListener("blur", () => setSnackbarColor(type, input.value));
-  });
-}
-
-function bindSnackbarColorTool() {
-  const target = document.getElementById("snackbar-color-target");
-  const hexInput = document.getElementById("snackbar-color-tool-hex");
-  const preview = document.getElementById("snackbar-color-tool-preview");
-  const rangeR = document.getElementById("snackbar-color-r");
-  const rangeG = document.getElementById("snackbar-color-g");
-  const rangeB = document.getElementById("snackbar-color-b");
-  const applyBtn = document.getElementById("snackbar-color-tool-apply");
-  if (!target || !hexInput || !preview || !rangeR || !rangeG || !rangeB || !applyBtn) return;
-
-  const syncFromHex = (hex) => {
-    const rgb = hexToRgbTuple(hex);
-    rangeR.value = rgb.r;
-    rangeG.value = rgb.g;
-    rangeB.value = rgb.b;
-    preview.style.background = normalizeHex(hex);
-    hexInput.value = normalizeHex(hex);
-  };
-
-  const syncFromTarget = () => {
-    const type = target.value || "info";
-    const input = document.getElementById(`snackbar-${type}-color`);
-    syncFromHex(input?.value || SNACKBAR_DEFAULTS[type]);
-  };
-
-  const syncFromRanges = () => {
-    const hex = rgbToHexTuple(rangeR.value, rangeG.value, rangeB.value);
-    preview.style.background = hex;
-    hexInput.value = hex;
-  };
-
-  target.addEventListener("change", syncFromTarget);
-  [rangeR, rangeG, rangeB].forEach(range => range.addEventListener("input", syncFromRanges));
-  hexInput.addEventListener("input", () => {
-    if (/^#?[0-9a-fA-F]{6}$/.test(hexInput.value.trim())) {
-      syncFromHex(hexInput.value);
-    }
-  });
-
-  applyBtn.addEventListener("click", () => {
-    const type = target.value || "info";
-    const applied = setSnackbarColor(type, hexInput.value);
-    syncFromHex(applied);
-  });
-
-  syncFromTarget();
-}
-
 window.addEventListener("DOMContentLoaded", () => {
   const mode = getStoredMode();
   applyThemeMode(mode);
@@ -273,9 +159,6 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   applyThemePreset(getStoredPreset());
-  applySnackbarColors();
-  bindSnackbarColorInputs();
-  bindSnackbarColorTool();
 
   window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", () => {
     const stored = localStorage.getItem(THEME_MODE_KEY);

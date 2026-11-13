@@ -96,5 +96,10 @@
   "persist_props_empty": "Ingen matchende vedvarende egenskaber fundet.",
   "persist_props_add": "Tilføj egenskab",
   "persist_props_save": "Gem",
-  "persist_props_confirm_delete": "Slet egenskaben {name}?"
+  "persist_props_confirm_delete": "Slet egenskaben {name}?",
+  "persist_props_saved": "Egenskaben {name} gemt.",
+  "persist_props_deleted": "Egenskaben {name} slettet.",
+  "persist_props_enabled": "Egenskaben {name} aktiveret.",
+  "persist_props_disabled": "Egenskaben {name} deaktiveret.",
+  "persist_props_failed": "Kunne ikke opdatere egenskaben {name}."
 }

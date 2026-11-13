@@ -96,5 +96,10 @@
   "persist_props_empty": "Geen ooreenstemmende blywende eienskappe gevind nie.",
   "persist_props_add": "Voeg eienskap by",
   "persist_props_save": "Stoor",
-  "persist_props_confirm_delete": "Verwyder eienskap {name}?"
+  "persist_props_confirm_delete": "Verwyder eienskap {name}?",
+  "persist_props_saved": "Eienskap {name} gestoor.",
+  "persist_props_deleted": "Eienskap {name} verwyder.",
+  "persist_props_enabled": "Eienskap {name} geaktiveer.",
+  "persist_props_disabled": "Eienskap {name} gedeaktiveer.",
+  "persist_props_failed": "Kon nie eienskap {name} opdateer nie."
 }

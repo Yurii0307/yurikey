@@ -96,5 +96,10 @@
   "persist_props_empty": "لم يتم العثور على خصائص دائمة مطابقة.",
   "persist_props_add": "إضافة خاصية",
   "persist_props_save": "حفظ",
-  "persist_props_confirm_delete": "حذف الخاصية {name}؟"
+  "persist_props_confirm_delete": "حذف الخاصية {name}؟",
+  "persist_props_saved": "تم حفظ الخاصية {name}.",
+  "persist_props_deleted": "تم حذف الخاصية {name}.",
+  "persist_props_enabled": "تم تمكين الخاصية {name}.",
+  "persist_props_disabled": "تم تعطيل الخاصية {name}.",
+  "persist_props_failed": "فشل تحديث الخاصية {name}."
 }

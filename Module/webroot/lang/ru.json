@@ -96,5 +96,10 @@
   "persist_props_empty": "Соответствующие постоянные свойства не найдены.",
   "persist_props_add": "Добавить свойство",
   "persist_props_save": "Сохранить",
-  "persist_props_confirm_delete": "Удалить свойство {name}?"
+  "persist_props_confirm_delete": "Удалить свойство {name}?",
+  "persist_props_saved": "Свойство {name} сохранено.",
+  "persist_props_deleted": "Свойство {name} удалено.",
+  "persist_props_enabled": "Свойство {name} включено.",
+  "persist_props_disabled": "Свойство {name} отключено.",
+  "persist_props_failed": "Не удалось обновить свойство {name}."
 }

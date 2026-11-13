@@ -96,5 +96,10 @@
   "persist_props_empty": "Відповідних постійних властивостей не знайдено.",
   "persist_props_add": "Додати властивість",
   "persist_props_save": "Зберегти",
-  "persist_props_confirm_delete": "Видалити властивість {name}?"
+  "persist_props_confirm_delete": "Видалити властивість {name}?",
+  "persist_props_saved": "Властивість {name} збережено.",
+  "persist_props_deleted": "Властивість {name} видалено.",
+  "persist_props_enabled": "Властивість {name} увімкнено.",
+  "persist_props_disabled": "Властивість {name} вимкнено.",
+  "persist_props_failed": "Не вдалося оновити властивість {name}."
 }

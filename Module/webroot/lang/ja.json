@@ -96,5 +96,10 @@
   "persist_props_empty": "一致する永続プロパティが見つかりません。",
   "persist_props_add": "プロパティを追加",
   "persist_props_save": "保存",
-  "persist_props_confirm_delete": "プロパティ {name} を削除しますか？"
+  "persist_props_confirm_delete": "プロパティ {name} を削除しますか？",
+  "persist_props_saved": "プロパティ {name} を保存しました。",
+  "persist_props_deleted": "プロパティ {name} を削除しました。",
+  "persist_props_enabled": "プロパティ {name} を有効にしました。",
+  "persist_props_disabled": "プロパティ {name} を無効にしました。",
+  "persist_props_failed": "プロパティ {name} の更新に失敗しました。"
 }

@@ -14,11 +14,6 @@
   --ui-select-border: #6f90b2;
   --ui-select-panel: #273a4e;
   --ui-select-panel-border: #587493;
-  --snackbar-info: #2196f3;
-  --snackbar-success: #43a047;
-  --snackbar-warning: #f9a825;
-  --snackbar-error: #e53935;
-  --snackbar-text: #ffffff;
   /* Beer CSS Token Mapping */
   --primary: var(--ui-pill-bg);
   --on-primary: var(--ui-pill-text);
@@ -402,7 +397,7 @@ article,
   position: fixed;
   bottom: calc(80px + 1.75rem);
   bottom: calc(80px + 1.75rem + env(safe-area-inset-bottom, 0px));
-  right: max(1rem, calc((100vw - 480px) / 2 + 1rem));
+  right: calc(max(1rem, (100vw - 480px) / 2) + 0.375rem);
   width: 52px;
   height: 52px;
   min-width: 52px;
@@ -413,7 +408,7 @@ article,
   color: var(--ui-pill-text) !important;
   border: 1px solid var(--ui-pill-border);
   box-shadow: 0 4px 16px rgb(0 0 0 / 28%);
-  z-index: 55;
+  z-index: 102;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -1454,40 +1449,118 @@ button.contrib-card,
   flex-shrink: 0 !important;
 }
 
-/* Snackbar & Dialogs */
+/* Toast */
 
-.snackbar {
+.toast-host {
   position: fixed;
-  left: 50%;
-  top: 1rem;
-  transform: translateX(-50%) translateY(-20px);
-  min-width: min(88vw, 560px);
-  max-width: min(88vw, 560px);
-  padding: 0.85rem 1rem;
-  border-radius: 0.8rem;
-  color: var(--snackbar-text);
+  left: 0;
+  right: 0;
+  bottom: calc(80px + 1.75rem - 0.375rem + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  justify-content: center;
+  z-index: 101;
+  pointer-events: none;
+}
+
+.toast-track {
+  display: flex;
+  justify-content: flex-end;
+  width: calc(100% - 2rem);
+  max-width: 480px;
+}
+
+.toast {
+  --toast-button-size: 52px;
+  --toast-padding: 0.375rem;
+  --toast-pad-inline-start: 0.375rem;
+  --toast-pad-inline-end: 1rem;
+  --toast-height: calc(var(--toast-button-size) + var(--toast-padding) * 2 + 2px);
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-block-size: var(--toast-height);
+  inline-size: var(--toast-height);
+  padding: var(--toast-padding);
+  border: 1px solid transparent;
+  border-radius: calc(var(--toast-height) / 2);
+  background: var(--ui-card-bg);
+  color: var(--ui-text);
+  box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 40;
-  box-shadow: 0 10px 26px rgb(0 0 0 / 32%);
-  box-sizing: border-box;
+  transition:
+    inline-size 0.3s cubic-bezier(0.2, 0, 0, 1),
+    border-radius 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.15s ease;
 }
 
-.snackbar.show {
+body.log-viewer-enabled .toast {
+  --toast-height: calc(58px + var(--toast-padding) * 2);
+  --toast-pad-inline-start: 0.5rem;
+  --toast-pad-inline-end: calc(58px + var(--toast-padding) + 0.5rem);
+}
+
+.toast.show {
+  inline-size: 100%;
+  padding: var(--toast-padding) var(--toast-pad-inline-end) var(--toast-padding) var(--toast-pad-inline-start);
+  border-color: var(--ui-card-border);
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transition:
+    inline-size 0.3s cubic-bezier(0.2, 0, 0, 1),
+    border-radius 0.2s ease,
+    border-color 0.2s ease 0.05s,
+    opacity 0.1s ease;
 }
 
-.snackbar.has-output {
-  pointer-events: auto;
-  cursor: pointer;
+.toast-body {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-inline-size: 0;
+  overflow: hidden;
 }
 
-.snackbar.info { background: var(--snackbar-info); }
-.snackbar.success { background: var(--snackbar-success); }
-.snackbar.warning { background: var(--snackbar-warning); }
-.snackbar.error { background: var(--snackbar-error); }
+.toast-shape {
+  flex: 0 0 auto;
+  inline-size: var(--toast-button-size);
+  block-size: var(--toast-button-size);
+  background-color: var(--ui-select-bg);
+  color: var(--ui-text);
+  font-size: 22px;
+}
+
+.toast-shape > i {
+  filter: none;
+}
+
+.toast-message {
+  flex: 0 0 auto;
+  inline-size: calc(
+    var(--toast-track-width, 100%)
+    - var(--toast-pad-inline-start)
+    - var(--toast-pad-inline-end)
+    - var(--toast-button-size)
+    - 1rem
+    - 0.25rem
+    - 2px
+  );
+  margin-inline: 0.5rem;
+  padding-inline-start: 0.25rem;
+  overflow-wrap: anywhere;
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  letter-spacing: var(--md-sys-typescale-label-large-tracking);
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast,
+  .toast.show {
+    transition: opacity 0.15s ease;
+  }
+}
 
 .overlay.blur {
   position: fixed;
@@ -1504,67 +1577,6 @@ button.contrib-card,
 .overlay.blur.active {
   opacity: 1;
   pointer-events: auto;
-}
-
-dialog.snackbar-dialog {
-  z-index: 61;
-  width: min(92vw, 640px);
-  border: 1px solid var(--ui-card-border);
-  border-radius: 1rem;
-  background: var(--ui-card-bg);
-  color: var(--ui-text);
-  padding: 1rem;
-  box-sizing: border-box;
-  margin: auto;
-  inset: 0;
-  position: fixed;
-}
-
-dialog.snackbar-dialog h5 {
-  margin: 0 0 1rem;
-  font-size: 1.33rem;
-  line-height: 1.4;
-  font-weight: 700;
-  color: var(--ui-text);
-}
-
-.snackbar-output-pre {
-  max-height: 48vh;
-  overflow: auto;
-  white-space: pre-wrap;
-  background: color-mix(in srgb, var(--ui-card-bg) 78%, #000 22%);
-  border-radius: 0.7rem;
-  padding: 0.85rem;
-  box-sizing: border-box;
-}
-
-.snackbar-output-meta {
-  margin: 0.6rem 0 0;
-  opacity: 0.85;
-}
-
-.history-dialog-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.history-dialog-actions .history-btn {
-  border-radius: 999px;
-  min-width: 110px;
-  padding: 0.6rem 1rem;
-  border: 1px solid var(--ui-pill-border);
-  background: var(--ui-pill-bg);
-  color: var(--ui-pill-text);
-  font-weight: 700;
-  box-shadow: none;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-
-.history-dialog-actions .history-btn:hover {
-  background: var(--ui-pill-bg-hover);
 }
 
 /* Floating Navigation Bar */

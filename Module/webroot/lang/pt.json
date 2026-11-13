@@ -96,5 +96,10 @@
   "persist_props_empty": "Nenhuma propriedade persistente correspondente encontrada.",
   "persist_props_add": "Adicionar propriedade",
   "persist_props_save": "Salvar",
-  "persist_props_confirm_delete": "Excluir a propriedade {name}?"
+  "persist_props_confirm_delete": "Excluir a propriedade {name}?",
+  "persist_props_saved": "Propriedade {name} salva.",
+  "persist_props_deleted": "Propriedade {name} excluída.",
+  "persist_props_enabled": "Propriedade {name} ativada.",
+  "persist_props_disabled": "Propriedade {name} desativada.",
+  "persist_props_failed": "Falha ao atualizar a propriedade {name}."
 }

@@ -96,5 +96,10 @@
   "persist_props_empty": "Нису пронађена одговарајућа трајна својства.",
   "persist_props_add": "Додај својство",
   "persist_props_save": "Сачувај",
-  "persist_props_confirm_delete": "Избрисати својство {name}?"
+  "persist_props_confirm_delete": "Избрисати својство {name}?",
+  "persist_props_saved": "Својство {name} је сачувано.",
+  "persist_props_deleted": "Својство {name} је избрисано.",
+  "persist_props_enabled": "Својство {name} је омогућено.",
+  "persist_props_disabled": "Својство {name} је онемогућено.",
+  "persist_props_failed": "Ажурирање својства {name} није успело."
 }

@@ -96,5 +96,10 @@
   "persist_props_empty": "Geen overeenkomende permanente eigenschappen gevonden.",
   "persist_props_add": "Eigenschap toevoegen",
   "persist_props_save": "Opslaan",
-  "persist_props_confirm_delete": "Eigenschap {name} verwijderen?"
+  "persist_props_confirm_delete": "Eigenschap {name} verwijderen?",
+  "persist_props_saved": "Eigenschap {name} opgeslagen.",
+  "persist_props_deleted": "Eigenschap {name} verwijderd.",
+  "persist_props_enabled": "Eigenschap {name} ingeschakeld.",
+  "persist_props_disabled": "Eigenschap {name} uitgeschakeld.",
+  "persist_props_failed": "Kan eigenschap {name} niet bijwerken."
 }

@@ -96,5 +96,10 @@
   "persist_props_empty": "Inga matchande beständiga egenskaper hittades.",
   "persist_props_add": "Lägg till egenskap",
   "persist_props_save": "Spara",
-  "persist_props_confirm_delete": "Ta bort egenskapen {name}?"
+  "persist_props_confirm_delete": "Ta bort egenskapen {name}?",
+  "persist_props_saved": "Egenskapen {name} sparad.",
+  "persist_props_deleted": "Egenskapen {name} borttagen.",
+  "persist_props_enabled": "Egenskapen {name} aktiverad.",
+  "persist_props_disabled": "Egenskapen {name} inaktiverad.",
+  "persist_props_failed": "Det gick inte att uppdatera egenskapen {name}."
 }

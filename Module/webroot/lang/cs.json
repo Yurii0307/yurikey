@@ -96,5 +96,10 @@
   "persist_props_empty": "Nebyly nalezeny žádné odpovídající trvalé vlastnosti.",
   "persist_props_add": "Přidat vlastnost",
   "persist_props_save": "Uložit",
-  "persist_props_confirm_delete": "Smazat vlastnost {name}?"
+  "persist_props_confirm_delete": "Smazat vlastnost {name}?",
+  "persist_props_saved": "Vlastnost {name} uložena.",
+  "persist_props_deleted": "Vlastnost {name} smazána.",
+  "persist_props_enabled": "Vlastnost {name} povolena.",
+  "persist_props_disabled": "Vlastnost {name} zakázána.",
+  "persist_props_failed": "Aktualizace vlastnosti {name} selhala."
 }

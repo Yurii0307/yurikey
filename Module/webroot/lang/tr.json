@@ -96,5 +96,10 @@
   "persist_props_empty": "Eşleşen kalıcı özellik bulunamadı.",
   "persist_props_add": "Özellik ekle",
   "persist_props_save": "Kaydet",
-  "persist_props_confirm_delete": "{name} özelliği silinsin mi?"
+  "persist_props_confirm_delete": "{name} özelliği silinsin mi?",
+  "persist_props_saved": "{name} özelliği kaydedildi.",
+  "persist_props_deleted": "{name} özelliği silindi.",
+  "persist_props_enabled": "{name} özelliği etkinleştirildi.",
+  "persist_props_disabled": "{name} özelliği devre dışı bırakıldı.",
+  "persist_props_failed": "{name} özelliği güncellenemedi."
 }

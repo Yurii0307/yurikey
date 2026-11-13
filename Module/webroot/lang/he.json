@@ -96,5 +96,10 @@
   "persist_props_empty": "לא נמצאו מאפיינים מתמשכים תואמים.",
   "persist_props_add": "הוספת מאפיין",
   "persist_props_save": "שמירה",
-  "persist_props_confirm_delete": "למחוק את המאפיין {name}?"
+  "persist_props_confirm_delete": "למחוק את המאפיין {name}?",
+  "persist_props_saved": "המאפיין {name} נשמר.",
+  "persist_props_deleted": "המאפיין {name} נמחק.",
+  "persist_props_enabled": "המאפיין {name} הופעל.",
+  "persist_props_disabled": "המאפיין {name} הושבת.",
+  "persist_props_failed": "עדכון המאפיין {name} נכשל."
 }
