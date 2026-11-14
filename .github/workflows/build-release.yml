@@ -43,6 +43,9 @@ jobs:
              '.version = $v | .versionCode = $vc | .zipUrl = $url' \
              update.json > update_tmp.json && mv update_tmp.json update.json
  
+      - name: Bundle changelog
+        run: cp changelog.md Module/webroot/changelog.md
+
       - name: Zip Module folder (Upload module)
         run: |
           cd Module

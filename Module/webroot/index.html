@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,ROND,wdth,wght@6..144,0..100,25..151,400..700&display=swap" />
   <link rel="stylesheet" href="css/beer.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/navStyle.js"></script>
 </head>
 <body class="dark">
   <main id="app" class="page-shell">
@@ -63,6 +64,33 @@
           <p id="root-type" class="card-value">Error</p>
         </article>
       </div>
+
+      <article class="beer-card home-changelog-card">
+        <h6 class="card-title"><i>history</i><span data-i18n="home_changelog_title">Changelog</span></h6>
+        <div id="changelog-content" class="changelog-content">
+          <p id="changelog-loading" class="card-desc" data-i18n="home_changelog_loading">Loading changelog…</p>
+          <p id="changelog-error" class="card-desc" data-i18n="home_changelog_error" hidden>Changelog unavailable.</p>
+        </div>
+      </article>
+
+      <article class="beer-card home-report-card">
+        <h6 class="card-title"><i>bug_report</i><span data-i18n="home_report_title">Report a problem</span></h6>
+        <p class="card-desc home-report-desc" data-i18n="home_report_desc">Found a bug or something not working? Let us know so it can be tracked and fixed.</p>
+        <div class="home-report-tips">
+          <strong data-i18n="home_report_note_label">Before you report</strong>
+          <ul>
+            <li data-i18n="home_report_tip_device">Device model and Android version</li>
+            <li data-i18n="home_report_tip_version">Yurikey version</li>
+            <li data-i18n="home_report_tip_steps">Steps to reproduce the problem</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <button type="button" class="responsive round large wave" data-url="https://github.com/Yurii0307/yurikey/issues">
+            <i>open_in_new</i>
+            <span data-i18n="home_report_button">Report on GitHub</span>
+          </button>
+        </div>
+      </article>
     </section>
 
     <section id="actions-page" class="page">
@@ -148,6 +176,25 @@
           <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
         </div>
       </article>
+
+      <article class="beer-card">
+        <h6 class="card-title" id="nav-style-heading"><i>bottom_navigation</i><span data-i18n="settings_navigation">Navigation</span></h6>
+        <nav class="group connected nav-style-group" role="radiogroup" aria-labelledby="nav-style-heading">
+          <button type="button" class="left-round wave nav-style-btn" data-nav-style="classic" role="radio" aria-checked="false">
+            <i aria-hidden="true">view_agenda</i>
+            <span data-i18n="nav_style_classic">Classic</span>
+          </button>
+          <button type="button" class="wave nav-style-btn active" data-nav-style="expressive" role="radio" aria-checked="true">
+            <i aria-hidden="true">auto_awesome</i>
+            <span data-i18n="nav_style_expressive">Expressive</span>
+          </button>
+          <button type="button" class="right-round wave nav-style-btn" data-nav-style="rounded" role="radio" aria-checked="false">
+            <i aria-hidden="true">rounded_corner</i>
+            <span data-i18n="nav_style_rounded">Rounded</span>
+          </button>
+        </nav>
+      </article>
+
       <article class="beer-card" id="log-viewer-settings-card">
         <h6 class="card-title"><i>terminal</i><span data-i18n="settings_log_viewer">Log Viewer</span></h6>
         <div class="log-viewer-setting-row">
@@ -216,6 +263,7 @@
 
   <div class="m3-nav-wrapper">
     <nav class="m3-floating-nav">
+      <span class="nav-pill" aria-hidden="true"></span>
       <a class="active" data-ui="#home-page">
         <i>home</i>
         <span data-i18n="nav_home">Home</span>
@@ -549,6 +597,8 @@
   <script src="js/components/propEditor.js"></script>
   <script src="js/main.js"></script>
   <script src="js/version.js"></script>
+  <script src="js/utils/markdown.js"></script>
+  <script src="js/changelog.js"></script>
   <script src="js/dev.js?v=3"></script>
 </body>
 </html>

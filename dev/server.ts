@@ -17,6 +17,11 @@ app.get("/__dev/mock-ksu.js", (_req, res) => {
   res.sendFile("dev/mock-ksu.js", { root: "." });
 });
 
+// Emulate the changelog bundled into the module webroot by the release build
+app.get("/changelog.md", (_req, res) => {
+  res.type("text/markdown").sendFile("changelog.md", { root: "." });
+});
+
 // Inject mock bridge script into index.html
 app.get(["/", "/index.html"], (_req, res) => {
   const html = fs.readFileSync("Module/webroot/index.html", "utf-8");

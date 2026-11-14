@@ -40,6 +40,9 @@ jobs:
           echo "BUILD_ID=${RANDOM_STRING}" >> $GITHUB_ENV
           sed -i "s/^version=.*/version=${RANDOM_STRING}/" Module/module.prop
 
+      - name: Bundle changelog
+        run: cp changelog.md Module/webroot/changelog.md
+
       - name: Upload release artifact
         uses: actions/upload-artifact@v7
         with:
