@@ -1,8 +1,8 @@
 id=Yurikey
 name=Yurikey Manager
-version=v3.0.5
-versionCode=305
-author=Yurikey Dev
+version=v3.1.0
+versionCode=310
+author=Yurii0307
 banner=https://raw.githubusercontent.com/Yurii0307/yurikey/main/doc/banner.webp
 description=A systemless module to get strong integrity so easily
 updateJson=https://raw.githubusercontent.com/Yurii0307/yurikey/main/update.json
