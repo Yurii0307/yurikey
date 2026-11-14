@@ -223,6 +223,10 @@ article,
   line-height: var(--md-sys-typescale-body-medium-line-height);
 }
 
+.beer-card > .card-desc:last-child {
+  margin-bottom: 0;
+}
+
 .card-desc.small-text {
   margin-top: 0.75rem;
   margin-bottom: 0;
@@ -968,14 +972,23 @@ nav.group.split > button svg {
   flex-shrink: 0;
 }
 
-button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme-preset-btn):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card):not(.nav-style-btn),
+[data-label-short],
+.is-collapsed [data-label-long] {
+  display: none;
+}
+
+.is-collapsed [data-label-short] {
+  display: inline;
+}
+
+button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme-preset-btn):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card):not(.segmented-picker-btn),
 .button:not(.transparent):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card) {
   background-color: var(--ui-pill-bg) !important;
   color: var(--ui-pill-text) !important;
   border-color: var(--ui-pill-border) !important;
 }
 
-button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme-preset-btn):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card):not(.nav-style-btn):hover,
+button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme-preset-btn):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card):not(.segmented-picker-btn):hover,
 .button:not(.transparent):not(.contrib-card):not(.clock-format-card):not(.theme-mode-card):hover {
   background-color: var(--ui-pill-bg-hover) !important;
 }
@@ -1208,9 +1221,9 @@ button:not(.transparent):not(.lang-trigger-btn):not(.lang-option-btn):not(.theme
   box-shadow: none !important;
 }
 
-/* Navigation style picker */
+/* Segmented picker (navigation style, notifications, ...) */
 
-nav.nav-style-group.group.connected {
+nav.segmented-picker.group.connected {
   width: 100%;
   margin: 0.75rem 0 0;
   padding: 0.3rem !important;
@@ -1222,17 +1235,17 @@ nav.nav-style-group.group.connected {
   transition: border-radius 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-nav.nav-style-group.group.connected.select-first {
+nav.segmented-picker.group.connected.select-first {
   border-start-start-radius: var(--picker-pill-radius, 2.25rem);
   border-end-start-radius: var(--picker-pill-radius, 2.25rem);
 }
 
-nav.nav-style-group.group.connected.select-last {
+nav.segmented-picker.group.connected.select-last {
   border-start-end-radius: var(--picker-pill-radius, 2.25rem);
   border-end-end-radius: var(--picker-pill-radius, 2.25rem);
 }
 
-nav.nav-style-group > button.nav-style-btn {
+nav.segmented-picker > button.segmented-picker-btn {
   flex: 1 1 0;
   min-width: 0;
   min-height: 46px;
@@ -1253,7 +1266,7 @@ nav.nav-style-group > button.nav-style-btn {
   transition: background-color 0.2s ease, color 0.2s ease, border-radius 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-nav.nav-style-group > button.nav-style-btn i {
+nav.segmented-picker > button.segmented-picker-btn i {
   font-size: 1.15rem;
   width: 1.15rem;
   height: 1.15rem;
@@ -1264,31 +1277,31 @@ nav.nav-style-group > button.nav-style-btn i {
   flex-shrink: 0;
 }
 
-nav.nav-style-group > button.nav-style-btn span {
+nav.segmented-picker > button.segmented-picker-btn span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-nav.nav-style-group > button.nav-style-btn:hover {
+nav.segmented-picker > button.segmented-picker-btn:hover {
   background: color-mix(in srgb, var(--ui-card-bg) 55%, var(--ui-bg)) !important;
   color: var(--ui-text) !important;
 }
 
-nav.nav-style-group > button.nav-style-btn.active,
-nav.nav-style-group > button.nav-style-btn.active:hover {
-  background: var(--ui-select-bg) !important;
-  color: var(--ui-pill-bg) !important;
+nav.segmented-picker > button.segmented-picker-btn.active,
+nav.segmented-picker > button.segmented-picker-btn.active:hover {
+  background: var(--ui-pill-bg) !important;
+  color: var(--ui-pill-text) !important;
   border-radius: var(--picker-btn-pill-radius, 2rem) !important;
 }
 
-nav.nav-style-group > button.nav-style-btn:focus-visible {
+nav.segmented-picker > button.segmented-picker-btn:focus-visible {
   outline: 2px solid var(--ui-pill-bg);
   outline-offset: 2px;
 }
 
 @media (max-width: 380px) {
-  nav.nav-style-group > button.nav-style-btn {
+  nav.segmented-picker > button.segmented-picker-btn {
     flex-direction: column;
     gap: 0.15rem;
     padding: 0.35rem 0.2rem;
@@ -1296,7 +1309,7 @@ nav.nav-style-group > button.nav-style-btn:focus-visible {
     font-size: 0.72rem;
   }
 
-  nav.nav-style-group > button.nav-style-btn i {
+  nav.segmented-picker > button.segmented-picker-btn i {
     font-size: 1rem;
     width: 1rem;
     height: 1rem;

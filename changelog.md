@@ -4,6 +4,7 @@
 - Added persistent boot property editor dialog (`persist_props.sh`)
 - Unified script execution behind centralized `Bridge` helper
 - Replaced legacy snackbar with styled icon toast notifications
+- Added a Notifications setting to route WebUI feedback to Android system notifications through root
 - Added interactive script output log viewer
 - Hardened shell scripts, POSIX compliance, and keybox download safety
 - Added Bun unit test suite and automated shell syntax checks

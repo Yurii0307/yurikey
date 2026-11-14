@@ -3,15 +3,6 @@ const NAV_STYLE_KEY = "navStyle";
 const NAV_STYLES = ["classic", "expressive", "rounded"];
 const DEFAULT_NAV_STYLE = "expressive";
 
-function getStoredNavStyle() {
-  try {
-    const stored = localStorage.getItem(NAV_STYLE_KEY);
-    return NAV_STYLES.includes(stored) ? stored : DEFAULT_NAV_STYLE;
-  } catch {
-    return DEFAULT_NAV_STYLE;
-  }
-}
-
 function applyNavStyle(style) {
   const resolved = NAV_STYLES.includes(style) ? style : DEFAULT_NAV_STYLE;
   document.documentElement.setAttribute("data-nav-style", resolved);
@@ -19,42 +10,15 @@ function applyNavStyle(style) {
 }
 
 // Applied while the document head is parsed so the first paint uses the stored style.
-applyNavStyle(getStoredNavStyle());
+applyNavStyle(readStoredPreference(NAV_STYLE_KEY, NAV_STYLES, DEFAULT_NAV_STYLE));
 
 window.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".m3-floating-nav");
   if (!nav) return;
 
   const pill = nav.querySelector(".nav-pill");
-  const picker = document.querySelector(".nav-style-group");
-  const buttons = Array.from(document.querySelectorAll(".nav-style-btn"));
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let currentStyle = applyNavStyle(getStoredNavStyle());
-
-  function applyPickerState() {
-    let selectedIdx = -1;
-    buttons.forEach((btn, idx) => {
-      const selected = btn.dataset.navStyle === currentStyle;
-      if (selected) selectedIdx = idx;
-      btn.classList.toggle("active", selected);
-      btn.setAttribute("aria-checked", selected ? "true" : "false");
-      btn.tabIndex = selected ? 0 : -1;
-    });
-    if (picker) {
-      picker.classList.toggle("select-first", selectedIdx === 0);
-      picker.classList.toggle("select-last", selectedIdx === buttons.length - 1);
-    }
-  }
-
-  function updatePickerMetrics() {
-    if (!picker) return;
-    const groupHeight = picker.getBoundingClientRect().height;
-    const button = picker.querySelector(".nav-style-btn");
-    const buttonHeight = button ? button.getBoundingClientRect().height : 0;
-    if (!groupHeight || !buttonHeight) return;
-    picker.style.setProperty("--picker-pill-radius", `${groupHeight / 2}px`);
-    picker.style.setProperty("--picker-btn-pill-radius", `${buttonHeight / 2}px`);
-  }
+  let currentStyle = applyNavStyle(readStoredPreference(NAV_STYLE_KEY, NAV_STYLES, DEFAULT_NAV_STYLE));
 
   function positionPill(animate) {
     if (!pill || currentStyle !== "expressive") return;
@@ -77,61 +41,48 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function setNavStyle(style) {
-    currentStyle = applyNavStyle(style);
-    try {
-      localStorage.setItem(NAV_STYLE_KEY, currentStyle);
-    } catch {}
-    applyPickerState();
-    positionPill(false);
-  }
-
-  buttons.forEach((btn, idx) => {
-    btn.addEventListener("click", () => setNavStyle(btn.dataset.navStyle || DEFAULT_NAV_STYLE));
-
-    btn.addEventListener("keydown", (event) => {
-      let targetIdx = null;
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-        targetIdx = (idx + 1) % buttons.length;
-      } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-        targetIdx = (idx - 1 + buttons.length) % buttons.length;
-      }
-      if (targetIdx !== null) {
-        event.preventDefault();
-        buttons[targetIdx].focus();
-        buttons[targetIdx].click();
-      }
-    });
+  const picker = initSegmentedPicker({
+    root: document.getElementById("nav-style-picker"),
+    valueAttribute: "navStyle",
+    values: NAV_STYLES,
+    defaultValue: DEFAULT_NAV_STYLE,
+    storageKey: NAV_STYLE_KEY,
+    onApply(style) {
+      currentStyle = applyNavStyle(style);
+      positionPill(false);
+    },
   });
 
-  updatePickerMetrics();
-  applyPickerState();
   requestAnimationFrame(() => positionPill(false));
+
+  function refreshMetrics() {
+    picker?.refreshMetrics();
+  }
 
   document.addEventListener("navigation:change", () => {
     requestAnimationFrame(() => {
-      updatePickerMetrics();
+      refreshMetrics();
       positionPill(true);
     });
   });
   document.addEventListener("languageChanged", () => {
     requestAnimationFrame(() => {
-      updatePickerMetrics();
+      refreshMetrics();
       positionPill(false);
     });
   });
   window.addEventListener("resize", () => {
-    updatePickerMetrics();
+    refreshMetrics();
     positionPill(false);
   });
   window.addEventListener("orientationchange", () => {
-    updatePickerMetrics();
+    refreshMetrics();
     positionPill(false);
   });
 
   if (document.fonts && document.fonts.ready) {
     document.fonts.ready.then(() => {
-      updatePickerMetrics();
+      refreshMetrics();
       positionPill(false);
     });
   }
