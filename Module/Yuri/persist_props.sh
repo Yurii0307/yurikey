@@ -64,12 +64,38 @@ case "$ACTION" in
     : > "$LIST_TMP"
     : > "$NAMES_TMP"
 
-    getprop | grep -E '^\[persist\.' | while IFS= read -r line; do
-      key=$(printf '%s\n' "$line" | sed -E 's/^\[([^]]+)\]:.*$/\1/')
-      val=$(printf '%s\n' "$line" | sed -E 's/^\[[^]]+\]: \[(.*)\]$/\1/')
-      printf 'false%s%s%s%s\n' "$TAB" "$key" "$TAB" "$val" >> "$LIST_TMP"
-      printf '%s\n' "$key" >> "$NAMES_TMP"
-    done
+    getprop | awk -v names="$NAMES_TMP" '
+      function esc(s,   i, c, out) {
+        out = ""
+        for (i = 1; i <= length(s); i++) {
+          c = substr(s, i, 1)
+          if (c == "\\" || c == "\"") out = out "\\" c
+          else if (c == "\t") out = out "\\t"
+          else if (c == "\n") out = out "\\n"
+          else out = out c
+        }
+        return out
+      }
+      function flush() {
+        if (have) {
+          printf "  {\"name\": \"%s\", \"value\": \"%s\", \"disabled\": false}\n", esc(key), esc(val)
+          print key > names
+        }
+        have = 0
+      }
+      /^\[[^]]+\]: \[/ {
+        flush()
+        if ($0 !~ /^\[persist\./) next
+        sep = index($0, "]: [")
+        key = substr($0, 2, sep - 2)
+        val = substr($0, sep + 4)
+        sub(/\]$/, "", val)
+        have = 1
+        next
+      }
+      have { val = val "\n" $0 }
+      END { flush() }
+    ' >> "$LIST_TMP"
 
     if [ -f "$DIFF_FILE" ]; then
       while IFS= read -r entry; do
@@ -79,29 +105,16 @@ case "$ACTION" in
             key=${rest%%=*}
             val=${rest#*=}
             grep -Fxq "$key" "$NAMES_TMP" && continue
-            printf 'true%s%s%s%s\n' "$TAB" "$key" "$TAB" "$val" >> "$LIST_TMP"
+            printf '  {"name": "%s", "value": "%s", "disabled": true}\n' \
+              "$(json_escape "$key")" "$(json_escape "$val")" >> "$LIST_TMP"
             ;;
         esac
       done < "$DIFF_FILE"
     fi
 
-    echo "["
-    first=1
-    while IFS= read -r line; do
-      [ -z "$line" ] && continue
-      disabled=${line%%"$TAB"*}
-      rest=${line#*"$TAB"}
-      key=${rest%%"$TAB"*}
-      val=${rest#*"$TAB"}
-      if [ "$first" -eq 0 ]; then
-        printf ',\n'
-      fi
-      first=0
-      printf '  {"name": "%s", "value": "%s", "disabled": %s}' \
-        "$(json_escape "$key")" "$(json_escape "$val")" "$disabled"
-    done < "$LIST_TMP"
-    echo ""
-    echo "]"
+    printf '[\n'
+    awk 'NR > 1 { printf ",\n" } { printf "%s", $0 }' "$LIST_TMP"
+    printf '\n]\n'
     rm -f "$LIST_TMP" "$NAMES_TMP"
     ;;
 

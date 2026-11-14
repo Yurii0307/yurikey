@@ -70,12 +70,7 @@
 
         let finished = false;
         let cbName = null;
-        const timer = setTimeout(() => {
-          if (finished) return;
-          finished = true;
-          raw.cancel(cbName);
-          reject(new Error(`Command timed out after ${timeout}ms: ${command}`));
-        }, timeout);
+        let timer = null;
 
         try {
           cbName = raw.run(command, (code, stdout, stderr) => {
@@ -91,6 +86,16 @@
             raw.cancel(cbName);
             reject(err);
           }
+          return;
+        }
+
+        if (!finished) {
+          timer = setTimeout(() => {
+            if (finished) return;
+            finished = true;
+            raw.cancel(cbName);
+            reject(new Error(`Command timed out after ${timeout}ms: ${command}`));
+          }, timeout);
         }
       });
     },
