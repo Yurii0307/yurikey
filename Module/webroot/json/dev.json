@@ -3,57 +3,55 @@
   "contributors": [
     {
       "name": "Yuri",
-      "username": "Yurii0307",
+      "telegram": "Yurii0307",
       "role": "Founder & Module Developer",
-      "url": "https://github.com/Yurii0307"
+      "github": "Yurii0307"
     },
     {
       "name": "Tam",
-      "username": "Tam97123",
       "role": "Module Developer",
-      "url": "https://github.com/Tam97123"
+      "github": "Tam97123"
     },
     {
       "name": "yourbestregard",
-      "username": "yourbestregard",
+      "telegram": "yourbestregard",
       "role": "Module Developer",
-      "url": "https://github.com/yourbestregard"
+      "github": "yourbestregard"
     },
     {
       "name": "CEHunter",
-      "username": "cvnertnc",
+      "telegram": "cvnertnc",
       "role": "Module/WebUI Developer",
-      "url": "https://github.com/cvnertnc"
+      "github": "cvnertnc"
     },
     {
       "name": "ZG089",
-      "username": "ZG089",
+      "telegram": "ZG089",
       "role": "Module Developer",
-      "url": "https://github.com/ZG089"
+      "github": "ZG089"
     },
     {
       "name": "Munch",
-      "username": "SudoNothing404",
       "role": "WebUI Developer",
-      "url": "https://github.com/SudoNothing404"
+      "github": "SudoNothing404"
     },
     {
-      "name": "Wes",
-      "username": "p0ntu5",
-      "role": "WebUI Developer",
-      "url": "https://github.com/ihatenodejs"
+      "name": "Aidan",
+      "telegram": "p0ntu5",
+      "role": "Module/WebUI Developer",
+      "github": "ihatenodejs"
     },
     {
       "name": "Khx",
-      "username": "dpejoh",
+      "telegram": "dpejoh",
       "role": "Ex Module Developer",
-      "url": "https://github.com/dpejoh"
+      "github": "dpejoh"
     },
     {
       "name": "HzzMonet",
-      "username": "hzzmonet",
+      "telegram": "hzzmonet",
       "role": "Feminine Boy",
-      "url": "https://github.com/hzzmonetvn"
+      "github": "hzzmonetvn"
     }
   ]
 }

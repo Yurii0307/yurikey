@@ -1,26 +1,28 @@
-// ========== EXECUTOR FUNCTION ==========
-// Executes a shell command using KernelSU and returns a Promise with the output
-function exec(command) {
-  return new Promise((resolve, reject) => {
-    const cb = `cb_${Date.now()}`;
-    window[cb] = (code, out, err) => {
-      delete window[cb];
-      code ? reject(err || "Unknown error") : resolve(out);
-    };
-    ksu.exec(command, "{}", cb);
-  });
+// Log output helper
+
+function appendToOutput(msg) {
+  if (window.addLogEntry) {
+    window.addLogEntry(msg);
+  } else {
+    console.log(msg);
+  }
 }
+window.appendToOutput = appendToOutput;
 
 // ========== VERSION MODULE DETECTION ==========
 // Reads the 'version' from /data/adb/modules/Yurikey/module.prop
 async function loadVersionFromModuleProp() {
   const versionElement = document.getElementById('version-text');
   try {
-    const version = await exec("grep '^version=' /data/adb/modules/Yurikey/module.prop | cut -d'=' -f2");
-    versionElement.textContent = version.trim();
+    const res = await window.Bridge.exec("grep '^version=' /data/adb/modules/Yurikey/module.prop | cut -d'=' -f2");
+    if (res.code === 0 && res.stdout.trim()) {
+      versionElement.textContent = res.stdout.trim();
+    } else {
+      throw new Error(res.stderr || "Empty version");
+    }
   } catch (error) {
     appendToOutput("[!] Failed to read version from module.prop");
-    console.error("Failed to read version from module.prop:", error);
+    console.error("Failed to read version:", error);
   }
 }
 

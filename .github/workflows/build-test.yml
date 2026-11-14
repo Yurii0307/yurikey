@@ -1,17 +1,35 @@
-name: Build Test Module
+name: Build and Validate Module
 
 on:
-  #push:
-  #  paths:
-  #    - 'Module/**'
-  #  branches:
-  #    - main
-  #    - dev
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install Dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Run Test Suite
+        run: bun test
+
   build:
     runs-on: ubuntu-latest
+    needs: validate
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6

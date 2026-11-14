@@ -1,7 +1,7 @@
-#!/bin/sh
+#!/system/bin/sh
 
 log_message() {
-    echo "$(date +%Y-%m-%d\ %H:%M:%S) [KILL_ALL] $1"
+    echo "$(date +%Y-%m-%d\ %H:%M:%S) [SELECT_APP] $1"
 }
 
 # Start
@@ -11,6 +11,7 @@ t='/data/adb/tricky_store/target.txt'
 
 # Writing
 log_message "Writing"
+mkdir -p "$(dirname "$t")"
 rm -rf "$t"
 # add list special
 fixed_targets="\
@@ -42,7 +43,7 @@ com.chunqiunativecheck?"
 for entry in $fixed_targets; do
     if ! echo "$entry" >> "$t"; then
         log_message "Error: Failed to write $entry to $t"
-        return 1
+        exit 1
     fi
 done
 

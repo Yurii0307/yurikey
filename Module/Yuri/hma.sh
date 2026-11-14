@@ -27,8 +27,22 @@ elif pm list packages | grep -q com.tsng.hidemyapplist; then
   log_message "HMA is deprecated and not supported, please use latest HMA-oss to get latest configs"
 else
   log_message "Error: HMA-oss not found, please install latest HMA-oss"
-  return 1
+  exit 1
 fi
 
-chmod 777 "$HMA_FILE"
-chown u0_a0:u0_a0 "$HMA_FILE"
+# Determine owner from app data directory
+APP_DATA_DIR="/data/user/0/org.frknkrc44.hma_oss"
+[ -d "$APP_DATA_DIR" ] || APP_DATA_DIR="/data/data/org.frknkrc44.hma_oss"
+
+APP_UID=$(stat -c '%u:%g' "$APP_DATA_DIR" 2>/dev/null)
+if [ -z "$APP_UID" ] || [ "$APP_UID" = "0:0" ]; then
+    APP_UID=$(stat -c '%U:%G' "$APP_DATA_DIR" 2>/dev/null)
+fi
+
+if [ -n "$APP_UID" ] && [ "$APP_UID" != "0:0" ] && [ "$APP_UID" != "root:root" ]; then
+    chown "$APP_UID" "$HMA_DIR" "$HMA_FILE"
+    chmod 700 "$HMA_DIR"
+    chmod 600 "$HMA_FILE"
+else
+    chmod 666 "$HMA_FILE"
+fi

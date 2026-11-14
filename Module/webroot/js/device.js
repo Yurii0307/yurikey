@@ -18,11 +18,12 @@ async function waitForValidDeviceInfo(maxWait = 4000, interval = 400) {
   const start = Date.now();
   while (Date.now() - start < maxWait) {
     try {
-      const res = await fetch("/json/device-info.json?ts=" + Date.now());
+      const res = await fetch("json/device-info.json?ts=" + Date.now());
       if (!res.ok) throw new Error("Fetch failed");
 
       const data = await res.json();
-      if (data.android || data.kernel || data.root) return data;
+      const isNone = (val) => !val || val === "none" || val === "-" || val === "Error";
+      if (data && (!isNone(data.android) || !isNone(data.kernel) || !isNone(data.root))) return data;
     } catch (err) {}
     await new Promise(r => setTimeout(r, interval));
   }
@@ -32,13 +33,35 @@ async function waitForValidDeviceInfo(maxWait = 4000, interval = 400) {
 // Load device info and display it in the UI
 async function loadDeviceInfo() {
   try {
-    const res = await fetch("/json/device-info.json?ts=" + Date.now());
-    if (!res.ok) throw new Error("Failed to fetch");
+    let data = null;
+    try {
+      const res = await fetch("json/device-info.json?ts=" + Date.now());
+      if (res.ok) {
+        data = await res.json();
+      }
+    } catch {
+      data = null;
+    }
 
-    const data = await res.json();
-    document.getElementById("android-version").innerText = data.android || "-";
-    document.getElementById("kernel-version").innerText = data.kernel || "-";
-    document.getElementById("root-type").innerText = data.root || "-";
+    const isNone = (val) => !val || val === "none" || val === "-" || val === "Error";
+    const hasNone = !data || isNone(data.android) || isNone(data.kernel) || isNone(data.root);
+
+    if (hasNone && window.Bridge && window.Bridge.isAvailable()) {
+      try {
+        await window.Bridge.exec(`sh "${BASE_SCRIPT}device-info.sh"`);
+        data = await waitForValidDeviceInfo();
+      } catch (bridgeErr) {
+        console.warn("Auto-trigger device-info.sh failed:", bridgeErr);
+      }
+    }
+
+    if (data) {
+      document.getElementById("android-version").innerText = data.android || "-";
+      document.getElementById("kernel-version").innerText = data.kernel || "-";
+      document.getElementById("root-type").innerText = data.root || "-";
+    } else {
+      throw new Error("No device info available");
+    }
   } catch (err) {
     console.error("loadDeviceInfo() error:", err);
     document.getElementById("android-version").innerText = "Error";
@@ -47,35 +70,48 @@ async function loadDeviceInfo() {
   }
 }
 
-// Execute a shell script with KernelSU
-function runScript(scriptName, callback) {
+// Execute an internal shell script with unified Bridge
+function execDeviceScript(scriptName, callback) {
   const fullPath = `${BASE_SCRIPT}${scriptName}`;
-  if (typeof ksu === "object" && typeof ksu.exec === "function") {
-    const cbId = `cb_${Date.now()}`;
-    window[cbId] = () => {
-      delete window[cbId];
-      if (typeof callback === "function") callback();
-    };
-    ksu.exec(`sh '${fullPath}'`, "{}", cbId);
+  if (window.Bridge && typeof window.Bridge.exec === "function") {
+    window.Bridge.exec(`sh "${fullPath}"`)
+      .catch((err) => console.warn(`Bridge execution failed for ${scriptName}:`, err))
+      .finally(() => {
+        if (typeof callback === "function") callback();
+      });
   } else {
-    console.warn("ksu.exec not available.");
+    console.warn("Bridge executor not available.");
     if (typeof callback === "function") callback();
   }
 }
+
+let refreshSuccessTimer = null;
 
 // Setup refresh button behavior with translation and animation
 function setupRefreshButton() {
   const refreshBtn = document.getElementById("refresh-info-btn");
   if (!refreshBtn) return;
 
-  const scriptName = refreshBtn.dataset.script;
-
   refreshBtn.addEventListener("click", () => {
     if (refreshBtn.disabled) return;
     refreshBtn.disabled = true;
+    if (refreshSuccessTimer) {
+      clearTimeout(refreshSuccessTimer);
+      refreshSuccessTimer = null;
+    }
+    refreshBtn.classList.remove("success");
     refreshBtn.classList.add("rotating");
 
-    runScript(scriptName, async () => {
+    if (window.showToast) {
+      window.showToast(window.t ? window.t("home_refreshing", "Refreshing info...") : "Refreshing info...", "info");
+    }
+    if (window.updateNetworkStatus) {
+      window.updateNetworkStatus();
+    }
+
+    const minSpinPromise = new Promise(resolve => setTimeout(resolve, 600));
+
+    execDeviceScript("device-info.sh", async () => {
       try {
         const data = await waitForValidDeviceInfo();
         document.getElementById("android-version").innerText = data.android || "-";
@@ -83,10 +119,17 @@ function setupRefreshButton() {
         document.getElementById("root-type").innerText = data.root || "-";
       } catch (err) {
         console.warn("Could not update device info:", err);
-      }
+      } finally {
+        await minSpinPromise;
+        refreshBtn.classList.remove("rotating");
+        refreshBtn.classList.add("success");
 
-      refreshBtn.classList.remove("rotating");
-      refreshBtn.disabled = false;
+        refreshSuccessTimer = setTimeout(() => {
+          refreshBtn.classList.remove("success");
+          refreshBtn.disabled = false;
+          refreshSuccessTimer = null;
+        }, 2000);
+      }
     });
   });
 }
@@ -95,15 +138,8 @@ function setupRefreshButton() {
 window.addEventListener("DOMContentLoaded", async () => {
   await waitForTranslations();     // Make sure translations are loaded
   loadDeviceInfo();                // Load initial device info
-  setupRefreshButton();           // Setup refresh button
+  setupRefreshButton();            // Setup refresh button
 
-  // Bind all action buttons to their scripts
-  document.querySelectorAll(".action-buttons .menu-btn").forEach(button => {
-    const scriptName = button.dataset.script;
-    if (scriptName) {
-      button.addEventListener("click", () => runScript(scriptName));
-    }
-  });
 });
 
 window.loadDeviceInfo = loadDeviceInfo;
