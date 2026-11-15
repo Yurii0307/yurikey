@@ -2,6 +2,7 @@
 const NAV_STYLE_KEY = "navStyle";
 const NAV_STYLES = ["classic", "expressive", "rounded"];
 const DEFAULT_NAV_STYLE = "expressive";
+const LOG_FAB_BESIDE_KEY = "logFabBeside";
 
 function applyNavStyle(style) {
   const resolved = NAV_STYLES.includes(style) ? style : DEFAULT_NAV_STYLE;
@@ -9,8 +10,22 @@ function applyNavStyle(style) {
   return resolved;
 }
 
+function readLogFabBeside() {
+  try {
+    return localStorage.getItem(LOG_FAB_BESIDE_KEY) === "true";
+  } catch {
+    return false;
+  }
+}
+
+function applyLogFabBeside(enabled) {
+  document.documentElement.classList.toggle("log-fab-beside", !!enabled);
+  return !!enabled;
+}
+
 // Applied while the document head is parsed so the first paint uses the stored style.
 applyNavStyle(readStoredPreference(NAV_STYLE_KEY, NAV_STYLES, DEFAULT_NAV_STYLE));
+applyLogFabBeside(readLogFabBeside());
 
 window.addEventListener("DOMContentLoaded", () => {
   const nav = document.querySelector(".m3-floating-nav");
@@ -19,6 +34,25 @@ window.addEventListener("DOMContentLoaded", () => {
   const pill = nav.querySelector(".nav-pill");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let currentStyle = applyNavStyle(readStoredPreference(NAV_STYLE_KEY, NAV_STYLES, DEFAULT_NAV_STYLE));
+
+  const besideRow = document.getElementById("log-fab-beside-row");
+  const besideToggle = document.getElementById("log-fab-beside-toggle");
+  const besideEnabled = applyLogFabBeside(readLogFabBeside());
+  if (besideToggle) besideToggle.checked = besideEnabled;
+
+  function syncBesideControl(style) {
+    if (!besideRow) return;
+    besideRow.hidden = style === "expressive";
+  }
+
+  syncBesideControl(currentStyle);
+
+  besideToggle?.addEventListener("change", () => {
+    const enabled = applyLogFabBeside(besideToggle.checked);
+    try {
+      localStorage.setItem(LOG_FAB_BESIDE_KEY, enabled ? "true" : "false");
+    } catch {}
+  });
 
   function positionPill(animate) {
     if (!pill || currentStyle !== "expressive") return;
@@ -49,6 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
     storageKey: NAV_STYLE_KEY,
     onApply(style) {
       currentStyle = applyNavStyle(style);
+      syncBesideControl(currentStyle);
       positionPill(false);
     },
   });

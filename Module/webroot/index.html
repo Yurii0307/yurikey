@@ -216,10 +216,20 @@
         <div class="log-viewer-setting-row">
           <div class="log-viewer-setting-info">
             <div class="log-viewer-setting-title" id="log-viewer-setting-title" data-i18n="settings_enable_log_viewer">Enable Log Viewer</div>
-            <div class="card-desc" id="log-viewer-setting-desc" data-i18n="settings_enable_log_viewer_desc">Show floating terminal button to view script outputs</div>
+            <div class="card-desc" id="log-viewer-setting-desc" data-i18n="settings_enable_log_viewer_desc">Show terminal button to view script outputs</div>
           </div>
           <label class="switch">
             <input type="checkbox" id="log-viewer-toggle" aria-labelledby="log-viewer-setting-title" aria-describedby="log-viewer-setting-desc" />
+            <span></span>
+          </label>
+        </div>
+        <div id="log-fab-beside-row" class="log-viewer-setting-row" hidden>
+          <div class="log-viewer-setting-info">
+            <div class="log-viewer-setting-title" id="log-fab-beside-title" data-i18n="settings_show_beside_navbar">Show Beside Navbar</div>
+            <div class="card-desc" id="log-fab-beside-desc" data-i18n="settings_show_beside_navbar_desc">Place the terminal log button next to the navigation bar</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="log-fab-beside-toggle" aria-labelledby="log-fab-beside-title" aria-describedby="log-fab-beside-desc" />
             <span></span>
           </label>
         </div>
@@ -274,10 +284,6 @@
       </article>
     </section>
   </main>
-  <button id="logs-fab" type="button" class="circle extra wave logs-fab" data-i18n-title="home_recent_logs" aria-label="Recent Logs">
-    <i>terminal</i>
-  </button>
-
   <div class="m3-nav-wrapper">
     <nav class="m3-floating-nav">
       <span class="nav-pill" aria-hidden="true"></span>
@@ -298,6 +304,9 @@
         <span data-i18n="nav_settings">Settings</span>
       </a>
     </nav>
+    <button id="logs-fab" type="button" class="circle extra wave logs-fab" data-i18n-title="home_recent_logs" aria-label="Recent Logs">
+      <i>terminal</i>
+    </button>
   </div>
 
 

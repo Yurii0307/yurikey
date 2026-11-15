@@ -484,19 +484,18 @@ article,
   color: color-mix(in srgb, #ef4444 80%, var(--ui-text));
 }
 
-/* Floating Terminal Button for Logs Dialog */
+/* Terminal Button for Logs Dialog */
 .logs-fab {
   display: none;
-  position: fixed;
-  bottom: calc(80px + 1.75rem);
-  bottom: calc(80px + 1.75rem + env(safe-area-inset-bottom, 0px));
-  right: calc(max(1rem, (100vw - 480px) / 2) + 0.375rem);
-  width: 52px;
-  height: 52px;
-  min-width: 52px;
-  min-height: 52px;
+  flex: 0 0 auto;
+  position: relative;
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
   padding: 0;
-  border-radius: 1.25rem;
+  border-radius: 50%;
+  box-sizing: border-box;
   background: var(--ui-pill-bg) !important;
   color: var(--ui-pill-text) !important;
   border: 1px solid var(--ui-pill-border);
@@ -505,16 +504,9 @@ article,
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  pointer-events: auto;
   overflow: hidden;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, background-color 0.3s ease, opacity 0.2s ease, visibility 0.2s ease;
-}
-
-body.logs-dialog-open .logs-fab,
-body:has(#logs-dialog:is(.active, [open])) .logs-fab {
-  opacity: 0 !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  transform: scale(0.6) !important;
 }
 
 .logs-fab:hover {
@@ -525,13 +517,51 @@ body:has(#logs-dialog:is(.active, [open])) .logs-fab {
 
 .logs-fab:active {
   transform: scale(0.97);
-  border-radius: 1.15rem !important;
   box-shadow: 0 2px 8px rgb(0 0 0 / 22%);
 }
 
 .logs-fab i {
-  font-size: 24px;
+  font-size: 26px;
   color: inherit;
+}
+
+/* Expressive: slightly smaller than the 64px nav so it reads as a secondary action */
+
+html[data-nav-style="expressive"] .logs-fab {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  min-height: 56px;
+}
+
+html[data-nav-style="expressive"] .logs-fab i {
+  font-size: 24px;
+}
+
+/* Floating above the bar (Classic, and Rounded unless "Show Beside Navbar" is on) */
+
+html[data-nav-style="classic"]:not(.log-fab-beside) .logs-fab,
+html[data-nav-style="rounded"]:not(.log-fab-beside) .logs-fab {
+  position: fixed;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+}
+
+html[data-nav-style="classic"]:not(.log-fab-beside) .logs-fab {
+  right: calc(0.75rem + env(safe-area-inset-right, 0px));
+  bottom: calc(80px + 0.75rem + env(safe-area-inset-bottom, 0px));
+}
+
+html[data-nav-style="rounded"]:not(.log-fab-beside) .logs-fab {
+  right: calc(max(1rem, (100vw - 480px) / 2) + 0.375rem);
+  bottom: calc(80px + max(1rem, env(safe-area-inset-bottom, 1rem)) + 0.75rem);
+}
+
+html[data-nav-style="classic"]:not(.log-fab-beside) .logs-fab i,
+html[data-nav-style="rounded"]:not(.log-fab-beside) .logs-fab i {
+  font-size: 24px;
 }
 
 /* Expressive Dialogs Base */
@@ -846,6 +876,10 @@ dialog.expressive-dialog .dialog-scroll-body::-webkit-scrollbar,
   justify-content: space-between;
   margin-top: 0.5rem;
   gap: 1rem;
+}
+
+#log-fab-beside-row[hidden] {
+  display: none;
 }
 
 .log-viewer-setting-info {
@@ -1785,7 +1819,11 @@ body.log-viewer-enabled .toast {
   left: 0;
   right: 0;
   display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  box-sizing: border-box;
   z-index: 100;
   pointer-events: none;
 }
@@ -1796,7 +1834,9 @@ body.log-viewer-enabled .toast {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: calc(100% - 2rem);
+  gap: 0;
+  width: 100%;
+  min-width: 0;
   max-width: 480px;
   height: 80px;
   background-color: var(--ui-card-bg);
@@ -1897,7 +1937,7 @@ html[data-nav-style="expressive"] .m3-nav-wrapper {
 
 html[data-nav-style="expressive"] .m3-floating-nav {
   width: auto;
-  max-width: calc(100% - 2rem);
+  max-width: 100%;
   height: 64px;
   padding: 0 0.35rem;
   gap: 0.1rem;
@@ -1916,7 +1956,7 @@ html[data-nav-style="expressive"] .m3-floating-nav a {
   flex-direction: row;
   gap: 0.4rem;
   height: 100%;
-  padding: 0 0.8rem;
+  padding: 0 0.65rem;
   color: var(--ui-muted);
   z-index: 1;
   transition: color 0.2s ease;
@@ -1949,8 +1989,10 @@ html[data-nav-style="expressive"] .m3-floating-nav a span {
 }
 
 html[data-nav-style="expressive"] .m3-floating-nav a.active {
-  padding: 0 2rem;
+  padding: 0 1.3rem;
   color: var(--ui-pill-bg);
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 html[data-nav-style="expressive"] .m3-floating-nav a.active span {
@@ -1958,9 +2000,11 @@ html[data-nav-style="expressive"] .m3-floating-nav a.active span {
   width: auto;
   height: auto;
   margin: 0;
-  overflow: visible;
+  overflow: hidden;
+  text-overflow: ellipsis;
   clip: auto;
   clip-path: none;
+  min-width: 0;
 }
 
 html[data-nav-style="expressive"] .m3-floating-nav a.active i {
@@ -1976,13 +2020,33 @@ html[data-nav-style="expressive"] .page-shell {
   padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
 }
 
-@media (max-width: 350px) {
-  html[data-nav-style="expressive"] .m3-floating-nav a {
+@media (max-width: 380px) {
+  html[data-nav-style="expressive"] .m3-nav-wrapper {
+    gap: 0.4rem;
     padding: 0 0.75rem;
   }
 
+  html[data-nav-style="expressive"] .m3-floating-nav a {
+    padding: 0 0.5rem;
+  }
+
   html[data-nav-style="expressive"] .m3-floating-nav a.active {
-    padding: 0 1.2rem;
+    padding: 0 0.9rem;
+  }
+
+  html[data-nav-style="rounded"] .m3-nav-wrapper {
+    gap: 0.4rem;
+    padding: 0 0.5rem;
+  }
+
+  html[data-nav-style="rounded"] .m3-floating-nav a i {
+    width: 52px;
+  }
+}
+
+@media (max-width: 350px) {
+  html[data-nav-style="expressive"] .m3-floating-nav a.active span {
+    display: none;
   }
 }
 
@@ -1992,6 +2056,7 @@ html[data-nav-style="classic"] .m3-nav-wrapper {
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 0;
 }
 
 html[data-nav-style="classic"] .m3-floating-nav {
@@ -2003,6 +2068,38 @@ html[data-nav-style="classic"] .m3-floating-nav {
   background-color: var(--ui-card-bg);
   border-top: 1px solid var(--ui-card-border);
   box-shadow: 0 -2px 12px rgb(0 0 0 / 18%);
+}
+
+html[data-nav-style="classic"].log-fab-beside body.log-viewer-enabled .m3-floating-nav {
+  padding-right: 4.75rem;
+}
+
+html.log-fab-beside[data-nav-style="classic"] .logs-fab {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: calc(0.75rem + env(safe-area-inset-right, 0px));
+  margin-block: auto;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  min-height: 52px;
+  box-shadow: none;
+}
+
+html.log-fab-beside[data-nav-style="classic"] .logs-fab i {
+  font-size: 22px;
+}
+
+html.log-fab-beside[data-nav-style="rounded"] .logs-fab {
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  min-height: 80px;
+}
+
+html.log-fab-beside[data-nav-style="rounded"] .logs-fab i {
+  font-size: 30px;
 }
 
 html[data-nav-style="classic"] .m3-floating-nav a i {

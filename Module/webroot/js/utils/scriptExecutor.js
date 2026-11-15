@@ -93,7 +93,6 @@ function openLogsDialog() {
   if (!dialog) return;
 
   renderRecentLogs();
-  document.body.classList.add("logs-dialog-open");
   dialog.classList.add("active");
   if (overlay) overlay.classList.add("active");
   if (!dialog.open && typeof dialog.show === "function") {
@@ -109,7 +108,6 @@ function closeLogsDialog() {
   const overlay = document.getElementById("logs-dialog-overlay");
   if (!dialog) return;
 
-  document.body.classList.remove("logs-dialog-open");
   dialog.classList.remove("active");
   if (overlay) overlay.classList.remove("active");
   if (dialog.open && typeof dialog.close === "function") {
@@ -201,7 +199,7 @@ function initLoggingUI() {
 
       const handleCopyFailure = () => {
         if (window.showToast) {
-          window.showToast(window.t ? window.t("copy_failed", "Failed to copy logs") : "Failed to copy logs", "error", 2000);
+          window.showToast(window.t ? window.t("logs_copy_failed", "Failed to copy logs") : "Failed to copy logs", "error", 2000);
         }
       };
 
