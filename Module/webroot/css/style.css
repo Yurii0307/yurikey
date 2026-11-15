@@ -2328,3 +2328,122 @@ html[data-nav-style="classic"] .page-shell {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+/* TEESimulator profile picker */
+#teesim-dialog {
+  height: fit-content;
+  max-height: calc(100vh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  max-height: calc(100dvh - 80px - 3rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+}
+
+#teesim-dialog .teesim-dialog-body {
+  flex: 0 1 auto !important;
+  max-height: 55vh;
+}
+
+#teesim-dialog .teesim-dialog-hint {
+  margin: 0 0 0.35rem 0.45rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ui-muted);
+}
+
+#teesim-dialog .teesim-dialog-body {
+  margin-top: 0.5rem !important;
+  padding: 0.35rem !important;
+  border-radius: 0.85rem !important;
+}
+
+.teesim-profile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.teesim-profile-option {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem !important;
+  border: 1px solid var(--ui-pill-border) !important;
+  background: color-mix(in srgb, var(--ui-card-bg) 80%, var(--ui-pill-bg) 20%) !important;
+  color: var(--ui-text) !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.teesim-profile-option:hover {
+  background: color-mix(in srgb, var(--ui-card-bg) 65%, var(--ui-pill-bg) 35%) !important;
+}
+
+.teesim-profile-option:focus-visible {
+  outline: 2px solid var(--ui-pill-bg);
+  outline-offset: 2px;
+}
+
+.teesim-profile-option[aria-checked="true"] {
+  background: var(--ui-pill-bg) !important;
+  color: var(--ui-pill-text) !important;
+  border-color: var(--ui-pill-border) !important;
+  font-weight: 600;
+}
+
+.teesim-profile-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teesim-profile-check {
+  display: none;
+  flex-shrink: 0;
+  font-size: 1.2rem;
+}
+
+.teesim-profile-option[aria-checked="true"] .teesim-profile-check {
+  display: inline-flex;
+}
+
+#teesim-dialog .teesim-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  border-radius: 0;
+}
+
+#teesim-dialog .teesim-dialog-footer button {
+  min-height: 40px;
+  padding: 0 1.15rem;
+  border-radius: 0.5rem !important;
+  border: 1px solid var(--ui-pill-border);
+  background: transparent;
+  color: var(--ui-text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#teesim-dialog .teesim-dialog-footer button:focus-visible {
+  outline: 2px solid var(--ui-pill-bg);
+  outline-offset: 2px;
+}
+
+#teesim-dialog .teesim-dialog-footer #teesim-dialog-confirm {
+  background: var(--ui-pill-bg);
+  color: var(--ui-pill-text);
+}
+
+#teesim-dialog .teesim-dialog-footer #teesim-dialog-confirm:hover {
+  background: color-mix(in srgb, var(--ui-pill-bg) 88%, var(--ui-text) 12%);
+}

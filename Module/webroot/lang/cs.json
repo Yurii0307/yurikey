@@ -127,5 +127,13 @@
   "settings_navigation": "Navigace",
   "nav_style_classic": "Klasický",
   "nav_style_rounded": "Zaoblený",
-  "nav_style_expressive": "Expresivní"
+  "nav_style_expressive": "Expresivní",
+  "teesim_profile_title": "Profil TEESimulator",
+  "teesim_profile_hint": "Tyto akce aktualizují jeden profil TEESimulator. Vyberte ten, který chcete změnit.",
+  "teesim_profile_confirm": "Aktualizovat {profile}",
+  "teesim_profile_cancel": "Zrušit",
+  "teesim_profile_read_failed": "Konfiguraci TEESimulator nelze načíst.",
+  "teesim_profile_changed": "Konfigurace TEESimulator se změnila. Nic nebylo spuštěno.",
+  "teesim_profile_empty": "Tato konfigurace TEESimulator neobsahuje žádné profily.",
+  "teesim_profile_cancelled": "Nebyl vybrán žádný profil, nic nebylo spuštěno."
 }

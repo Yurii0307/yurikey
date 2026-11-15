@@ -127,5 +127,13 @@
   "settings_navigation": "التنقل",
   "nav_style_classic": "كلاسيكي",
   "nav_style_rounded": "دائري",
-  "nav_style_expressive": "تعبيري"
+  "nav_style_expressive": "تعبيري",
+  "teesim_profile_title": "ملف تعريف TEESimulator",
+  "teesim_profile_hint": "تُحدِّث هذه الإجراءات ملف تعريف واحدًا في TEESimulator. اختر الملف الذي تريد تغييره.",
+  "teesim_profile_confirm": "تحديث {profile}",
+  "teesim_profile_cancel": "إلغاء",
+  "teesim_profile_read_failed": "تعذر قراءة إعدادات TEESimulator.",
+  "teesim_profile_changed": "تغيّرت إعدادات TEESimulator. لم يتم تشغيل أي شيء.",
+  "teesim_profile_empty": "لا توجد ملفات تعريف في إعدادات TEESimulator هذه.",
+  "teesim_profile_cancelled": "لم يتم اختيار أي ملف تعريف، ولم يتم تشغيل أي شيء."
 }

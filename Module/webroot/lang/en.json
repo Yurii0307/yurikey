@@ -127,5 +127,13 @@
   "persist_props_deleted": "Deleted property {name}.",
   "persist_props_enabled": "Enabled property {name}.",
   "persist_props_disabled": "Disabled property {name}.",
-  "persist_props_failed": "Failed to update property {name}."
+  "persist_props_failed": "Failed to update property {name}.",
+  "teesim_profile_title": "TEESimulator profile",
+  "teesim_profile_hint": "These actions update one TEESimulator profile. Pick the one to change.",
+  "teesim_profile_confirm": "Update {profile}",
+  "teesim_profile_cancel": "Cancel",
+  "teesim_profile_read_failed": "Could not read the TEESimulator config.",
+  "teesim_profile_changed": "The TEESimulator config changed. Nothing was run.",
+  "teesim_profile_empty": "This TEESimulator config has no profiles.",
+  "teesim_profile_cancelled": "No profile picked, nothing was run."
 }

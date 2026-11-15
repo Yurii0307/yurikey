@@ -127,5 +127,13 @@
   "settings_navigation": "Навигация",
   "nav_style_classic": "Классический",
   "nav_style_rounded": "Закруглённый",
-  "nav_style_expressive": "Экспрессивный"
+  "nav_style_expressive": "Экспрессивный",
+  "teesim_profile_title": "Профиль TEESimulator",
+  "teesim_profile_hint": "Эти действия обновляют один профиль TEESimulator. Выберите, какой изменить.",
+  "teesim_profile_confirm": "Обновить {profile}",
+  "teesim_profile_cancel": "Отмена",
+  "teesim_profile_read_failed": "Не удалось прочитать конфигурацию TEESimulator.",
+  "teesim_profile_changed": "Конфигурация TEESimulator изменилась. Ничего не выполнено.",
+  "teesim_profile_empty": "В этой конфигурации TEESimulator нет профилей.",
+  "teesim_profile_cancelled": "Профиль не выбран, ничего не выполнено."
 }

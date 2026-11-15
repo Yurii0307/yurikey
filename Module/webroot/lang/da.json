@@ -127,5 +127,13 @@
   "settings_navigation": "Navigation",
   "nav_style_classic": "Klassisk",
   "nav_style_rounded": "Afrundet",
-  "nav_style_expressive": "Udtryksfuld"
+  "nav_style_expressive": "Udtryksfuld",
+  "teesim_profile_title": "TEESimulator-profil",
+  "teesim_profile_hint": "Disse handlinger opdaterer én TEESimulator-profil. Vælg den, der skal ændres.",
+  "teesim_profile_confirm": "Opdater {profile}",
+  "teesim_profile_cancel": "Annuller",
+  "teesim_profile_read_failed": "Kunne ikke læse TEESimulator-konfigurationen.",
+  "teesim_profile_changed": "TEESimulator-konfigurationen er ændret. Der blev ikke kørt noget.",
+  "teesim_profile_empty": "Denne TEESimulator-konfiguration har ingen profiler.",
+  "teesim_profile_cancelled": "Ingen profil valgt. Der blev ikke kørt noget."
 }

@@ -127,5 +127,13 @@
   "settings_navigation": "导航",
   "nav_style_classic": "经典",
   "nav_style_rounded": "圆角",
-  "nav_style_expressive": "表现力"
+  "nav_style_expressive": "表现力",
+  "teesim_profile_title": "TEESimulator 配置文件",
+  "teesim_profile_hint": "这些操作会更新一个 TEESimulator 配置文件，请选择要更改的那一个。",
+  "teesim_profile_confirm": "更新 {profile}",
+  "teesim_profile_cancel": "取消",
+  "teesim_profile_read_failed": "无法读取 TEESimulator 配置。",
+  "teesim_profile_changed": "TEESimulator 配置已更改，未执行任何操作。",
+  "teesim_profile_empty": "此 TEESimulator 配置中没有任何配置文件。",
+  "teesim_profile_cancelled": "未选择配置文件，未执行任何操作。"
 }

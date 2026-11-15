@@ -127,5 +127,13 @@
   "settings_navigation": "Навигација",
   "nav_style_classic": "Класични",
   "nav_style_rounded": "Заобљени",
-  "nav_style_expressive": "Експресивни"
+  "nav_style_expressive": "Експресивни",
+  "teesim_profile_title": "TEESimulator профил",
+  "teesim_profile_hint": "Ове радње ажурирају један TEESimulator профил. Изаберите онај који ћете променити.",
+  "teesim_profile_confirm": "Ажурирај {profile}",
+  "teesim_profile_cancel": "Откажи",
+  "teesim_profile_read_failed": "Није могуће прочитати TEESimulator конфигурацију.",
+  "teesim_profile_changed": "TEESimulator конфигурација је промењена. Ништа није извршено.",
+  "teesim_profile_empty": "Ова TEESimulator конфигурација нема ниједног профила.",
+  "teesim_profile_cancelled": "Профил није изабран, ништа није извршено."
 }

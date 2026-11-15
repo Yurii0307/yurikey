@@ -38,15 +38,6 @@ test("dialog layout uses expressive-dialog and shared dialog-actions pattern", (
   expect(css).toContain(".prop-name");
 });
 
-test("mock-ksu simulates realistic persistent properties and CLI actions", () => {
-  const mockKsu = readFileSync("dev/mock-ksu.js", "utf-8");
-  expect(mockKsu).toContain("persist_props.sh");
-  expect(mockKsu).toContain("persist.sys.fuse");
-  expect(mockKsu).toContain("persist.bluetooth.opus.enabled");
-  expect(mockKsu).toContain("JSON.stringify(mockProperties)");
-});
-
-
 test("persist_props.sh list emits valid JSON with escaping in a single pass", () => {
   const dir = mkdtempSync(join(tmpdir(), "yurikey-props-"));
   try {

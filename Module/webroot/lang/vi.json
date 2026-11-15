@@ -127,5 +127,13 @@
   "settings_navigation": "Điều hướng",
   "nav_style_classic": "Cổ điển",
   "nav_style_rounded": "Bo tròn",
-  "nav_style_expressive": "Biểu cảm"
+  "nav_style_expressive": "Biểu cảm",
+  "teesim_profile_title": "Hồ sơ TEESimulator",
+  "teesim_profile_hint": "Các thao tác này cập nhật một hồ sơ TEESimulator. Hãy chọn hồ sơ cần thay đổi.",
+  "teesim_profile_confirm": "Cập nhật {profile}",
+  "teesim_profile_cancel": "Hủy",
+  "teesim_profile_read_failed": "Không thể đọc cấu hình TEESimulator.",
+  "teesim_profile_changed": "Cấu hình TEESimulator đã thay đổi. Không có thao tác nào được thực hiện.",
+  "teesim_profile_empty": "Cấu hình TEESimulator này không có hồ sơ nào.",
+  "teesim_profile_cancelled": "Không có hồ sơ nào được chọn, không có thao tác nào được thực hiện."
 }

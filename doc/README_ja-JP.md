@@ -21,7 +21,7 @@ Strong Integrity の取得を簡単に実現する Systemless モジュール
 
 ## どうすれば Strong Integrity を取得できますか？
 1. [Play Integrity Inject](https://github.com/KOWX712/PlayIntegrityFix/releases/latest) または [Play Integrity Fork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest) をインストールしてください
-2. [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest) をインストールしてください
+2. [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest) または [TEESimulator](https://github.com/JingMatrix/TEESimulator/releases) をインストールしてください
 3. [Yurikey Manager](https://github.com/Yurii0307/yurikey/releases/latest) を root マネージャーにインストールしてください (Magisk/Apatch/KernelSU/KernelSU のフォーク)
 4. アクションボタンを押してください
 
@@ -29,8 +29,8 @@ Strong Integrity の取得を簡単に実現する Systemless モジュール
 > [!NOTE]
 > action.sh またはモジュールのインストール時にエラーが発生した場合は、以下のモジュールをインストールする必要があるかもしれません。
 >
-> `"ERROR: Tricky Store module not found!"` が表示された場合:  
-> [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest)
+> `"ERROR: Tricky Store or TEESimulator module file not found!"` が表示された場合:  
+> [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest) または [TEESimulator](https://github.com/JingMatrix/TEESimulator/releases)
 >
 > `"ERROR: Keybox updated failed!"` が表示された場合:  
 > [BusyBox](https://mmrl.dev/repository/grdoglgmr/busybox-ndk)

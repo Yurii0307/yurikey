@@ -127,5 +127,13 @@
   "settings_navigation": "Πλοήγηση",
   "nav_style_classic": "Κλασικό",
   "nav_style_rounded": "Στρογγυλεμένο",
-  "nav_style_expressive": "Εκφραστικό"
+  "nav_style_expressive": "Εκφραστικό",
+  "teesim_profile_title": "Προφίλ TEESimulator",
+  "teesim_profile_hint": "Αυτές οι ενέργειες ενημερώνουν ένα προφίλ TEESimulator. Επιλέξτε ποιο θα αλλάξετε.",
+  "teesim_profile_confirm": "Ενημέρωση {profile}",
+  "teesim_profile_cancel": "Άκυρο",
+  "teesim_profile_read_failed": "Δεν ήταν δυνατή η ανάγνωση της διαμόρφωσης TEESimulator.",
+  "teesim_profile_changed": "Η διαμόρφωση TEESimulator άλλαξε. Δεν εκτελέστηκε τίποτα.",
+  "teesim_profile_empty": "Αυτή η διαμόρφωση TEESimulator δεν έχει προφίλ.",
+  "teesim_profile_cancelled": "Δεν επιλέχθηκε προφίλ, δεν εκτελέστηκε τίποτα."
 }

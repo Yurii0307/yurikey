@@ -127,5 +127,13 @@
   "settings_navigation": "Navigáció",
   "nav_style_classic": "Klasszikus",
   "nav_style_rounded": "Lekerekített",
-  "nav_style_expressive": "Expresszív"
+  "nav_style_expressive": "Expresszív",
+  "teesim_profile_title": "TEESimulator-profil",
+  "teesim_profile_hint": "Ezek a műveletek egy TEESimulator-profilt módosítanak. Válaszd ki a módosítandót.",
+  "teesim_profile_confirm": "{profile} frissítése",
+  "teesim_profile_cancel": "Mégse",
+  "teesim_profile_read_failed": "Nem sikerült beolvasni a TEESimulator-konfigurációt.",
+  "teesim_profile_changed": "A TEESimulator-konfiguráció megváltozott. Semmi nem futott le.",
+  "teesim_profile_empty": "Ebben a TEESimulator-konfigurációban nincsenek profilok.",
+  "teesim_profile_cancelled": "Nem választottál profilt, semmi nem futott le."
 }

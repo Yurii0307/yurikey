@@ -23,7 +23,7 @@ A Systemless Module to get Strong Integrity so Easily
 
 ## How to get Strong Integrity ?
 1. Install module [Play Integrity Inject](https://github.com/KOWX712/PlayIntegrityFix/releases/latest) or [Play Integrity Fork](https://github.com/osm0sis/PlayIntegrityFork/releases/latest)
-2. Install module [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest)
+2. Install module [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest) or [TEESimulator](https://github.com/JingMatrix/TEESimulator/releases)
 3. Install module [Yurikey Manager](https://github.com/Yurii0307/yurikey/releases/latest) by your root manager (Magisk/Apatch/KernelSu/Fork of KernelSU)
 4. Press the action button
 
@@ -32,8 +32,8 @@ A Systemless Module to get Strong Integrity so Easily
 > If you get errors similar to the ones below in action.sh or in module installations, you may need to install the modules below them.
 >
 > For the error on the side  
-> `ERROR: Tricky Store module not found!`:  
-> [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest)
+> `ERROR: Tricky Store or TEESimulator module file not found!`:  
+> [Tricky Store](https://github.com/5ec1cff/TrickyStore/releases/latest) or [TEESimulator](https://github.com/JingMatrix/TEESimulator/releases)
 >
 > For the error on the side  
 > `ERROR: Keybox updated failed!`:  

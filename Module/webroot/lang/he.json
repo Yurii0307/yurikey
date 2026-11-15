@@ -127,5 +127,13 @@
   "settings_navigation": "ניווט",
   "nav_style_classic": "קלאסי",
   "nav_style_rounded": "מעוגל",
-  "nav_style_expressive": "אקספרסיבי"
+  "nav_style_expressive": "אקספרסיבי",
+  "teesim_profile_title": "פרופיל TEESimulator",
+  "teesim_profile_hint": "פעולות אלה מעדכנות פרופיל TEESimulator אחד. בחר את הפרופיל לשינוי.",
+  "teesim_profile_confirm": "עדכון {profile}",
+  "teesim_profile_cancel": "ביטול",
+  "teesim_profile_read_failed": "לא ניתן לקרוא את תצורת TEESimulator.",
+  "teesim_profile_changed": "תצורת TEESimulator השתנתה. דבר לא הורץ.",
+  "teesim_profile_empty": "לתצורת TEESimulator זו אין פרופילים.",
+  "teesim_profile_cancelled": "לא נבחר פרופיל, דבר לא הורץ."
 }

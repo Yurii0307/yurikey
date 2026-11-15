@@ -606,6 +606,33 @@
     </div>
   </dialog>
 
+  <div id="teesim-dialog-overlay" class="overlay blur"></div>
+  <dialog id="teesim-dialog" class="round expressive-dialog" aria-labelledby="teesim-dialog-title">
+    <header>
+      <nav>
+        <h5 class="max">
+          <i>layers</i>
+          <span id="teesim-dialog-title" data-i18n="teesim_profile_title">TEESimulator profile</span>
+        </h5>
+        <div class="dialog-actions">
+          <button type="button" id="teesim-dialog-close" class="circle transparent wave" data-i18n-title="dialog_close" aria-label="Close">
+            <i>close</i>
+          </button>
+        </div>
+      </nav>
+      <p id="teesim-dialog-hint" class="teesim-dialog-hint" data-i18n="teesim_profile_hint">These actions update one TEESimulator profile. Pick the one to change.</p>
+    </header>
+
+    <div class="dialog-scroll-body teesim-dialog-body">
+      <div id="teesim-profile-list" class="teesim-profile-list" role="radiogroup" aria-labelledby="teesim-dialog-title"></div>
+    </div>
+
+    <div class="teesim-dialog-footer">
+      <button type="button" id="teesim-dialog-cancel" class="transparent wave" data-i18n="teesim_profile_cancel">Cancel</button>
+      <button type="button" id="teesim-dialog-confirm" class="wave">Update</button>
+    </div>
+  </dialog>
+
   <script src="js/beer.min.js" type="module"></script>
   <!-- Utilities -->
   <script src="js/utils/i18n.js"></script>
@@ -614,6 +641,7 @@
   <script src="js/utils/toast.js"></script>
   <script src="js/utils/bridge.js"></script>
   <script src="js/utils/scriptExecutor.js"></script>
+  <script src="js/utils/teesimProfile.js"></script>
   <!-- Components -->
   <script src="js/components/navigation.js"></script>
   <script src="js/components/clock.js"></script>

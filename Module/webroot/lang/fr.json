@@ -127,5 +127,13 @@
   "settings_navigation": "Navigation",
   "nav_style_classic": "Classique",
   "nav_style_rounded": "Arrondi",
-  "nav_style_expressive": "Expressif"
+  "nav_style_expressive": "Expressif",
+  "teesim_profile_title": "Profil TEESimulator",
+  "teesim_profile_hint": "Ces actions mettent à jour un profil TEESimulator. Choisissez celui à modifier.",
+  "teesim_profile_confirm": "Mettre à jour {profile}",
+  "teesim_profile_cancel": "Annuler",
+  "teesim_profile_read_failed": "Impossible de lire la configuration de TEESimulator.",
+  "teesim_profile_changed": "La configuration de TEESimulator a changé. Rien n'a été exécuté.",
+  "teesim_profile_empty": "Cette configuration de TEESimulator ne contient aucun profil.",
+  "teesim_profile_cancelled": "Aucun profil sélectionné, rien n'a été exécuté."
 }

@@ -127,5 +127,13 @@
   "settings_navigation": "ナビゲーション",
   "nav_style_classic": "クラシック",
   "nav_style_rounded": "ラウンド",
-  "nav_style_expressive": "エクスプレッシブ"
+  "nav_style_expressive": "エクスプレッシブ",
+  "teesim_profile_title": "TEESimulator プロファイル",
+  "teesim_profile_hint": "これらの操作は 1 つの TEESimulator プロファイルを更新します。変更するプロファイルを選択してください。",
+  "teesim_profile_confirm": "{profile} を更新",
+  "teesim_profile_cancel": "キャンセル",
+  "teesim_profile_read_failed": "TEESimulator の構成を読み取れませんでした。",
+  "teesim_profile_changed": "TEESimulator の構成が変更されました。何も実行されませんでした。",
+  "teesim_profile_empty": "この TEESimulator の構成にはプロファイルがありません。",
+  "teesim_profile_cancelled": "プロファイルが選択されていないため、何も実行されませんでした。"
 }

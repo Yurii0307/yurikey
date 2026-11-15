@@ -127,5 +127,13 @@
   "settings_navigation": "Navegació",
   "nav_style_classic": "Clàssic",
   "nav_style_rounded": "Arrodonit",
-  "nav_style_expressive": "Expressiu"
+  "nav_style_expressive": "Expressiu",
+  "teesim_profile_title": "Perfil de TEESimulator",
+  "teesim_profile_hint": "Aquestes accions actualitzen un perfil de TEESimulator. Trieu el que voleu canviar.",
+  "teesim_profile_confirm": "Actualitzar {profile}",
+  "teesim_profile_cancel": "Cancel·lar",
+  "teesim_profile_read_failed": "No s'ha pogut llegir la configuració de TEESimulator.",
+  "teesim_profile_changed": "La configuració de TEESimulator ha canviat. No s'ha executat res.",
+  "teesim_profile_empty": "Aquesta configuració de TEESimulator no té cap perfil.",
+  "teesim_profile_cancelled": "No s'ha triat cap perfil; no s'ha executat res."
 }

@@ -127,5 +127,13 @@
   "settings_navigation": "Navigare",
   "nav_style_classic": "Clasic",
   "nav_style_rounded": "Rotunjit",
-  "nav_style_expressive": "Expresiv"
+  "nav_style_expressive": "Expresiv",
+  "teesim_profile_title": "Profil TEESimulator",
+  "teesim_profile_hint": "Aceste acțiuni actualizează un singur profil TEESimulator. Alege profilul pe care dorești să îl modifici.",
+  "teesim_profile_confirm": "Actualizează {profile}",
+  "teesim_profile_cancel": "Anulează",
+  "teesim_profile_read_failed": "Nu s-a putut citi configurația TEESimulator.",
+  "teesim_profile_changed": "Configurația TEESimulator a fost modificată. Nu s-a executat nimic.",
+  "teesim_profile_empty": "Această configurație TEESimulator nu conține profiluri.",
+  "teesim_profile_cancelled": "Nu ai ales niciun profil, nu s-a executat nimic."
 }

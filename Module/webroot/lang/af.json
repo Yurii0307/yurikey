@@ -127,5 +127,13 @@
   "settings_navigation": "Navigasie",
   "nav_style_classic": "Klassiek",
   "nav_style_rounded": "Gerond",
-  "nav_style_expressive": "Ekspressief"
+  "nav_style_expressive": "Ekspressief",
+  "teesim_profile_title": "TEESimulator-profiel",
+  "teesim_profile_hint": "Hierdie aksies werk een TEESimulator-profiel by. Kies die een wat jy wil verander.",
+  "teesim_profile_confirm": "Werk {profile} by",
+  "teesim_profile_cancel": "Kanselleer",
+  "teesim_profile_read_failed": "Kon nie die TEESimulator-konfigurasie lees nie.",
+  "teesim_profile_changed": "Die TEESimulator-konfigurasie het verander. Niks is uitgevoer nie.",
+  "teesim_profile_empty": "Hierdie TEESimulator-konfigurasie het geen profiele nie.",
+  "teesim_profile_cancelled": "Geen profiel gekies nie; niks is uitgevoer nie."
 }

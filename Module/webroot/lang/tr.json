@@ -127,5 +127,13 @@
   "settings_navigation": "Gezinme",
   "nav_style_classic": "Klasik",
   "nav_style_rounded": "Yuvarlatılmış",
-  "nav_style_expressive": "Dışavurumcu"
+  "nav_style_expressive": "Dışavurumcu",
+  "teesim_profile_title": "TEESimulator profili",
+  "teesim_profile_hint": "Bu işlemler tek bir TEESimulator profilini günceller. Değiştirmek istediğinizi seçin.",
+  "teesim_profile_confirm": "{profile} profilini güncelle",
+  "teesim_profile_cancel": "İptal",
+  "teesim_profile_read_failed": "TEESimulator yapılandırması okunamadı.",
+  "teesim_profile_changed": "TEESimulator yapılandırması değişti. Hiçbir şey çalıştırılmadı.",
+  "teesim_profile_empty": "Bu TEESimulator yapılandırmasında hiç profil yok.",
+  "teesim_profile_cancelled": "Profil seçilmedi, hiçbir şey çalıştırılmadı."
 }

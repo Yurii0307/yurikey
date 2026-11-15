@@ -127,5 +127,13 @@
   "settings_navigation": "내비게이션",
   "nav_style_classic": "클래식",
   "nav_style_rounded": "라운드",
-  "nav_style_expressive": "익스프레시브"
+  "nav_style_expressive": "익스프레시브",
+  "teesim_profile_title": "TEESimulator 프로필",
+  "teesim_profile_hint": "이 작업은 TEESimulator 프로필 하나를 변경합니다. 변경할 프로필을 선택하세요.",
+  "teesim_profile_confirm": "{profile} 업데이트",
+  "teesim_profile_cancel": "취소",
+  "teesim_profile_read_failed": "TEESimulator 구성을 읽을 수 없습니다.",
+  "teesim_profile_changed": "TEESimulator 구성이 변경되었습니다. 아무 작업도 실행되지 않았습니다.",
+  "teesim_profile_empty": "이 TEESimulator 구성에는 프로필이 없습니다.",
+  "teesim_profile_cancelled": "프로필을 선택하지 않아 아무 작업도 실행되지 않았습니다."
 }

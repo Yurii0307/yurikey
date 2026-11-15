@@ -127,5 +127,13 @@
   "settings_navigation": "Navigointi",
   "nav_style_classic": "Perinteinen",
   "nav_style_rounded": "Pyöristetty",
-  "nav_style_expressive": "Ilmeikäs"
+  "nav_style_expressive": "Ilmeikäs",
+  "teesim_profile_title": "TEESimulator-profiili",
+  "teesim_profile_hint": "Nämä toiminnot päivittävät yhtä TEESimulator-profiilia. Valitse muutettava profiili.",
+  "teesim_profile_confirm": "Päivitä {profile}",
+  "teesim_profile_cancel": "Peruuta",
+  "teesim_profile_read_failed": "TEESimulator-asetusten lukeminen ei onnistunut.",
+  "teesim_profile_changed": "TEESimulator-asetukset muuttuivat. Mitään ei suoritettu.",
+  "teesim_profile_empty": "TEESimulator-asetuksissa ei ole yhtään profiilia.",
+  "teesim_profile_cancelled": "Profiilia ei valittu, joten mitään ei suoritettu."
 }

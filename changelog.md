@@ -6,6 +6,7 @@
 - Replaced legacy snackbar with styled icon toast notifications
 - Added a Notifications setting to route WebUI feedback to Android system notifications through root
 - Added interactive script output log viewer
+- Added TEESimulator support alongside Tricky Store: profile selection for the target and patch actions, keybox install to `/data/adb/teesim`, and installs without Tricky Store
 - Hardened shell scripts, POSIX compliance, and keybox download safety
 - Added Bun unit test suite and automated shell syntax checks
 - Reduced module ZIP size by ~78%
