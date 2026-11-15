@@ -1,8 +1,10 @@
 #!/system/bin/sh
 MODPATH="${0%/*}"
 
-# ensure not running in busybox ash standalone shell
-set +o standalone
+# only busybox ash knows this option; dash exits on it, so probe in a subshell first
+if (set +o standalone) >/dev/null 2>&1; then
+  set +o standalone
+fi
 unset ASH_STANDALONE
 
 TEESIM_COMMON_DIR="$MODPATH/Yuri"
