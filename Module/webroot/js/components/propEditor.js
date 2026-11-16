@@ -12,7 +12,11 @@
     if (!dialog.open && typeof dialog.show === "function") {
       try { dialog.show(); } catch {}
     }
-    loadProperties();
+    if (typeof requestAnimationFrame === "function") {
+      requestAnimationFrame(() => setTimeout(loadProperties, 0));
+    } else {
+      setTimeout(loadProperties, 0);
+    }
   }
 
   function closePropDialog() {

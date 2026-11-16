@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (pages[idx]) {
         pages[idx].classList.add("active");
       }
+      document.dispatchEvent(new CustomEvent("navigation:change", { detail: { index: idx, link } }));
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });

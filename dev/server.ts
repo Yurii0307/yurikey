@@ -13,14 +13,21 @@ app.get("/json/device-info.json", (_req, res) => {
   });
 });
 
-app.get("/__dev/mock-ksu.js", (_req, res) => {
-  res.sendFile("dev/mock-ksu.js", { root: "." });
+const MOCK_SCRIPTS = ["properties.js", "teesim.js", "commands.js", "index.js"]
+  .map(file => `<script src="/__dev/mock-ksu/${file}"></script>`)
+  .join("\n");
+
+app.use("/__dev/mock-ksu", express.static("dev/mock-ksu"));
+
+// Emulate the changelog bundled into the module webroot by the release build
+app.get("/changelog.md", (_req, res) => {
+  res.type("text/markdown").sendFile("changelog.md", { root: "." });
 });
 
-// Inject mock bridge script into index.html
+// Inject mock bridge scripts into index.html
 app.get(["/", "/index.html"], (_req, res) => {
   const html = fs.readFileSync("Module/webroot/index.html", "utf-8");
-  res.send(html.replace("</head>", '  <script src="/__dev/mock-ksu.js"></script>\n</head>'));
+  res.send(html.replace("</head>", `${MOCK_SCRIPTS}\n</head>`));
 });
 
 // Serve all static webroot assets (CSS, JS, fonts, lang)

@@ -1,5 +1,8 @@
 import { test, expect } from "bun:test";
-import { readFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { spawnSync } from "node:child_process";
 
 test("clear_all_detection_traces.sh does not wipe /data/property", () => {
   const content = readFileSync("Module/Yuri/clear_all_detection_traces.sh", "utf-8");
@@ -35,11 +38,48 @@ test("dialog layout uses expressive-dialog and shared dialog-actions pattern", (
   expect(css).toContain(".prop-name");
 });
 
-test("mock-ksu simulates realistic persistent properties and CLI actions", () => {
-  const mockKsu = readFileSync("dev/mock-ksu.js", "utf-8");
-  expect(mockKsu).toContain("persist_props.sh");
-  expect(mockKsu).toContain("persist.sys.fuse");
-  expect(mockKsu).toContain("persist.bluetooth.opus.enabled");
-  expect(mockKsu).toContain("JSON.stringify(mockProperties)");
-});
+test("persist_props.sh list emits valid JSON with escaping in a single pass", () => {
+  const dir = mkdtempSync(join(tmpdir(), "yurikey-props-"));
+  try {
+    const getprop = join(dir, "getprop");
+    writeFileSync(
+      getprop,
+      [
+        "#!/bin/sh",
+        `printf '[persist.sys.fuse]: [true]\\n'`,
+        `printf '[persist.weird.quote]: [he said "hi"]\\n'`,
+        `printf '[persist.weird.backslash]: [C:\\\\System]\\n'`,
+        `printf '[persist.weird.empty]: []\\n'`,
+        `printf '[ro.product.model]: [Pixel 9 Pro XL]\\n'`,
+        "",
+      ].join("\n"),
+      { mode: 0o755 }
+    );
 
+    const script = join(dir, "persist_props.sh");
+    writeFileSync(
+      script,
+      readFileSync("Module/Yuri/persist_props.sh", "utf-8").replace(
+        /^DIFF_FILE=.*$/m,
+        `DIFF_FILE="${join(dir, "persist_props.diff")}"`
+      )
+    );
+    writeFileSync(join(dir, "persist_props.diff"), "DISABLED:persist.gone=gone\n");
+
+    const res = spawnSync("sh", [script, "list"], {
+      encoding: "utf-8",
+      env: { ...process.env, PATH: `${dir}:${process.env.PATH}` },
+    });
+
+    expect(res.status).toBe(0);
+    expect(JSON.parse(res.stdout)).toEqual([
+      { name: "persist.sys.fuse", value: "true", disabled: false },
+      { name: "persist.weird.quote", value: 'he said "hi"', disabled: false },
+      { name: "persist.weird.backslash", value: "C:\\System", disabled: false },
+      { name: "persist.weird.empty", value: "", disabled: false },
+      { name: "persist.gone", value: "gone", disabled: true },
+    ]);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});

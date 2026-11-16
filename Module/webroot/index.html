@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:opsz,ROND,wdth,wght@6..144,0..100,25..151,400..700&display=swap" />
   <link rel="stylesheet" href="css/beer.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="js/components/segmentedPicker.js"></script>
+  <script src="js/navStyle.js"></script>
 </head>
 <body class="dark">
   <main id="app" class="page-shell">
@@ -63,6 +65,33 @@
           <p id="root-type" class="card-value">Error</p>
         </article>
       </div>
+
+      <article class="beer-card home-changelog-card">
+        <h6 class="card-title"><i>history</i><span data-i18n="home_changelog_title">Changelog</span></h6>
+        <div id="changelog-content" class="changelog-content">
+          <p id="changelog-loading" class="card-desc" data-i18n="home_changelog_loading">Loading changelog…</p>
+          <p id="changelog-error" class="card-desc" data-i18n="home_changelog_error" hidden>Changelog unavailable.</p>
+        </div>
+      </article>
+
+      <article class="beer-card home-report-card">
+        <h6 class="card-title"><i>bug_report</i><span data-i18n="home_report_title">Report a problem</span></h6>
+        <p class="card-desc home-report-desc" data-i18n="home_report_desc">Found a bug or something not working? Let us know so it can be tracked and fixed.</p>
+        <div class="home-report-tips">
+          <strong data-i18n="home_report_note_label">Before you report</strong>
+          <ul>
+            <li data-i18n="home_report_tip_device">Device model and Android version</li>
+            <li data-i18n="home_report_tip_version">Yurikey version</li>
+            <li data-i18n="home_report_tip_steps">Steps to reproduce the problem</li>
+          </ul>
+        </div>
+        <div class="stack">
+          <button type="button" class="responsive round large wave" data-url="https://github.com/Yurii0307/yurikey/issues">
+            <i>open_in_new</i>
+            <span data-i18n="home_report_button">Report on GitHub</span>
+          </button>
+        </div>
+      </article>
     </section>
 
     <section id="actions-page" class="page">
@@ -148,15 +177,59 @@
           <button class="theme-preset-btn" data-theme-preset="violet" data-i18n="theme_preset_violet">Violet</button>
         </div>
       </article>
+
+      <article class="beer-card">
+        <h6 class="card-title" id="nav-style-heading"><i>bottom_navigation</i><span data-i18n="settings_navigation">Navigation</span></h6>
+        <nav id="nav-style-picker" class="group connected segmented-picker" role="radiogroup" aria-labelledby="nav-style-heading">
+          <button type="button" class="left-round wave segmented-picker-btn" data-nav-style="classic" role="radio" aria-checked="false">
+            <i aria-hidden="true">view_agenda</i>
+            <span data-i18n="nav_style_classic">Classic</span>
+          </button>
+          <button type="button" class="wave segmented-picker-btn active" data-nav-style="expressive" role="radio" aria-checked="true">
+            <i aria-hidden="true">auto_awesome</i>
+            <span data-i18n="nav_style_expressive">Expressive</span>
+          </button>
+          <button type="button" class="right-round wave segmented-picker-btn" data-nav-style="rounded" role="radio" aria-checked="false">
+            <i aria-hidden="true">rounded_corner</i>
+            <span data-i18n="nav_style_rounded">Rounded</span>
+          </button>
+        </nav>
+      </article>
+
+      <article class="beer-card">
+        <h6 class="card-title" id="notification-mode-heading"><i>notifications</i><span data-i18n="settings_notifications">Notifications</span></h6>
+        <nav id="notification-mode-picker" class="group connected segmented-picker" role="radiogroup" aria-labelledby="notification-mode-heading">
+          <button type="button" class="left-round wave segmented-picker-btn active" data-notification-mode="toast" role="radio" aria-checked="true">
+            <i aria-hidden="true">notifications_active</i>
+            <span data-i18n="notification_mode_toast">Toast</span>
+          </button>
+          <button type="button" class="right-round wave segmented-picker-btn" data-notification-mode="android" role="radio" aria-checked="false">
+            <i aria-hidden="true">android</i>
+            <span data-i18n="notification_mode_android">Android</span>
+          </button>
+        </nav>
+        <p id="notification-mode-desc" class="card-desc">Messages appear as in-page toasts while this page is open.</p>
+      </article>
+
       <article class="beer-card" id="log-viewer-settings-card">
         <h6 class="card-title"><i>terminal</i><span data-i18n="settings_log_viewer">Log Viewer</span></h6>
         <div class="log-viewer-setting-row">
           <div class="log-viewer-setting-info">
             <div class="log-viewer-setting-title" id="log-viewer-setting-title" data-i18n="settings_enable_log_viewer">Enable Log Viewer</div>
-            <div class="card-desc" id="log-viewer-setting-desc" data-i18n="settings_enable_log_viewer_desc">Show floating terminal button to view script outputs</div>
+            <div class="card-desc" id="log-viewer-setting-desc" data-i18n="settings_enable_log_viewer_desc">Show terminal button to view script outputs</div>
           </div>
           <label class="switch">
             <input type="checkbox" id="log-viewer-toggle" aria-labelledby="log-viewer-setting-title" aria-describedby="log-viewer-setting-desc" />
+            <span></span>
+          </label>
+        </div>
+        <div id="log-fab-beside-row" class="log-viewer-setting-row" hidden>
+          <div class="log-viewer-setting-info">
+            <div class="log-viewer-setting-title" id="log-fab-beside-title" data-i18n="settings_show_beside_navbar">Show Beside Navbar</div>
+            <div class="card-desc" id="log-fab-beside-desc" data-i18n="settings_show_beside_navbar_desc">Place the terminal log button next to the navigation bar</div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="log-fab-beside-toggle" aria-labelledby="log-fab-beside-title" aria-describedby="log-fab-beside-desc" />
             <span></span>
           </label>
         </div>
@@ -193,11 +266,12 @@
             </svg>
             <span data-i18n="update_github">GitHub</span>
           </button>
-          <button type="button" class="right-round large max wave" data-url="https://t.me/yuriiroot">
+          <button type="button" class="right-round large max wave" data-url="https://t.me/yuriiroot" data-collapsible-label>
             <svg role="img" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
             </svg>
-            <span data-i18n="update_telegram">Telegram Channel</span>
+            <span data-i18n="update_telegram" data-label-long>Telegram Channel</span>
+            <span data-i18n="update_telegram_short" data-label-short>Channel</span>
           </button>
         </nav>
 
@@ -210,12 +284,9 @@
       </article>
     </section>
   </main>
-  <button id="logs-fab" type="button" class="circle extra wave logs-fab" data-i18n-title="home_recent_logs" aria-label="Recent Logs">
-    <i>terminal</i>
-  </button>
-
   <div class="m3-nav-wrapper">
     <nav class="m3-floating-nav">
+      <span class="nav-pill" aria-hidden="true"></span>
       <a class="active" data-ui="#home-page">
         <i>home</i>
         <span data-i18n="nav_home">Home</span>
@@ -233,6 +304,9 @@
         <span data-i18n="nav_settings">Settings</span>
       </a>
     </nav>
+    <button id="logs-fab" type="button" class="circle extra wave logs-fab" data-i18n-title="home_recent_logs" aria-label="Recent Logs">
+      <i>terminal</i>
+    </button>
   </div>
 
 
@@ -532,12 +606,42 @@
     </div>
   </dialog>
 
+  <div id="teesim-dialog-overlay" class="overlay blur"></div>
+  <dialog id="teesim-dialog" class="round expressive-dialog" aria-labelledby="teesim-dialog-title">
+    <header>
+      <nav>
+        <h5 class="max">
+          <i>layers</i>
+          <span id="teesim-dialog-title" data-i18n="teesim_profile_title">TEESimulator profile</span>
+        </h5>
+        <div class="dialog-actions">
+          <button type="button" id="teesim-dialog-close" class="circle transparent wave" data-i18n-title="dialog_close" aria-label="Close">
+            <i>close</i>
+          </button>
+        </div>
+      </nav>
+      <p id="teesim-dialog-hint" class="teesim-dialog-hint" data-i18n="teesim_profile_hint">These actions update one TEESimulator profile. Pick the one to change.</p>
+    </header>
+
+    <div class="dialog-scroll-body teesim-dialog-body">
+      <div id="teesim-profile-list" class="teesim-profile-list" role="radiogroup" aria-labelledby="teesim-dialog-title"></div>
+    </div>
+
+    <div class="teesim-dialog-footer">
+      <button type="button" id="teesim-dialog-cancel" class="transparent wave" data-i18n="teesim_profile_cancel">Cancel</button>
+      <button type="button" id="teesim-dialog-confirm" class="wave">Update</button>
+    </div>
+  </dialog>
+
   <script src="js/beer.min.js" type="module"></script>
   <!-- Utilities -->
   <script src="js/utils/i18n.js"></script>
+  <script src="js/utils/collapseLabels.js"></script>
+  <script src="js/utils/notifications.js"></script>
   <script src="js/utils/toast.js"></script>
   <script src="js/utils/bridge.js"></script>
   <script src="js/utils/scriptExecutor.js"></script>
+  <script src="js/utils/teesimProfile.js"></script>
   <!-- Components -->
   <script src="js/components/navigation.js"></script>
   <script src="js/components/clock.js"></script>
@@ -549,6 +653,8 @@
   <script src="js/components/propEditor.js"></script>
   <script src="js/main.js"></script>
   <script src="js/version.js"></script>
+  <script src="js/utils/markdown.js"></script>
+  <script src="js/changelog.js"></script>
   <script src="js/dev.js?v=3"></script>
 </body>
 </html>

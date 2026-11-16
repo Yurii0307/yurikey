@@ -8,15 +8,13 @@ const TOAST_ICONS = {
 const TOAST_DEFAULT_DURATION = 3000;
 let toastTimer;
 
-// The toast's final width is the track's width; the message is laid out at
-// that width from the first frame so text never reflows during the expand.
 function syncToastTrackWidth() {
   const track = document.querySelector(".toast-track");
   if (!track) return;
   document.documentElement.style.setProperty("--toast-track-width", `${track.clientWidth}px`);
 }
 
-function showToast(message, type = "info", duration = TOAST_DEFAULT_DURATION) {
+function showToastVisual(message, type = "info", duration = TOAST_DEFAULT_DURATION) {
   const toast = document.getElementById("toast");
   if (!toast) return;
 
@@ -42,8 +40,24 @@ function showToast(message, type = "info", duration = TOAST_DEFAULT_DURATION) {
   }, duration);
 }
 
-// Export toast functions to window object
+function showToast(message, type = "info", duration = TOAST_DEFAULT_DURATION) {
+  if (
+    typeof getNotificationMode === "function" &&
+    getNotificationMode() === "android" &&
+    typeof sendAndroidNotification === "function"
+  ) {
+    sendAndroidNotification(message).catch((error) => {
+      console.warn("Android notification failed, falling back to toast:", error);
+      showToastVisual(message, type, duration);
+    });
+    return;
+  }
+
+  showToastVisual(message, type, duration);
+}
+
 window.showToast = showToast;
+window.showToastVisual = showToastVisual;
 window.showSuccessToast = (message, duration = 3000) => showToast(message, "success", duration);
 window.showErrorToast = (message, duration = 4000) => showToast(message, "error", duration);
 window.showWarningToast = (message, duration = 3500) => showToast(message, "warning", duration);

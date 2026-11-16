@@ -24,10 +24,19 @@ if [ -d "/data/adb/modules/yurikey" ]; then
   touch /data/adb/modules/yurikey/remove
 fi
 
-# Check if Tricky Store module is installed (required dependency)
-if [ ! -d "$DEPENDENCY_MODULE_UPDATE" ] && [ ! -d "$DEPENDENCY_MODULE" ]; then
-  ui_print "- Error: Tricky Store module file not found!"
-  ui_print "- Please install Tricky Store before using Yuri Keybox."
+# Tricky Store is one of two supported backends; TEESimulator replaces it upstream.
+TS_INSTALLED=0
+if [ -d "$DEPENDENCY_MODULE_UPDATE" ] || [ -d "$DEPENDENCY_MODULE" ]; then
+  TS_INSTALLED=1
+fi
+TEESIM_INSTALLED=0
+if [ -d "/data/adb/modules/teesim" ] || [ -d "/data/adb/modules_update/teesim" ]; then
+  TEESIM_INSTALLED=1
+fi
+
+if [ "$TS_INSTALLED" -eq 0 ] && [ "$TEESIM_INSTALLED" -eq 0 ]; then
+  ui_print "- Error: Tricky Store or TEESimulator module file not found!"
+  ui_print "- Please install Tricky Store or TEESimulator before using Yuri Keybox."
   return 0
 fi
 
@@ -98,9 +107,14 @@ update_keybox() {
   fi
 }
 # Start main logic
-ui_print "- Checking if there is an Yuri Keybox..."
-mkdir -p "$TRICKY_DIR" # Make sure the directory exists
-update_keybox          # Begin the update process
+if [ "$TS_INSTALLED" -eq 1 ]; then
+  ui_print "- Checking if there is an Yuri Keybox..."
+  mkdir -p "$TRICKY_DIR" # Make sure the directory exists
+  update_keybox          # Begin the update process
+else
+  ui_print "- Tricky Store is not installed, skipping its keybox."
+  ui_print "- Run the Yuri Keybox action to set up the TEESimulator keybox."
+fi
 
 # Run bundled device-info.sh if present (already verified)
 DEVICE_INFO_SCRIPT="$TMPDIR/webroot/common/device-info.sh"
